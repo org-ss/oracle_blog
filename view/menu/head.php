@@ -9,13 +9,11 @@
     <div class="header_resize">
       <div class="menu_nav">
         <ul>
-          <li class="active"><a href="/index.php">博客首页</a></li>
-          <li><a href="/article_show_List.php">文章</a></li>
-          <li><a href="/diary.php">随记</a></li>
-          <li><a href="/photo_show_Name.php">相册</a></li>
-          <li><a href="/show_Message.php">留言板</a></li>
-          <li><a href="/about.php">关于我</a></li>
-          <li><a href="/more.php">更多功能</a></li>
+          <li class="active"><a href="index.php?r=blogArticle/showAll">博客首页</a></li>
+          <li><a href="index.php?r=blogPhoto/showAll">相册</a></li>
+          <li><a href="../show_Message.php">留言板</a></li>
+          <li><a href="../about.php">关于我</a></li>
+          <li><a href="index.php?r=adminLogin/login_page">登录</a></li>
         </ul>
       </div>
       <div class="clr"></div>

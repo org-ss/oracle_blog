@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login Admin</title>
+    <title>Amaze UI Admin index Examples</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,33 +39,42 @@
         </div>
         <div class="tpl-login">
             <div class="tpl-login-content">
-                <div class="tpl-login-logo">
+                <div class="tpl-login-title">注册用户</div>
+                <span class="tpl-login-content-info">
+                  创建一个新的用户
+              </span>
 
-                </div>
 
-
-
-                <form class="am-form tpl-form-line-form">
+                <form class="am-form tpl-form-line-form" action="index.php?r=adminLogin/do_sign_up" method="POST">
                     <div class="am-form-group">
-                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入账号">
+                        <input type="text" class="tpl-form-input" id="user-name" name="u_email" placeholder="邮箱">
 
                     </div>
 
                     <div class="am-form-group">
-                        <input type="password" class="tpl-form-input" id="user-name" placeholder="请输入密码">
-
+                        <input type="text" class="tpl-form-input" id="user-name" name="u_name" placeholder="用户名">
                     </div>
+
+                    <div class="am-form-group">
+                        <input type="password" class="tpl-form-input" id="user-name" name="u_password" placeholder="请输入密码">
+                    </div>
+
+                    <div class="am-form-group">
+                        <input type="password" class="tpl-form-input" id="user-name" name="u_again_password" placeholder="再次输入密码">
+                    </div>
+
                     <div class="am-form-group tpl-login-remember-me">
                         <input id="remember-me" type="checkbox">
                         <label for="remember-me">
        
-                        记住密码
+                        我已阅读并同意 <a href="javascript:;">《用户注册协议》</a> 
                          </label>
 
                     </div>
+
                     <div class="am-form-group">
 
-                        <button type="button" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>
+                        <button type="submit" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>
 
                     </div>
                 </form>

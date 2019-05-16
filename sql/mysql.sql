@@ -15,6 +15,7 @@ create table articles(
 
 create table users(
 	u_id int(11) primary key auto_increment,
+	u_email varchar(50) comment '邮箱',
 	u_name varchar(50) comment '用户名',
 	u_password varchar(50),
 	u_photo varchar(50) comment'用户头像名称',
@@ -37,4 +38,15 @@ create table photos(
 	p_uid int(11)
 );
 
-insert into users values(default,'admin','123456','gsm.jpg',default);
+insert into users values(default,'123456@qq.com','admin','123456','gsm.jpg',default);
+
+insert into articles values
+	(default,'关于我的介绍','第一次尝试制作php个人博客网站',
+	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',default,2,'first.jpg');
+
+
+insert into photos values(default,'001.jpg',default,'1');
+insert into photos values(default,'002.jpg',default,'1');
+insert into photos values(default,'003.jpg',default,'1');
+insert into photos values(default,'004.jpg',default,'1');
+insert into photos values(default,'005.jpg',default,'1');

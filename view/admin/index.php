@@ -42,7 +42,7 @@
         </div>
         <!-- 侧边导航栏 -->
         
-        <?php include '../admin/left_bar.php'?>
+        <?php include '../view/admin/left_bar.php'?>
 
 
         <!-- 内容区域 -->
