@@ -50,3 +50,5 @@ insert into photos values(default,'002.jpg',default,'1');
 insert into photos values(default,'003.jpg',default,'1');
 insert into photos values(default,'004.jpg',default,'1');
 insert into photos values(default,'005.jpg',default,'1');
+
+insert into articles values(default,'Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',default,1,'text1.jpg');
