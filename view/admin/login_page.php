@@ -69,12 +69,12 @@
 
                     </div>                    
                 </form>
-                <form action="index.php?r=adminLogin/sign_up" method="POST">
-                        <div class="am-form-group">
-                            <button type="submit" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">注册</button>
+                <!-- <form action="index.php?r=adminLogin/sign_up" method="POST">
+                    <div class="am-form-group">
+                        <button type="submit" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">注册</button>
 
-                        </div>
-                    </form>
+                    </div>
+                </form> -->
             </div>
         </div>
     </div>

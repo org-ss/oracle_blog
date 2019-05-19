@@ -20,22 +20,22 @@
 		<div class="content">
 			<div class="content_resize">
 				<div class="mainbar">
-					<?php foreach ($article as $value):?>
+
 					<div class="ibody">
 						<article>
 							<div class="index_about">
-								<h2 class="c_titile"><?php echo $value['a_title'];?></h2>
+								<h2 class="c_titile"><?php echo $article['a_title'];?></h2>
 								<p class="box_c">
-									<span class="d_time">发布时间：<?php echo $value['a_date'];?></span>
-									<span>编辑：<?php echo $value['a_uname'];?>
+									<span class="d_time">发布时间：<?php echo $article['a_date'];?></span>
+									<span>编辑：<?php echo $article['a_uname'];?>
 								</p>
 								<ul class="infos">
-									<?php echo $value['a_content'];?>
+									<?php echo $article['a_content'];?>
 								</ul>
 							</div>
 						</article>
 					</div>
-					<?php endforeach;?>
+					
 				</div>
 				<div class="sidebar">
 					<div class="searchform">

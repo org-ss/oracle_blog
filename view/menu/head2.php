@@ -7,8 +7,8 @@
 <body>
 	<li class="active"><a href="index.php?r=blogArticle/showAll">博客首页</a></li>
 	<li><a href="index.php?r=blogPhoto/showAll">相册</a></li>
-	<li><a href="../show_Message.php">留言板</a></li>
-	<li><a href="../about.php">关于我</a></li>
-	<li><a href="../login.html">登录</a></li>
+	<li><a href="index.php?r=blogMessage/showAll">留言板</a></li>
+	<li><a href="index.php?r=blogIntroduce/about_me">关于我</a></li>
+	<li><a href="index.php?r=adminLogin/login_page">登录</a></li>
 </body>
 </html>

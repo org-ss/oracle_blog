@@ -35,7 +35,7 @@ function validate(){
 <body>
 
 	<div class="main">
-		<?php include 'menu/head.php';?>
+		<?php include '../view/menu/head.php';?>
 		<br>
 		<br>
 		<br>
@@ -51,16 +51,16 @@ function validate(){
 									留言板
 								</h2>
 							</div>
-							<form action="message_save.php" method="post"
-								id="sendemail" >
+							<form action="/index.php?r=blogMessage/message_save" method="post" id="sendemail" onsubmit="return validate();">
 								<ol>
-									<li><label for="name"><span style="color: red">*</span>你的ID</label>
+									<li><label for="name"><span style="color: red">*</span>你的用户名</label>
 										<input id="m_name" name="m_name" class="text" rows="3"/></li>
 									<li><label for="message"><span style="color: red">*</span>你的留言</label>
 										<textarea id="m_text" name="m_text" rows="4" cols="30"></textarea>
 									</li>
-									<li><input type="image" name="imageField" id="imageField"
-										src="images/submit.gif" class="send" />
+									<li><!-- <input type="image" name="imageField" id="imageField"
+										src="images/submit.gif" class="send" /> -->
+										<input type="submit" name="">
 										<div class="clr"></div></li>
 								</ol>
 							</form>
@@ -70,23 +70,17 @@ function validate(){
 						<h2>
 							<span>最近的留言</span> 
 						</h2>
-						<?php
-								require_once 'config/message_db.php';
-								$message_db = new  MESSAGE_DB();
-								$result = $message_db->mysql_db();
-								?>
-								<?php while($row = mysqli_fetch_array($result)){ ?>
+						
+								<?php foreach ($messages as $value): ?>
 							<div class="comment">
-								<a href="#"><img src="<?php echo $row['m_photo'];?>" width="40"
-									height="40" alt="user" class="userpic" /></a>
+								<!-- <a href="#"><img src="<?php echo $value['m_photo'];?>" width="40"
+									height="40" alt="user" class="userpic" /></a> -->
 								<p>
-									<a href="#"><?php echo $row['m_name'];?></a> &nbsp;留言时间:<br /><?php echo $row['m_addtime'];?>
+									<a href="#"><?php echo $value['m_name'];?></a> &nbsp;留言时间:<br /><?php echo $value['m_date'];?>
 								</p>
-								<p><?php echo $row['m_text'];?>.</p>
+								<p><?php echo $value['m_content'];?>.</p>
 							</div>
-								<?php 
-  								} 
-								?>
+								<?php endforeach; ?>
 					</div>
 					
 				</div>
@@ -105,7 +99,7 @@ function validate(){
 						</h2>
 						<div class="clr"></div>
 						<ul class="sb_menu">
-							<?php include 'menu/head2.php'?>
+							<?php include '../view/menu/head2.php'?>
 						</ul>
 					</div>
 					<div class="gadget">
@@ -114,14 +108,14 @@ function validate(){
 						</h2>
 						<div class="clr"></div>
 						<ul class="ex_menu">
-							<?php include 'menu/professional_menu.php'?>
+							<?php include '../view/menu/professional_menu.php'?>
 						</ul>
 					</div>
 				</div>
 				<div class="clr"></div>
 			</div>
 		</div>
-		<?php include 'menu/foot.php';?>
+		
 	</div>
 </body>
 </html>

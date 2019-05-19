@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="assets/css/app.css">
     <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
+    
+
 </head>
 
 <body data-type="login">
@@ -45,22 +47,22 @@
               </span>
 
 
-                <form class="am-form tpl-form-line-form" action="index.php?r=adminLogin/do_sign_up" method="POST">
+                <form class="am-form tpl-form-line-form" action="index.php?r=adminLogin/do_sign_up" method="POST" name="myform" onsubmit="return check();">
                     <div class="am-form-group">
-                        <input type="text" class="tpl-form-input" id="user-name" name="u_email" placeholder="邮箱">
+                        <input type="email" class="tpl-form-input" id="email" name="u_email" placeholder="邮箱">
 
                     </div>
 
                     <div class="am-form-group">
-                        <input type="text" class="tpl-form-input" id="user-name" name="u_name" placeholder="用户名">
+                        <input type="text" class="tpl-form-input" id="username" name="u_name" placeholder="用户名">
                     </div>
 
                     <div class="am-form-group">
-                        <input type="password" class="tpl-form-input" id="user-name" name="u_password" placeholder="请输入密码">
+                        <input type="password" class="tpl-form-input" id="password" name="u_password" placeholder="请输入密码">
                     </div>
 
                     <div class="am-form-group">
-                        <input type="password" class="tpl-form-input" id="user-name" name="u_again_password" placeholder="再次输入密码">
+                        <input type="password" class="tpl-form-input" id="repassword" name="u_again_password" placeholder="再次输入密码">
                     </div>
 
                     <div class="am-form-group tpl-login-remember-me">
@@ -83,6 +85,38 @@
     </div>
     <script src="http://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js"></script>
     <script src="assets/js/app.js"></script>
+    <script type="text/javascript">
+         function check(){
+
+             if(myform.email.value==""){
+                 alert("请输入邮箱");
+                 myform.email.focus();
+                 return false;
+             }
+             if(myform.username.value==""){
+                 alert("请输入用户名");
+                 myform.username.focus();
+                 return false;
+             }
+             if (myform.password.value==""){
+                 alert("请输入密码");
+                 myform.password.focus();
+                 return false;
+             }
+             if (myform.repassword.value==""){
+                 alert("请再次输入密码");
+                 myform.repassword.focus();
+                 return false;
+             }
+             if (myform.password.value!=myform.repassword.value) {
+                alert("两次输入密码不同，请重新输入！");
+                myform.password.value="";
+                myform.repassword.value="";
+                myform.password.focus();
+                return false;
+             }
+         }
+    </script>
 
 </body>
 
