@@ -10,14 +10,12 @@ $route = isset($_GET['r']) ? $_GET['r']:NULL;
 
 session_start();
 $userModel = new User();
-<<<<<<< HEAD
+
 
 $_SESSION['admin']=$userModel->returnUser(1);
 
-=======
-$_SESSION['user']=$userModel->returnAdmin(1);
 $_SESSION['isAdminLogin'] = false;
->>>>>>> 24b6dfac08970bb17ed875e18914c866acc9f52c
+
 
 if($route){
 
