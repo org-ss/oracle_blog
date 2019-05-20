@@ -6,7 +6,6 @@ class AdminLoginController{
 
 	//登录界面跳转
 	public function login_page(){
-
 		include('../view/admin/login_page.php');
 	}
 
@@ -34,6 +33,7 @@ class AdminLoginController{
 		if ($user) {
 			session_start();
 			$_SESSION['user']=$user;
+			$_SESSION['isAdminLogin']=true;
 			header('Location:/index.php?r=adminHome/home');
 		}else{
 						
@@ -61,10 +61,10 @@ class AdminLoginController{
 
 		
 		if ($text==1) {
-			echo '<script>alert("邮箱已经被注册，请重新输入！");history.go(-1);</script>';
+			echo '<script>alert("邮箱已经被注册，请重新输入！");window.location.href="index.php?r=adminLogin/sign_up";</script>';
     		
     	}else if($text==2){
-    		echo '<script>alert("用户名已经被注册，请重新输入！");history.go(-1);</script>';
+    		echo '<script>alert("用户名已经被注册，请重新输入！");window.location.href="index.php?r=adminLogin/sign_up";</script>';
     		
     	}else{
 
