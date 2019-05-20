@@ -19,7 +19,6 @@
 	href="/assets/css/amazeui.datatables.min.css" />
 <link rel="stylesheet" href="/assets/css/app.css">
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-
 </head>
 
 <body data-type="widgets">

@@ -13,7 +13,7 @@
 <body>
 
 	<div class="main">
-		<?php include 'menu/head.php';?>
+		<?php include '../view/menu/head.php';?>
 		<br>
 		<br>
 		<br>
@@ -64,7 +64,7 @@
 						</h2>
 						<div class="clr"></div>
 						<ul class="sb_menu">
-							<?php include 'menu/head2.php'?>
+							<?php include '../view/menu/head2.php'?>
 						</ul>
 					</div>
 					<div class="gadget">
@@ -73,14 +73,14 @@
 						</h2>
 						<div class="clr"></div>
 						<ul class="ex_menu">
-							<?php include 'menu/professional_menu.php'?>
+							<?php include '../view/menu/professional_menu.php'?>
 						</ul>
 					</div>
 				</div>
 				<div class="clr"></div>
 			</div>
 		</div>
-		<?php include 'menu/foot.php';?>
+		<?php include '../view/menu/foot.php';?>
 	</div>
 </body>
 </html>

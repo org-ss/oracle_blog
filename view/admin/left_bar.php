@@ -39,11 +39,6 @@
                     </ul>
                 </li>
                  <li class="sidebar-nav-link">
-                    <a href="javascript:;" class="sidebar-nav-sub-title"><!--href="/admin/diary/diary_list.php"-->
-                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 随记管理
-                    </a>
-                </li>
-                 <li class="sidebar-nav-link">
                     <a href="javascript:;" class="sidebar-nav-sub-title <?php if($index==3){echo 'active';} ?>"><!--href="/admin/photo/photo_list.php"-->
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 相册管理
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico">
@@ -64,7 +59,7 @@
                 </li>
                 
                <li class="sidebar-nav-link">
-                    <a href="/admin/message/message_list.php" <?php if($index==4){echo 'class="active"';} ?>>
+                    <a href="index.php?r=adminMessage/home" <?php if($index==4){echo 'class="active"';} ?>>
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 留言管理
                     </a>
                 </li>

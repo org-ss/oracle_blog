@@ -16,6 +16,15 @@ class Message extends Model{
 
 	}
 
+	public function delete($mId){
+		$statement = $this->pdo->prepare("delete from messages from m_id=?");
+		$statement->execute([$mId]);
+	}
+
+	public function deleteAll(){
+		$statement = $this->pdo->query("delete from messages");
+	}
+
 	// /#验证留言者是否注册
 	// public function check($m_name){
 	// 	$statement = $this->pdo->prepare("select * from users where u_name=?");
