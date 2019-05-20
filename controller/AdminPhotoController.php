@@ -11,6 +11,7 @@ class AdminPhotoController{
 
 		$index = 3;
 
+
 		$photoModel = new Photo();
 		$photos = $photoModel->showAll($uid);
 		include('../view/admin/photo/photo_list.php');

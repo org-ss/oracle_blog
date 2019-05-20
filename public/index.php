@@ -10,9 +10,14 @@ $route = isset($_GET['r']) ? $_GET['r']:NULL;
 
 session_start();
 $userModel = new User();
+<<<<<<< HEAD
 
 $_SESSION['admin']=$userModel->returnUser(1);
 
+=======
+$_SESSION['user']=$userModel->returnAdmin(1);
+$_SESSION['isAdminLogin'] = false;
+>>>>>>> 24b6dfac08970bb17ed875e18914c866acc9f52c
 
 if($route){
 
@@ -20,6 +25,19 @@ if($route){
 	if(count($partials)!=2){
 		die('invalid route');
 	}
+	
+	if(str_split($partials[0],5)[0]=='admin' && str_split($partials[0],5)[1]!='Login'){
+		if(!$_SESSION['isAdminLogin']){
+			header('Location:/index.php?r=adminLogin/login_page');
+		}
+		$user = $_SESSION['user'];
+		if($user['u_role']==1){
+			die('权限不足');
+		}else{
+			die('未授权的访问');
+		}
+	}
+
 
 	$filename = $partials[0];
 

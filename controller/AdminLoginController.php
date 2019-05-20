@@ -6,7 +6,6 @@ class AdminLoginController{
 
 	//登录界面跳转
 	public function login_page(){
-
 		include('../view/admin/login_page.php');
 	}
 
@@ -30,12 +29,22 @@ class AdminLoginController{
 		$userModel=new User();
 
 		$user=$userModel->verify($uEmail,$uPassword);
+<<<<<<< HEAD
 		 //var_export($user);
 		if ($user==0) {
 
 			echo '<script>alert("用户不存在，请先注册！");window.location.href="index.php?r=adminLogin/sign_up";</script>';
 			
 		}elseif($user==1){
+=======
+		 
+		if ($user) {
+			session_start();
+			$_SESSION['user']=$user;
+			$_SESSION['isAdminLogin']=true;
+			header('Location:/index.php?r=adminHome/home');
+		}else{
+>>>>>>> 24b6dfac08970bb17ed875e18914c866acc9f52c
 						
 			echo '<script>alert("邮箱或密码错误，请重新输入！");history.go(-1);</script>';
 			
