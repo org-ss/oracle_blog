@@ -3,7 +3,7 @@ include_once('Model.php');
 
 class User extends Model{
 
-	public function returnAdmin($uid){#返回博客主人
+	public function returnUser($uid){#返回博客主人
 		$statement = $this->pdo->prepare("select * from users where u_id=?");
 		$statement->execute([$uid]);
 		$user = $statement->fetch();
@@ -17,13 +17,18 @@ class User extends Model{
     	$statment=$this->pdo->prepare("select * from users where u_email=?");
     	$statment->execute([$uEmail]);    	
     	$user=$statment->fetch();
+        
         //print_r($user);
-
-    	if ($user['u_email']==$uEmail && $user['u_password']==$uPassword) {
-    		return $user;
-    	}else{
-    		return false;
-    	}
+        if ($user) {
+            if ($user['u_email']==$uEmail && $user['u_password']==$uPassword) {
+                return $user;
+            }else{
+                return 1;
+            }
+        }else{
+            return 0;
+        }
+    	
     }
 
     //验证注册是否合法
@@ -45,22 +50,22 @@ class User extends Model{
 
     	if ($result1) {
 
-    		return $text=1;
+    		return 1;
     		 
     	}else if($result2){
 
-    		return $text=2;
+    		return 2;
 
     	}else{
 
-    		return $text=0;
+    		return 0;
     	}
 
     }
 
     public function save($uEmail,$uName,$uPassword){
 
-		$statment=$this->pdo->prepare("insert into users (u_email,u_name,u_password) values (?,?,?)");
+		$statment=$this->pdo->prepare("insert into users (u_email,u_name,u_password,u_role) values (?,?,?,1)");
         $statment->execute([$uEmail,$uName,$uPassword]);
 		
 	}

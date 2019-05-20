@@ -35,7 +35,22 @@ function validate(){
 <body>
 
 	<div class="main">
-		<?php include '../view/menu/head.php';?>
+		<div class="header">
+		    <div class="header_resize">
+		      <div class="menu_nav">
+		        <ul>
+		          <li><a href="index.php?r=blogArticle/showAll">博客首页</a></li>
+		          <li><a href="index.php?r=blogPhoto/showAll">相册</a></li>
+		          <li  class="active"><a href="index.php?r=blogMessage/showAll">留言板</a></li>
+		          <li><a href="index.php?r=blogIntroduce/about_me">关于我</a></li>
+		          <li><a href="index.php?r=adminLogin/login_page">登录</a></li>
+		        </ul>
+		      </div>
+		      <div class="clr"></div>
+		      <div class="logo"><h1><a href="/index.php"><span>Rain_Blog</span></a> <small>   </small></h1></div>
+		      <div class="clr"></div>
+		    </div>
+		</div> 
 		<br>
 		<br>
 		<br>
@@ -53,9 +68,9 @@ function validate(){
 							</div>
 							<form action="/index.php?r=blogMessage/message_save" method="post" id="sendemail" onsubmit="return validate();">
 								<ol>
-									<li><label for="name"><span style="color: red">*</span>你的用户名</label>
-										<input id="m_name" name="m_name" class="text" rows="3"/></li>
-									<li><label for="message"><span style="color: red">*</span>你的留言</label>
+									<!-- <li><label for="name"><span style="color: red">*</span>你的用户名</label>
+										<input id="m_name" name="m_name" class="text" rows="3"/></li> -->
+									<li><label for="message"><span style="color: red">*</span>我的留言</label>
 										<textarea id="m_text" name="m_text" rows="4" cols="30"></textarea>
 									</li>
 									<li><!-- <input type="image" name="imageField" id="imageField"
@@ -85,14 +100,7 @@ function validate(){
 					
 				</div>
 				<div class="sidebar">
-					<div class="searchform">
-						<form id="formsearch" name="formsearch" method="post" action="">
-							<span><input name="editbox_search" class="editbox_search"
-								id="editbox_search" maxlength="80" value="Search our ste:"
-								type="text" /></span> <input name="button_search"
-								src="images/search_btn.gif" class="button_search" type="image" />
-						</form>
-					</div>
+					
 					<div class="gadget">
 						<h2 class="star">
 							<span>Blog_</span> Menu

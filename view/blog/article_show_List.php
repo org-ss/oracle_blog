@@ -12,7 +12,39 @@
 <!-- CuFon ends -->
 </head>
 <body>
-	<div class="main"><?php include '../view/menu/head.php'?> <br>
+	<div class="main">
+		<div class="header">
+		    <div class="header_resize">
+		      <div class="menu_nav">
+		        <ul>
+		          <li class="active"><a href="index.php?r=blogArticle/showAll">博客首页</a></li>
+		          <li><a href="index.php?r=blogPhoto/showAll">相册</a></li>
+		          <li><a href="index.php?r=blogMessage/showAll">留言板</a></li>
+		          <li><a href="index.php?r=blogIntroduce/about_me">关于我</a></li>
+		          <?php 
+		          	$isLogin=$_SESSION['isLogin'];
+
+		          	if ($isLogin) {
+		          		$user=$_SESSION['user'];
+		          ?>
+		          	<li>
+		          		<a href="index.php?r=adminLogin/go_out">
+		          			<img src="../images/people.png" width="30px" height="30px">
+		          			<span style="line-height: 10px; text-align: center;"><?php echo $user['u_name'];?>/退出登录</span>
+		          		</a>		          		
+		          	</li>
+		     	 <?php }else{ ?>
+		     	 	<li><a href="index.php?r=adminLogin/login_page">登录</a></li>
+		     	 <?php }?>
+		        </ul>
+		      </div>
+		      <div class="clr"></div>
+		      <div class="logo">
+		      	<h1><a href="/index.php"><span>Rain_Blog</span></a> <small>   </small></h1></div>
+		      <div class="clr"></div>
+		    </div>
+		</div>
+	<br>
 	<br>
 	<br>
 	<br>
@@ -20,7 +52,7 @@
 		<div class="content_resize">
 			<div class="mainbar">
 				<div class="article">
-				<!-- <?php var_export($articles); ?> -->
+				
 				<?php foreach($articles as $value):?>										
 					<div class="blogs">
 						<h3>
@@ -44,16 +76,7 @@
 				</div>
 			</div>
 			<div class="sidebar">
-				<div class="searchform">
-					<form id="formsearch" name="formsearch" method="post" action="">
-						<span>
-							<input name="editbox_search" class="editbox_search" id="editbox_search"
-							maxlength="80" value="Search our ste:" type="text" />
-						</span> 
-						<input name="button_search" src="images/search_btn.gif" class="button_search"
-						type="image" />
-					</form>
-				</div>
+				
 				<div class="gadget">
 					<h2 class="star"><span>Blog_</span> Menu</h2>
 					<div class="clr"></div>

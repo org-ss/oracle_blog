@@ -4,22 +4,26 @@ include ('../model/Article.php');
 class BlogArticleController{
 	public function showAll(){
 		
-		$user = $_SESSION['user'];
-
+		$admin = $_SESSION['admin'];				
 		$articleModel = new Article();
-		$articles = $articleModel->showAll($user['u_id']);
-		//var_export($articles);
+		$articles = $articleModel->showAll($admin['u_id']);
 
-		include('../view/blog/article_show_List.php');
+		include('../view/blog/article_show_List.php');				
 	}
 
 	public function show_article_content(){
 
-		$a_id=$_GET['a_id'];
-		$articleModel = new Article();
-		$article = $articleModel->find($a_id);
-		//var_export($articles);
+		$isLogin=$_SESSION['isLogin'];
+		if ($isLogin) {
+			$a_id=$_GET['a_id'];
+			$articleModel = new Article();
+			$article = $articleModel->find($a_id);
+			//var_export($articles);
 
-		include('../view/blog/article_show_All.php');
+			include('../view/blog/article_show_All.php');
+		}else{
+			echo '<script>alert("未登录，请先登录！");window.location.href="index.php?r=blogArticle/showAll";</script>';
+		}
+		
 	}
 }

@@ -10,7 +10,8 @@ $route = isset($_GET['r']) ? $_GET['r']:NULL;
 
 session_start();
 $userModel = new User();
-$_SESSION['user']=$userModel->returnAdmin(1);
+
+$_SESSION['admin']=$userModel->returnUser(1);
 
 
 if($route){

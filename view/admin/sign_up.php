@@ -65,14 +65,14 @@
                         <input type="password" class="tpl-form-input" id="repassword" name="u_again_password" placeholder="再次输入密码">
                     </div>
 
-                    <div class="am-form-group tpl-login-remember-me">
+                    <!-- <div class="am-form-group tpl-login-remember-me">
                         <input id="remember-me" type="checkbox">
                         <label for="remember-me">
        
                         我已阅读并同意 <a href="javascript:;">《用户注册协议》</a> 
                          </label>
 
-                    </div>
+                    </div> -->
 
                     <div class="am-form-group">
 

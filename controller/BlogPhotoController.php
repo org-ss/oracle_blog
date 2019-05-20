@@ -5,11 +5,10 @@ class BlogPhotoController{
 	
 	public function showAll(){
 		
-		$user = $_SESSION['user'];
+		$user = $_SESSION['admin'];
 
 		$photoModel = new Photo();
 		$photos = $photoModel->showAll($user['u_id']);
-		//var_export($photos);
 
 		include('../view/blog/photo_show_Name.php');
 	}

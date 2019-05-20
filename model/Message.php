@@ -25,7 +25,7 @@ class Message extends Model{
 		$statement = $this->pdo->query("delete from messages");
 	}
 
-	// /#验证留言者是否注册
+	//验证留言者是否注册
 	// public function check($m_name){
 	// 	$statement = $this->pdo->prepare("select * from users where u_name=?");
 	// 	$statement->execute([$m_name]);
@@ -36,4 +36,5 @@ class Message extends Model{
 	// 		return false;
 	// 	}
 	// }
+	
 }
