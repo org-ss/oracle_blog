@@ -9,6 +9,6 @@
 	<li><a href="index.php?r=blogPhoto/showAll">相册</a></li>
 	<li><a href="index.php?r=blogMessage/showAll">留言板</a></li>
 	<li><a href="index.php?r=blogIntroduce/about_me">关于我</a></li>
-	<li><a href="index.php?r=adminLogin/login_page">登录</a></li>
+	<li><a href="index.php?r=adminLogin/login_page">后台登录</a></li>
 </body>
 </html>

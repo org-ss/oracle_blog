@@ -29,18 +29,17 @@
 		          ?>
 		          	<li>
 		          		<a href="index.php?r=adminLogin/go_out">
-		          			<img src="../images/people.png" width="30px" height="30px">
-		          			<span style="line-height: 10px; text-align: center;"><?php echo $user['u_name'];?>/退出登录</span>
+		          			<!-- <img src="../images/people.png" width="30px" height="30px"> -->
+		          			<span ><?php echo $user['u_name'];?>/退出登录</span>
 		          		</a>		          		
 		          	</li>
 		     	 <?php }else{ ?>
 		     	 	<li><a href="index.php?r=adminLogin/login_page">登录</a></li>
-		     	 <?php }?>
+		     	 <?php } ?>
 		        </ul>
 		      </div>
 		      <div class="clr"></div>
-		      <div class="logo">
-		      	<h1><a href="/index.php"><span>Rain_Blog</span></a> <small>   </small></h1></div>
+		      <div class="logo" style="height: 220px;"></div>
 		      <div class="clr"></div>
 		    </div>
 		</div>

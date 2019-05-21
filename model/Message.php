@@ -17,7 +17,7 @@ class Message extends Model{
 	}
 
 	public function delete($mId){
-		$statement = $this->pdo->prepare("delete from messages from m_id=?");
+		$statement = $this->pdo->prepare("delete from messages where m_id=?");
 		$statement->execute([$mId]);
 	}
 

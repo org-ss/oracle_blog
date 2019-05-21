@@ -14,7 +14,15 @@ $userModel = new User();
 
 $_SESSION['admin']=$userModel->returnUser(1);
 
-$_SESSION['isAdminLogin'] = false;
+if (!isset($_SESSION['isLogin'])) {
+	$_SESSION['isLogin']=false;
+}
+
+if (!isset($_SESSION['isAdminLogin'])) {
+	$_SESSION['isAdminLogin'] = false;
+}
+
+
 
 
 if($route){
@@ -31,8 +39,6 @@ if($route){
 		$user = $_SESSION['user'];
 		if($user['u_role']==1){
 			die('权限不足');
-		}else{
-			die('未授权的访问');
 		}
 	}
 

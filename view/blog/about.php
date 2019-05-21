@@ -26,7 +26,7 @@
                 </ul>
               </div>
               <div class="clr"></div>
-              <div class="logo"><h1><a href="/index.php"><span>Rain_Blog</span></a> <small>   </small></h1></div>
+              <div class="logo" style="height: 220px;"></div>
               <div class="clr"></div>
             </div>
         </div>
