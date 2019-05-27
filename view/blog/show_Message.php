@@ -5,6 +5,7 @@
 <title>Rain_Blog</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/button.css" rel="stylesheet" type="text/css" />
 <!-- CuFon: Enables smooth pretty custom font rendering. 100% SEO friendly. To disable, remove this section -->
 <script type="text/javascript" src="js/cufon-yui.js"></script>
 <script type="text/javascript" src="js/cuf_run.js"></script>
@@ -84,12 +85,12 @@ function validate(){
 								<ol>
 									<!-- <li><label for="name"><span style="color: red">*</span>你的用户名</label>
 										<input id="m_name" name="m_name" class="text" rows="3"/></li> -->
-									<li><label for="message"><span style="color: red">*</span>我的留言</label>
-										<textarea id="m_text" name="m_text" rows="4" cols="30"></textarea>
+									<li><label for="message"><span style="color: red">*</span>我要留言</label>
+										<textarea id="m_text" name="m_text" rows="7" cols="30"></textarea>
 									</li>
 									<li><!-- <input type="image" name="imageField" id="imageField"
 										src="images/submit.gif" class="send" /> -->
-										<input type="submit" name="">
+										<button type="submit" class="btn btn-primary mb-2" style="margin-top:10px; ">提交</button>
 										<div class="clr"></div></li>
 								</ol>
 							</form>
@@ -104,10 +105,10 @@ function validate(){
 							<div class="comment">
 								<!-- <a href="#"><img src="<?php echo $value['m_photo'];?>" width="40"
 									height="40" alt="user" class="userpic" /></a> -->
-								<p>
+								<p style="font-size: 13px; margin-bottom: 0px">
 									<a href="#"><?php echo $value['m_name'];?></a> &nbsp;留言时间:<br /><?php echo $value['m_date'];?>
 								</p>
-								<p><?php echo $value['m_content'];?>.</p>
+								<p style="font-size: 16px;"><?php echo $value['m_content'];?>.</p>
 							</div>
 								<?php endforeach; ?>
 					</div>

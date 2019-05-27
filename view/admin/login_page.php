@@ -47,16 +47,23 @@
 
                 <form class="am-form tpl-form-line-form" action="index.php?r=adminLogin/do_login" method="POST">
                     <div class="am-form-group">
-                        <input type="email" class="tpl-form-input" id="user-name" name="u_email" placeholder="请输入邮箱">
+                        <input type="email" class="tpl-form-input" id="user-name" name="u_email" value="<?php 
+                        if(isset($_COOKIE['email'])) echo $_COOKIE['email'];?>" placeholder="请输入邮箱">
 
                     </div>
 
                     <div class="am-form-group">
-                        <input type="password" class="tpl-form-input" id="user-name" name="u_password" placeholder="请输入密码">
+                        <input type="password" class="tpl-form-input" id="user-name" name="u_password" value="<?php if(isset($_COOKIE['password'])) echo $_COOKIE['password']?>" placeholder="请输入密码">
 
                     </div>
                     <div class="am-form-group tpl-login-remember-me">
-                        <input id="remember-me" type="checkbox">
+                        <?php if(isset($_COOKIE['remember'])):
+                                    if($_COOKIE['remember']==1): ?>
+                                    <input type="checkbox" name="remember" value="1" checked>
+                                    <?php endif; 
+                              else: ?>
+                                <input type="checkbox" name="remember" value="1">
+                        <?php endif; ?>
                         <label for="remember-me">
        
                         记住密码

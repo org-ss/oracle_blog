@@ -20,6 +20,7 @@ class AdminLoginController{
 
 		$uEmail=$_POST['u_email'];
 		$uPassword=$_POST['u_password'];
+		$remember = $_POST['remember'];
 
 		if (trim($uEmail)==""||trim($uPassword)=="") {
 			
@@ -51,6 +52,19 @@ class AdminLoginController{
 				header('Location:/index.php?r=blogArticle/showAll');
 			}
 		}
+
+		
+
+		if($remember == 1){
+			setcookie('email',$uEmail,time()+3600);
+			setcookie('password',$uPassword,time()+3600);
+			setcookie('remember',$remember,time()+3600);
+		}else{
+			setcookie('email',$uEmail,time()-3600);
+			setcookie('password',$uPassword,time()-3600);
+			setcookie('remember',$remember,time()-3600);
+		}
+		
 	}
 
 	//注册信息认证
