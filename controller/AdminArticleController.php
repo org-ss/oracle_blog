@@ -93,4 +93,10 @@ class AdminArticleController{
 
 		self::home();
 	}
+
+	public function deleteAllArticle(){
+		$articleModel = new Article();
+		$articleModel->deleteAll();
+		self::home();
+	}
 }

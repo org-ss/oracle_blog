@@ -35,7 +35,11 @@ class Article extends Model{
 
 	public function save($a_title,$a_begin_text,$a_content,$a_uid,$clean_filename){
 		$statement = $this->pdo->prepare("insert into articles values(default,?,?,?,default,?,?)");
-		$statement->execute([$a_title,$a_begin_text,$a_content,$a_uid,$a_photo]);
+		$statement->execute([$a_title,$a_begin_text,$a_content,$a_uid,$clean_filename]);
 		return $this->pdo->lastInsertId();
+	}
+
+	public function deleteAll(){
+		$statement = $this->pdo->query("delete from articles");
 	}
 }

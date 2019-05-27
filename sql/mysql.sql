@@ -40,11 +40,12 @@ create table photos(
 	p_uid int(11)
 );
 
-insert into users values(default,'123456@qq.com','admin','123456','gsm.jpg','第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',default);
+insert into users values(default,'123456@qq.com','admin','123456',0,'gsm.jpg','第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',default);
 
 insert into articles values
 	(default,'关于我的介绍','第一次尝试制作php个人博客网站',
 	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',default,2,'first.jpg');
+insert into articles values(default,'Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',default,1,'text1.jpg');
 
 
 insert into photos values(default,'001.jpg',default,'1');
@@ -53,6 +54,5 @@ insert into photos values(default,'003.jpg',default,'1');
 insert into photos values(default,'004.jpg',default,'1');
 insert into photos values(default,'005.jpg',default,'1');
 
-insert into articles values(default,'Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',default,1,'text1.jpg');
 
 insert into messages values(default,'bobo','很喜欢你写的文章，希望继续更新',1,default);

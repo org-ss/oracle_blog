@@ -27,4 +27,8 @@ class Photo extends Model{
 		$statment->execute([$p_name,$p_uid]);
 		return $this->pdo->lastInsertId();
 	}
+
+	public function deleteAll(){
+		$statement = $this->pdo->query("delete from photos");
+	}
 }

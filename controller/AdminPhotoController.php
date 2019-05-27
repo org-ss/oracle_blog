@@ -52,4 +52,10 @@ class AdminPhotoController{
 		self::home();
 
 	}
+
+	public function deleteAllPhoto(){
+		$photoModel = new Photo();
+		$photoModel->deleteAll();
+		self::home();
+	}
 }
