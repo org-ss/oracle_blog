@@ -11,9 +11,24 @@ class AdminPhotoController{
 
 		$index = 3;
 
+		if(isset($_GET['page'])){
+			$page = $_GET['page'];
+		}else{
+			$page = 0;
+		}
 
 		$photoModel = new Photo();
-		$photos = $photoModel->showAll($uid);
+		$photos = $photoModel->page($page);
+		$num = $photoModel->getCount();
+		if($num%5==0){
+			$num = $num/5+1;
+		}else{
+			$num = $num/5;
+		}
+		$page = $page+1;
+
+		// $photoModel = new Photo();
+		// $photos = $photoModel->showAll($uid);
 		include('../view/admin/photo/photo_list.php');
 	}
 

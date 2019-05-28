@@ -5,6 +5,12 @@ include('../model/Article.php');
 class AdminArticleController{
 
 	public function home(){
+		if(isset($_GET['page'])){
+			$page = $_GET['page'];
+		}else{
+			$page = 0;
+		}
+
 		$user = $_SESSION['user'];
 		$name = $user['u_name'];
 		$headimg = $user['u_photo'];
@@ -12,9 +18,36 @@ class AdminArticleController{
 		$index = 2;
 
 		$articleModel = new Article();
-		$articles = $articleModel->showAll($uid);
+		$articles = $articleModel->page($page);
+		$page = $page+1;
+		$num = $articleModel->getCount();
+		if(($num-1)%5==0){
+			$num = $num/5+1;
+		}else{
+			$num = $num/5;
+		}
 
 		include('../view/admin/article/article_list.php');
+
+
+		// $user = $_SESSION['user'];
+		// $name = $user['u_name'];
+		// $headimg = $user['u_photo'];
+		// $uid = $user['u_id'];
+		// $index = 2;
+
+		// $articleModel = new Article();
+		// $articles = $articleModel->page(0);
+		// var_export($articles);
+		// $num = $articleModel->getCount();
+		// if($num%5==0){
+		// 	$num = $num/5;
+		// }else{
+		// 	$num = $num/5+1;
+		// }
+		// $page = 1;
+
+		// include('../view/admin/article/article_list.php');
 	}
 
 	public function updateArticle(){
@@ -98,5 +131,22 @@ class AdminArticleController{
 		$articleModel = new Article();
 		$articleModel->deleteAll();
 		self::home();
+	}
+
+	public function search(){
+		$keywords = $_REQUEST['keywords'];
+		if($keywords==null || $keywords==""){
+			self::home();
+		}else{
+			$articleModel = new Article();
+			$articles = $articleModel->search($keywords);
+
+			$user = $_SESSION['user'];
+			$name = $user['u_name'];
+			$headimg = $user['u_photo'];
+			$uid = $user['u_id'];
+			$index = 2;
+			include('../view/admin/article/article_list.php');
+		}
 	}
 }

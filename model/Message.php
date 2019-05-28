@@ -25,6 +25,20 @@ class Message extends Model{
 		$statement = $this->pdo->query("delete from messages");
 	}
 
+	public function getCount(){
+		$statement = $this->pdo->query("select * from messages");
+		$num = $statement->fetchColumn();#返回结果集中的一个字段
+		return $num;
+	}
+
+	public function page($page){
+		$page = $page*5;
+		$sql = "select m.*,u.u_name uname from messages m join users u on m.m_uid=u.u_id order by m_id limit ".$page.",5";
+		$statement = $this->pdo->query($sql);
+		$result = $statement->fetchAll();
+		return $result;
+	}
+
 	//验证留言者是否注册
 	// public function check($m_name){
 	// 	$statement = $this->pdo->prepare("select * from users where u_name=?");

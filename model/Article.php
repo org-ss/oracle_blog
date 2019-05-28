@@ -42,4 +42,25 @@ class Article extends Model{
 	public function deleteAll(){
 		$statement = $this->pdo->query("delete from articles");
 	}
+
+	public function search($keywords){
+		$statement = $this->pdo->prepare("select a.*,u.u_name as a_uname from articles a join users u on a.a_uid=u.u_id where locate(?,concat(a_title,a_content,a_begin_text))");
+		$statement->execute([$keywords]);
+		$result = $statement->fetchAll();
+		return $result;
+	}
+
+	public function getCount(){
+		$statement = $this->pdo->query("select * from articles");
+		$num = $statement->fetchColumn();#返回结果集中的一个字段
+		return $num;
+	}
+
+	public function page($page){
+		$page = $page*5;
+		$sql = "select a.*,u.u_name a_uname from articles a join users u on a.a_uid=u.u_id order by a_id limit ".$page.",5";
+		$statement = $this->pdo->query($sql);
+		$result = $statement->fetchAll();
+		return $result;
+	}
 }

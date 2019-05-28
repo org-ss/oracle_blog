@@ -56,16 +56,18 @@
 								</div>
 							</div>
 						</div>
-						<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
-							<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-								<input type="text" class="am-form-field "> 
-								<span class="am-input-group-btn">
-									<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"
-										type="button">
-									</button>
-								</span>
+						<form action="index.php?r=adminArticle/search" method="post">
+							<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
+								<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+									<input type="text" class="am-form-field" name="keywords"> 
+									<span class="am-input-group-btn">
+										<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"
+											type="submit">
+										</button>
+									</span>
+								</div>
 							</div>
-						</div>
+						</form>
 
 						<div class="am-u-sm-12">
 							<table width="100%"
@@ -107,11 +109,9 @@
 							<div class="am-fr">
 								<ul class="am-pagination tpl-pagination">
 									<li class="am-disabled"><a href="#">«</a></li>
-									<li class="am-active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
+									<?php for ($i=0; $i<$num; $i++): ?>
+										<li <?php if($page==($i+1)){echo 'class="am-active"';}?>><a href="index.php?r=adminArticle/home&uid=<?=$uid?>&page=<?=$i?>"><?=$i+1?></a></li>
+									<?php endfor?> 
 									<li><a href="#">»</a></li>
 								</ul>
 							</div>

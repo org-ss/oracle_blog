@@ -31,4 +31,18 @@ class Photo extends Model{
 	public function deleteAll(){
 		$statement = $this->pdo->query("delete from photos");
 	}
+
+	public function getCount(){
+		$statement = $this->pdo->query("select * from photos");
+		$num = $statement->fetchColumn();#返回结果集中的一个字段
+		return $num;
+	}
+
+	public function page($page){
+		$page = $page*5;
+		$sql = "select p.*,u.u_name uname from photos p join users u on p.p_uid=u.u_id order by p_id limit ".$page.",5";
+		$statement = $this->pdo->query($sql);
+		$result = $statement->fetchAll();
+		return $result;
+	}
 }

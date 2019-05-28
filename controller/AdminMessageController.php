@@ -10,8 +10,22 @@ class AdminMessageController{
 		$uid = $user['u_id'];
 		$index = 4;
 
+		if(isset($_GET['page'])){
+			$page = $_GET['page'];
+		}else{
+			$page = 0;
+		}
+
 		$messageModel = new Message();
-		$messages = $messageModel->showAll($uid);
+		$messages = $messageModel->page($page);
+		$num = $messageModel->getCount();
+		if($num%5==0){
+			$num = $num/5+1;
+		}else{
+			$num = $num/5;
+		}
+		$page = $page+1;
+
 		include('../view/admin/message_list.php');
 	}
 
