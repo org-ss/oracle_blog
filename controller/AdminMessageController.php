@@ -8,6 +8,7 @@ class AdminMessageController{
 		$name = $user['u_name'];
 		$headimg = $user['u_photo'];
 		$uid = $user['u_id'];
+		$utime = $user['u_lasttime'];
 		$index = 4;
 
 		if(isset($_GET['page'])){

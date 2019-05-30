@@ -21,7 +21,7 @@ create table users(
 	u_role int comment'身份，1为普通用户',
 	u_photo varchar(50) comment'用户头像名称',
 	u_introduce varchar(800) comment '个人简介',
-	u_lasttime timestamp comment '最近登录的时间'
+	u_lasttime timestamp default current_timestamp on update current_timestamp comment '最近登录的时间'
 );
 
 create table messages(

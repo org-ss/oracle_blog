@@ -1,5 +1,6 @@
 <?php
 include_once("Model.php");
+
 class Article extends Model{
 
 	public function showAll($uid){

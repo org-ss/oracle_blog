@@ -15,6 +15,7 @@ class AdminArticleController{
 		$name = $user['u_name'];
 		$headimg = $user['u_photo'];
 		$uid = $user['u_id'];
+		$utime = $user['u_lasttime'];
 		$index = 2;
 
 		$articleModel = new Article();
@@ -55,6 +56,7 @@ class AdminArticleController{
 		$name = $user['u_name'];
 		$headimg = $user['u_photo'];
 		$uid = $user['u_id'];
+		$utime = $user['u_lasttime'];
 		$index = 2;
 
 		$aId = $_GET['a_id'];
@@ -99,6 +101,7 @@ class AdminArticleController{
 		$name = $user['u_name'];
 		$headimg = $user['u_photo'];
 		$uid = $user['u_id'];
+		$utime = $user['u_lasttime'];
 		$index = 2;
 
 		include('../view/admin/article/article_add.php');

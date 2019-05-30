@@ -7,6 +7,7 @@ class AdminPhotoController{
 		$user = $_SESSION['user'];
 		$name = $user['u_name'];
 		$headimg = $user['u_photo'];
+		$utime = $user['u_lasttime'];
 		$uid = $user['u_id'];
 
 		$index = 3;
@@ -46,6 +47,7 @@ class AdminPhotoController{
 		$name = $user['u_name'];
 		$headimg = $user['u_photo'];
 		$uid = $user['u_id'];
+		$utime = $user['u_lasttime'];
 
 		$index = 3;
 

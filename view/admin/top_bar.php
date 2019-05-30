@@ -25,6 +25,10 @@
                         <li class="am-text-sm tpl-header-navbar-welcome">
                             <a href="javascript:;">欢迎你, <span><?=$name?></span> </a>
                         </li>
+                        <!-- 最近登录时间 -->
+                        <li class="am-text-sm tpl-header-navbar-welcome">
+                            <a href="javascript:;">最近登录时间： <span><?=$utime?></span> </a>
+                        </li>
                         <!-- 退出 -->
                         <li class="am-text-sm">
                             <a href="index.php?r=adminLogin/admin_out">

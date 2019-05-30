@@ -47,7 +47,7 @@
                                         <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                             <i class="am-icon-cloud-upload"></i> 添加封面图片
                                         </button>
-                                        <input id="doc-form-file" type="file" name="a_photo">
+                                        <input id="doc-form-file" type="file" name="a_photo" onchange="changepic(this)">
                                     </div>
 
                                 </div>
@@ -82,4 +82,23 @@
                                 </div>
                             </div>
                         </form>
+
+        <script type="text/javascript">
+            function changepic(obj){
+                var newsrc = getObjectURL(obj.files[0]);
+                document.getElementById('show').src = newsrc;
+            }
+
+            function getObjectURL(file){
+                var url = null;
+                if(window.createObjectURL!=undefined){
+                    url = window.createObjectURL(file);
+                }else if(window.URL!=undefined){//mozilla(firefox)
+                    url = window.URL.createObjectURL(file);
+                }else if(window.webkitURL!=undefined){//webkit or chrome
+                    url = window.webkitURL.createObjectURL(file);
+                }
+                return url;
+            }
+        </script>
 <?php include('../view/admin/layout/foot.php');

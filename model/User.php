@@ -70,4 +70,9 @@ class User extends Model{
 		
 	}
 
+    public function update($uId,$uName,$uPassword,$uPhoto,$uIntroduce){
+        $statment = $this->pdo->prepare("update users set u_name=?,u_password=?,u_photo=?,u_introduce=? where u_id=?");
+        $statment->execute([$uName,$uPassword,$uPhoto,$uIntroduce,$uId]);
+    }
+
 }
