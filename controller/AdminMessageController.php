@@ -3,6 +3,7 @@
 include('../model/Message.php');
 
 class AdminMessageController{
+	#留言的分页显示
 	public function home(){
 		$user = $_SESSION['user'];
 		$name = $user['u_name'];
@@ -29,7 +30,7 @@ class AdminMessageController{
 
 		include('../view/admin/message_list.php');
 	}
-
+	#删除某条留言
 	public function deleteMessage(){
 		$m_id = $_GET['m_id'];
 		$messageModel = new Message();
@@ -38,6 +39,7 @@ class AdminMessageController{
 		self::home();
 	}
 
+	#删除全部留言
 	public function deleteAllMessage(){
 		$messageModel = new Message();
 		$messageModel->deleteAll();

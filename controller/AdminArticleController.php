@@ -29,26 +29,6 @@ class AdminArticleController{
 		}
 
 		include('../view/admin/article/article_list.php');
-
-
-		// $user = $_SESSION['user'];
-		// $name = $user['u_name'];
-		// $headimg = $user['u_photo'];
-		// $uid = $user['u_id'];
-		// $index = 2;
-
-		// $articleModel = new Article();
-		// $articles = $articleModel->page(0);
-		// var_export($articles);
-		// $num = $articleModel->getCount();
-		// if($num%5==0){
-		// 	$num = $num/5;
-		// }else{
-		// 	$num = $num/5+1;
-		// }
-		// $page = 1;
-
-		// include('../view/admin/article/article_list.php');
 	}
 
 	public function updateArticle(){
@@ -116,7 +96,6 @@ class AdminArticleController{
 		if(!file_exists($filename)){
 			move_uploaded_file($tmp_name, $filename);
 		}
-		
 
 		$a_uid = $_REQUEST['a_uid'];
 		$a_title = $_REQUEST['a_title'];

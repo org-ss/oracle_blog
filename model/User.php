@@ -2,8 +2,8 @@
 include_once('Model.php');
 
 class User extends Model{
-
-	public function returnUser($uid){#返回博客主人
+    #返回用户信息
+	public function returnUser($uid){
 		$statement = $this->pdo->prepare("select * from users where u_id=?");
 		$statement->execute([$uid]);
 		$user = $statement->fetch();
@@ -64,9 +64,39 @@ class User extends Model{
 		
 	}
 
+    #修改用户信息
     public function update($uId,$uName,$uPassword,$uPhoto,$uIntroduce){
         $statment = $this->pdo->prepare("update users set u_name=?,u_password=?,u_photo=?,u_introduce=? where u_id=?");
         $statment->execute([$uName,$uPassword,$uPhoto,$uIntroduce,$uId]);
+    }
+
+    #获取表格中的记录条数
+    public function getCount($uId){
+        $statement = $this->pdo->prepare("select * from users where u_id!=?");
+        $statement->execute([$uId]);
+        $num = $statement->fetchColumn();#返回结果集中的一个字段
+        return $num;
+    }
+
+    #将表格中的记录分页显示
+    public function page($page,$uId){
+        $page = $page*5;
+        $sql = "select *from users where u_id!=".$uId." order by u_id limit ".$page.",5";
+        $statement = $this->pdo->query($sql);
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
+    #删除某个用户
+    public function delete($uId){
+        $statment = $this->pdo->prepare("delete from users where u_id=?");
+        $statment->execute([$uId]);
+    }
+
+    #删除所有用户
+    public function delAll($uId){
+        $statment = $this->pdo->prepare("delete() from users where u_id!=?");
+        $statment->execute([$uId]);
     }
 
 }

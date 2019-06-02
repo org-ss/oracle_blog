@@ -68,5 +68,11 @@
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 留言管理
                     </a>
                 </li>
+
+                <li class="sidebar-nav-link">
+                    <a href="index.php?r=adminHome/userList" <?php if($index==6){echo 'class="active"';} ?>>
+                        <i class="am-icon-home sidebar-nav-link-logo"></i> 用户管理
+                    </a>
+                </li>
             </ul>
         </div>

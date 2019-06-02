@@ -16,14 +16,15 @@ class AdminHomeController{
 		$index = 1;
 
 		$articleModel = new Article();
-		$articles = $articleModel->find5Record();
+		$articles = $articleModel->find5Record($uid);
 
 		$photoModel = new Photo();
-		$photos = $photoModel->find5Record();
+		$photos = $photoModel->find5Record($uid);
 
 		include('../view/admin/index.php');
 	}
 
+	#展示个人信息
 	public function show(){
 		$user = $_SESSION['user'];
 		$name = $user['u_name'];
@@ -39,6 +40,7 @@ class AdminHomeController{
 
 	}
 
+	#修改个人信息
 	public function updateUser(){
 		$u2_id = $_REQUEST['u2_id'];
 		$u2_name = $_REQUEST['u2_name'];
@@ -53,9 +55,7 @@ class AdminHomeController{
 				echo '<script>alert("请确认密码！！");window.location.href="index.php?r=adminHome/show";</script>';
 			}
 		}
-
 		if($u2_password!=$u2_password2){
-
 			echo '<script>alert("两次密码输入不一致!!");window.location.href="index.php?r=adminHome/show";</script>';
 		}else{
 			$tmp_name = $_FILES['u2_photo']['tmp_name'];
@@ -68,19 +68,65 @@ class AdminHomeController{
 			$userModel = new User();
 			$userModel->update($u2_id,$u2_name,$u2_password,$clean_filename,$u2_introduce);
 			$user2 = $userModel->returnUser($u2_id);
-
-			//session_start();
+			
 			$_SESSION['user'] = $user2;
-
 			$name = $user2['u_name'];
 			$headimg = $user2['u_photo'];
 			$uid = $user2['u_id'];
 			$utime = $user2['u_lasttime'];
-
 			$index = 5;
 
 			include('../view/admin/person_message.php');
 		}
+	}
+
+	#分页显示所有用户
+	public function userList(){
+
+		if(isset($_GET['page'])){
+			$page = $_GET['page'];
+		}else{
+			$page = 0;
+		}
+
+		$user = $_SESSION['user'];
+		$name = $user['u_name'];
+		$headimg = $user['u_photo'];
+		$uid = $user['u_id'];
+		$utime = $user['u_lasttime'];
+
+		$index = 6;
+
+		$userModel = new User();
+		$users = $userModel->page($page,$uid);
+		$page = $page+1;
+		$num = $userModel->getCount($uid);
+		if(($num-1)%5==0){
+			$num = $num/5+1;
+		}else{
+			$num = $num/5;
+		}
+
+		include('../view/admin/user_list.php');
+	}
+
+	#删除用户
+	public function deleteUser(){
+
+		$uId = $_GET['u_id'];
+		$userModel = new User();
+		$userModel->delete($uId);
+
+		self::userList();
+	}
+
+	#删除所有用户
+	public function deleteAllUser(){
+		$uId = $_GET['u_id'];
+		$userModel = new User();
+		$userModel->delAll($uId);
+
+		self::userList();
 	}
 
 	

@@ -27,6 +27,9 @@
                             <div class="am-form-group">
                                 <label for="user-weibo" class="am-u-sm-3 am-form-label">图片 <span class="tpl-form-line-small-title"></span></label>
                                 <div class="am-u-sm-9">
+                                    <div class="tpl-form-file-img">
+                                            <img src="" alt="" width="100px" height="100px" id="show">
+                                        </div>
                                     <div class="am-form-group am-form-file">
                                         <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                             <i class="am-icon-cloud-upload"></i> 选择图片
