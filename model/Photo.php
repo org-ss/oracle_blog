@@ -3,6 +3,7 @@ include_once('Model.php');
 
 class Photo extends Model{
 
+	#展示所有图片
 	public function showAll($uid){
         $statment=$this->pdo->prepare("select p.*,u.u_name uname from photos p join users u on p.p_uid=u.u_id where p_uid=?");
         $statment->execute([$uid]);

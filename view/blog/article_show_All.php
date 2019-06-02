@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>Rain_Blog</title>
+	<title>My_Blog</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<!-- CuFon: Enables smooth pretty custom font rendering. 100% SEO friendly. To disable, remove this section -->
@@ -24,7 +24,7 @@
 		          <?php 
 		          	$isLogin=$_SESSION['isLogin'];
 
-		          	if ($isLogin) {
+		          	if ($isLogin) :
 		          		$user=$_SESSION['user'];
 		          ?>
 		          	<li>
@@ -33,9 +33,9 @@
 		          			<span ><?php echo $user['u_name'];?>/退出登录</span>
 		          		</a>		          		
 		          	</li>
-		     	 <?php }else{ ?>
+		     	 <?php else: ?>
 		     	 	<li><a href="index.php?r=adminLogin/login_page">登录</a></li>
-		     	 <?php } ?>
+		     	 <?php endif; ?>
 		        </ul>
 		      </div>
 		      <div class="clr"></div>

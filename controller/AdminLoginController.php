@@ -31,7 +31,6 @@ class AdminLoginController{
 
 		$user=$userModel->verify($uEmail,$uPassword);
 
-		 //var_export($user);
 		if ($user==0) {
 
 			echo '<script>alert("用户不存在，请先注册！");window.location.href="index.php?r=adminLogin/sign_up";</script>';
@@ -52,9 +51,8 @@ class AdminLoginController{
 				header('Location:/index.php?r=blogArticle/showAll');
 			}
 		}
-
 		
-
+		//记住密码
 		if($remember == 1){
 			setcookie('email',$uEmail,time()+3600);
 			setcookie('password',$uPassword,time()+3600);
@@ -77,7 +75,6 @@ class AdminLoginController{
 
 		$userModel=new User();
 		$text=$userModel->find($uEmail,$uName);
-		// echo "错误".$text;
 		
 		if ($text==1) {
 			echo '<script>alert("邮箱已经被注册，请重新输入！");window.location.href="index.php?r=adminLogin/sign_up";</script>';
@@ -89,11 +86,11 @@ class AdminLoginController{
 
     		$user=$userModel->save($uEmail,$uName,$uPassword);
     		echo "<script>alert('注册成功！');window.location= '/index.php?r=adminLogin/login_page';</script>";			
-			//header('Location:/index.php?r=adminHome/home');
     		
     	}		
 	}
 
+	#普通用户退出登录
 	public function go_out(){
 
 		$_SESSION['isLogin']=false;
@@ -101,6 +98,7 @@ class AdminLoginController{
 
 	}
 
+	#管理员退出登录
 	public function admin_out(){
 		$_SESSION['isAdminLogin']=false;
 		header('Location:/index.php?r=blogArticle/showAll');

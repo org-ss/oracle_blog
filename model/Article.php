@@ -3,6 +3,7 @@ include_once("Model.php");
 
 class Article extends Model{
 
+	#展示所有文章
 	public function showAll($uid){
 		$statement = $this->pdo->prepare("select a.*,u.u_name as a_uname from articles a join users u on a.a_uid=u.u_id  where a_uid=?");
 		$statement->execute([$uid]);
@@ -10,6 +11,7 @@ class Article extends Model{
 		return $articles;
 	}
 
+	#展示某一篇文章的具体内容
 	public function find($aid){
 		$statement = $this->pdo->prepare("select a.*,u.u_name as a_uname from articles a join users u on a.a_uid=u.u_id  where a_id=?");
 		$statement->execute([$aid]);

@@ -3,14 +3,12 @@
 路由例子：r=blogControllerName/FunctionName
 r=blogArticle/showAll
 */
-
 include_once('../model/User.php');
 
 $route = isset($_GET['r']) ? $_GET['r']:NULL;
 
 session_start();
 $userModel = new User();
-
 
 $_SESSION['admin']=$userModel->returnUser(1);
 
@@ -22,9 +20,6 @@ if (!isset($_SESSION['isAdminLogin'])) {
 	$_SESSION['isAdminLogin'] = false;
 }
 
-
-
-
 if($route){
 
 	$partials = explode("/", $route);
@@ -32,6 +27,7 @@ if($route){
 		die('invalid route');
 	}
 	
+	#访问权限判断
 	if(str_split($partials[0],5)[0]=='admin' && str_split($partials[0],5)[1]!='Login'){
 		if(!$_SESSION['isAdminLogin']){
 			header('Location:/index.php?r=adminLogin/login_page');
@@ -42,14 +38,13 @@ if($route){
 		}
 	}
 
-
 	$filename = $partials[0];
 
 	$class_name = ucfirst($filename)."Controller";
-	//print_r('这是类名'.$class_name);
 
 	$function_name = $partials[1];
 
+	#路由映射控制器
 	if(!file_exists('../controller/'.$class_name.'.php')){
 		die('error route1');
 	}
@@ -66,7 +61,10 @@ if($route){
 
 	$controller->$function_name();
 }else{
+
 	include('../controller/BlogArticleController.php');
+
 	$blogArticleController = new BlogArticleController();
+
 	$blogArticleController->showAll();
 }

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>Rain_Blog</title>
+<title>My_Blog</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <!-- CuFon: Enables smooth pretty custom font rendering. 100% SEO friendly. To disable, remove this section -->
@@ -24,7 +24,7 @@
 		          <?php 
 		          	$isLogin=$_SESSION['isLogin'];
 
-		          	if ($isLogin) {
+		          	if ($isLogin) :
 		          		$user=$_SESSION['user'];
 		          ?>
 		          	<li>
@@ -33,9 +33,9 @@
 		          			<span ><?php echo $user['u_name'];?>/退出登录</span>
 		          		</a>		          		
 		          	</li>
-		     	 <?php }else{ ?>
+		     	 <?php else: ?>
 		     	 	<li><a href="index.php?r=adminLogin/login_page">登录</a></li>
-		     	 <?php } ?>
+		     	 <?php endif; ?>
 		        </ul>
 		      </div>
 		      <div class="clr"></div>
@@ -75,7 +75,14 @@
 				</div>
 			</div>
 			<div class="sidebar">
-				
+				<div class="searchform">
+				<form id="formsearch" name="formsearch" method="post" action="">
+					<span>
+						<input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="" type="text" />
+					</span> 
+					<input name="button_search" src="images/search_btn.gif" class="button_search" type="image" />
+				</form>
+				</div>
 				<div class="gadget">
 					<h2 class="star"><span>Blog_</span> Menu</h2>
 					<div class="clr"></div>

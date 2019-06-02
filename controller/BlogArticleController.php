@@ -2,6 +2,7 @@
 include ('../model/Article.php');
 
 class BlogArticleController{
+	
 	public function showAll(){
 		
 		$admin = $_SESSION['admin'];				
@@ -11,6 +12,7 @@ class BlogArticleController{
 		include('../view/blog/article_show_List.php');				
 	}
 
+	#首先判断用户是否登录，若为登录则跳出提示，若登录，则展示对应文章的详细内容
 	public function show_article_content(){
 
 		$isLogin=$_SESSION['isLogin'];

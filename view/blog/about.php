@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>Rain_Blog</title>
+<title>My_Blog</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <!-- CuFon: Enables smooth pretty custom font rendering. 100% SEO friendly. To disable, remove this section -->

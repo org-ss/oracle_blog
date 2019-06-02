@@ -6,7 +6,7 @@
 </head>
 <body>
  <li>网站：<br>
-	Rain_Blog&nbsp;&nbsp;&nbsp;&nbsp; <br />
+	My_Blog&nbsp;&nbsp;&nbsp;&nbsp; <br />
 	</li>
 	<li>职业：<br />
 	苦逼程序员</li>

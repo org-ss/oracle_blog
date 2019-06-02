@@ -7,8 +7,7 @@ class BlogIntroduceController{
 
 		$userModel = new User();
 		$user = $userModel->returnUser($user['u_id']);
-		//var_export($articles);
-
+		
 		include('../view/blog/about.php');
 	}
 

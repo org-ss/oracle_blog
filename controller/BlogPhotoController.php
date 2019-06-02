@@ -10,6 +10,6 @@ class BlogPhotoController{
 		$photoModel = new Photo();
 		$photos = $photoModel->showAll($user['u_id']);
 
-		include('../view/blog/photo_show_Name.php');
+		include('../view/blog/photo_show.php');
 	}
 }

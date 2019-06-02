@@ -2,14 +2,13 @@
 include ('../model/Message.php');
 
 class BlogMessagecontroller{
-	public function showAll(){
-		
-		$user = $_SESSION['admin'];
 
+	public function showAll(){	
+
+		$user = $_SESSION['admin'];
 		$messageModel = new Message();
 		$messages = $messageModel->showAll($user['u_id']);
-		//var_export($articles);
-
+		
 		include('../view/blog/show_Message.php');
 	}
 
@@ -32,8 +31,6 @@ class BlogMessagecontroller{
 		}else{
 			echo '<script>alert("请先登录！");window.location.href="/index.php?r=adminLogin/login_page";</script>';
 		}
-		// $messageModel->messageSave($m_name,$m_content,$m_uid);
-		// header('Location:/index.php?r=blogMessage/showAll');
 		
 	}
 

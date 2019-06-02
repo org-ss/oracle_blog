@@ -11,14 +11,13 @@ class User extends Model{
 
 	}
 
-	//验证登录身份
+	#验证登录身份
 	public function verify($uEmail,$uPassword){
 
     	$statment=$this->pdo->prepare("select * from users where u_email=?");
     	$statment->execute([$uEmail]);    	
     	$user=$statment->fetch();
         
-        //print_r($user);
         if ($user) {
             if ($user['u_email']==$uEmail && $user['u_password']==$uPassword) {
                 return $user;
@@ -31,22 +30,16 @@ class User extends Model{
     	
     }
 
-    //验证注册是否合法
+    #验证注册是否合法
     public function find($uEmail,$uName){
-
-    	//echo "这是收到的邮箱".$uEmail."<br/>";
 
     	$statment1=$this->pdo->prepare("select * from users where u_email=?");
     	$statment1->execute([$uEmail]);
     	$result1=$statment1->fetch();
 
-    	//echo "这是收到的用户名".$uName."<br/>";
-
     	$statment2=$this->pdo->prepare("select * from users where u_name=?");
     	$statment2->execute([$uName]);
-    	$result2=$statment2->fetch();
-
-    	//var_export($result2);    	    	    	
+    	$result2=$statment2->fetch();	    	
 
     	if ($result1) {
 
@@ -63,6 +56,7 @@ class User extends Model{
 
     }
 
+    #保存注册用户信息
     public function save($uEmail,$uName,$uPassword){
 
 		$statment=$this->pdo->prepare("insert into users (u_email,u_name,u_password,u_role) values (?,?,?,1)");

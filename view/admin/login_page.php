@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login Admin</title>
+    <title>Login Page</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +53,8 @@
                     </div>
 
                     <div class="am-form-group">
-                        <input type="password" class="tpl-form-input" id="user-name" name="u_password" value="<?php if(isset($_COOKIE['password'])) echo $_COOKIE['password']?>" placeholder="请输入密码">
+                        <input type="password" class="tpl-form-input" id="user-name" name="u_password" 
+                        value="<?php if(isset($_COOKIE['password'])) echo $_COOKIE['password']?>" placeholder="请输入密码">
 
                     </div>
                     <div class="am-form-group tpl-login-remember-me">
