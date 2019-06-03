@@ -22,7 +22,7 @@ class AdminArticleController{
 		$articles = $articleModel->page($page);
 		$page = $page+1;
 		$num = $articleModel->getCount();
-		if($num-%5==0){
+		if($num%5==0){
 			$num = $num/5;
 		}else{
 			$num = $num/5+1;

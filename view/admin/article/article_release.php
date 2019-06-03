@@ -42,7 +42,7 @@
                                 <div class="am-u-sm-9">
                                     <div class="am-form-group am-form-file">
                                         <div class="tpl-form-file-img">
-                                            <img src="/images/articleimg/<?=$article['a_photo'];?>" alt="" width="100px" height="100px">
+                                            <img src="/images/articleimg/<?=$article['a_photo'];?>" alt="" width="100px" height="100px" id="show">
                                         </div>
                                         <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                             <i class="am-icon-cloud-upload"></i> 添加封面图片
