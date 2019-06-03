@@ -44,7 +44,7 @@ insert into users values(default,'123456@qq.com','admin','123456',0,'gsm.jpg','�
 
 insert into articles values
 	(default,'关于我的介绍','第一次尝试制作php个人博客网站',
-	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',default,2,'first.jpg');
+	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',default,1,'first.jpg');
 insert into articles values(default,'Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',default,1,'text1.jpg');
 
 

@@ -109,8 +109,8 @@
 							<div class="am-fr">
 								<ul class="am-pagination tpl-pagination">
 									<li class="am-disabled"><a href="#">«</a></li>
-									<?php for ($i=0; $i<$num; $i++): ?>
-										<li <?php if($page==($i+1)){echo 'class="am-active"';}?>><a href="index.php?r=adminArticle/home&uid=<?=$uid?>&page=<?=$i?>"><?=$i+1?></a></li>
+									<?php for ($i=0; $i<$endPage; $i++): ?>
+										<li <?php if($page==$i){echo 'class="am-active"';}?>><a href="index.php?r=adminArticle/home&uid=<?=$uid?>&page=<?=$i?>"><?=$i+1?></a></li>
 									<?php endfor?> 
 									<li><a href="#">»</a></li>
 								</ul>

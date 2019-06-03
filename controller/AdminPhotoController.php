@@ -20,15 +20,11 @@ class AdminPhotoController{
 		}
 
 		$photoModel = new Photo();
-		$photos = $photoModel->page($page);
 		$num = $photoModel->getCount();
-		if($num%5==0){
-			$num = $num/5;
-		}else{
-			$num = $num/5+1;
-		}
-		$page = $page+1;
-
+		$pageSize=5;
+		$endPage = ceil($num/$pageSize);
+		$photos = $photoModel->page($page);
+		
 		include('../view/admin/photo/photo_list.php');
 	}
 	#删除某张图片

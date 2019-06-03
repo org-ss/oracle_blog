@@ -39,10 +39,11 @@ class Photo extends Model{
 		$statement = $this->pdo->query("delete from photos");
 	}
 
-	#获得记录条数
+	#获取表格中的记录条数
 	public function getCount(){
-		$statement = $this->pdo->query("select * from photos");
-		$num = $statement->fetchColumn();#返回结果集中的一个字段
+		$statement = $this->pdo->prepare("select * from photos");
+		$statement->execute();#返回结果集中的一个字段
+		$num = $statement->rowCount();
 		return $num;
 	}
 

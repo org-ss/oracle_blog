@@ -19,14 +19,11 @@ class AdminMessageController{
 		}
 
 		$messageModel = new Message();
-		$messages = $messageModel->page($page);
 		$num = $messageModel->getCount();
-		if($num%5==0){
-			$num = $num/5;
-		}else{
-			$num = $num/5+1;
-		}
-		$page = $page+1;
+		
+		$pageSize=5;
+		$endPage = ceil($num/$pageSize);
+		$messages = $messageModel->page($page);
 
 		include('../view/admin/message_list.php');
 	}

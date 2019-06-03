@@ -71,10 +71,10 @@ class User extends Model{
     }
 
     #获取表格中的记录条数
-    public function getCount($uId){
+    public function getCount(){
         $statement = $this->pdo->prepare("select * from users where u_id!=?");
-        $statement->execute([$uId]);
-        $num = $statement->fetchColumn();#返回结果集中的一个字段
+        $statement->execute();#返回结果集中的一个字段
+        $num = $statement->rowCount();
         return $num;
     }
 

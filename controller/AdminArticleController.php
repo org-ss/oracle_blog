@@ -19,14 +19,12 @@ class AdminArticleController{
 		$index = 2;
 
 		$articleModel = new Article();
-		$articles = $articleModel->page($page);
-		$page = $page+1;
 		$num = $articleModel->getCount();
-		if($num%5==0){
-			$num = $num/5;
-		}else{
-			$num = $num/5+1;
-		}
+
+		$pageSize=5;
+		$endPage = ceil($num/$pageSize);
+		$articles = $articleModel->page($page);
+
 
 		include('../view/admin/article/article_list.php');
 	}

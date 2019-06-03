@@ -97,15 +97,12 @@ class AdminHomeController{
 
 		$index = 6;
 
+
 		$userModel = new User();
-		$users = $userModel->page($page,$uid);
-		$page = $page+1;
 		$num = $userModel->getCount($uid);
-		if($num%5==0){
-			$num = $num/5;
-		}else{
-			$num = $num/5+1;
-		}
+		$pageSize=5;
+		$endPage = ceil($num/$pageSize);
+		$users = $userModel->page($page,$uid);
 
 		include('../view/admin/user_list.php');
 	}
