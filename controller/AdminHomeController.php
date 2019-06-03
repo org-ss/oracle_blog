@@ -61,8 +61,8 @@ class AdminHomeController{
 			$tmp_name = $_FILES['u2_photo']['tmp_name'];
 			$filename = $_FILES['u2_photo']['name'];
 			$clean_filename = iconv("utf-8", "gbk", $filename);
-			if(!file_exists("../public/images/headimg/".$clean_filename)){
-				move_uploaded_file($tmp_name, "../public/images/headimg/".$clean_filename);
+			if(!file_exists("./images/headimg/".$clean_filename)){
+				move_uploaded_file($tmp_name, "./images/headimg/".$clean_filename);
 			}
 
 			$userModel = new User();

@@ -50,8 +50,8 @@ class AdminArticleController{
 		$tmp_name = $_FILES['a_photo']['tmp_name'];
 		$filename = $_FILES['a_photo']['name'];
 		$clean_filename = iconv("utf-8", "gbk", $filename);
-		if(!file_exists("../public/images/articleimg/".$clean_filename)){
-			move_uploaded_file($tmp_name, "../public/images/articleimg/".$clean_filename);
+		if(!file_exists("./images/articleimg/".$clean_filename)){
+			move_uploaded_file($tmp_name, "./images/articleimg/".$clean_filename);
 		}
 		
 
