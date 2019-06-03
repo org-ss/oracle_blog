@@ -48,16 +48,21 @@ class AdminPhotoController{
 	}
 	#执行添加图片操作
 	public function do_addPhoto(){
+		var_export($_FILES['p_photo']);
 		$tmp_name = $_FILES['p_photo']['tmp_name'];
 		$filename = $_FILES['p_photo']['name'];
-		$clean_filename = iconv("utf-8", "gbk", $filename);
+
+		$clean_filename = iconv( "utf-8","gbk", $filename);		
+		
 		if(!file_exists("../public/images/photos/".$clean_filename)){
-			move_uploaded_file($tmp_name, "../public/images/photos/".$clean_filename);
+
+			move_uploaded_file($tmp_name, "../public/images/photos/".$clean_filename);			
+
 		}
 
 		$uid = $_GET['uid'];
 		$photoModel = new Photo();
-		$photoModel->save($clean_filename,$uid);
+		$photoModel->save($filename,$uid);
 		self::home();
 	}
 	#删除所有文章

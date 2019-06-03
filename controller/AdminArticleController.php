@@ -62,7 +62,7 @@ class AdminArticleController{
 
 
 		$articleModel = new Article();
-		$article = $articleModel->update($a_id,$a_title,$a_begin_text,$clean_filename,$a_content);
+		$article = $articleModel->update($a_id,$a_title,$a_begin_text,$filename,$a_content);
 
 		self::home();
 	}
@@ -95,9 +95,9 @@ class AdminArticleController{
 		$tmp_name = $_FILES['a_photo']['tmp_name'];
 		$filename = $_FILES['a_photo']['name'];
 		$clean_filename = iconv("utf-8", "gbk", $filename);
-		$filename = "../public/images/articleimg/".$clean_filename;
-		if(!file_exists($filename)){
-			move_uploaded_file($tmp_name, $filename);
+		$refilename = "../public/images/articleimg/".$clean_filename;
+		if(!file_exists($refilename)){
+			move_uploaded_file($tmp_name, $refilename);
 		}
 
 		$a_uid = $_REQUEST['a_uid'];
@@ -107,7 +107,7 @@ class AdminArticleController{
 		$a_uname = $_REQUEST['a_uname'];
 
 		$articleModel = new Article();
-		$article = $articleModel->save($a_title,$a_begin_text,$a_content,$a_uid,$clean_filename);
+		$article = $articleModel->save($a_title,$a_begin_text,$a_content,$a_uid,$filename);
 
 		self::home();
 	}

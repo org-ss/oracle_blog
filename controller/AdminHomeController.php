@@ -66,7 +66,7 @@ class AdminHomeController{
 			}
 
 			$userModel = new User();
-			$userModel->update($u2_id,$u2_name,$u2_password,$clean_filename,$u2_introduce);
+			$userModel->update($u2_id,$u2_name,$u2_password,$filename,$u2_introduce);
 			$user2 = $userModel->returnUser($u2_id);
 			
 			$_SESSION['user'] = $user2;
