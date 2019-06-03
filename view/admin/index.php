@@ -137,10 +137,7 @@
                                                     <td><?=$value['p_date']?></td>
                                                     <td>
                                                         <div class="tpl-table-black-operation">
-                                                            <a href="javascript:;">
-                                                                <i class="am-icon-pencil"></i> 编辑
-                                                            </a>
-                                                            <a href="javascript:;" class="tpl-table-black-operation-del">
+                                                            <a href="index.php?r=adminPhoto/deletePhoto&p_id=<?=$value['p_id']?>" class="tpl-table-black-operation-del">
                                                                 <i class="am-icon-trash"></i> 删除
                                                             </a>
                                                         </div>

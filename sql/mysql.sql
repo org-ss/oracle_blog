@@ -56,3 +56,19 @@ insert into photos values(default,'005.jpg',default,'1');
 
 
 insert into messages values(default,'bobo','很喜欢你写的文章，希望继续更新',1,default);
+insert into articles values(default,'mysql中文乱码','mysql中文乱码','1.创建数据库时就用default charset 'utf8'设置编码
+  2.通过show variables like '%char%';查看数据库默认字符集
+  3.编辑my.cnf文件，在文件的[client],[mysqld_safe],[mysqld],[mysql]下新加 default-character-set=utf8',default,1,'11.jpg');
+
+insert into articles values(default,'mysql单表多个查询','mysql单表多个查询','通过select *from 表名 where locate(?,concat(列名,列名,列名))查询',default,1,'22.jpg');
+
+insert into articles values(default,'mysql分页','mysql分页','通过“select *from 表名 limit pageno”结构的语句查询',default,1,'33.jpg');
+insert into articles values(default,'php操作数据库','php的pdo操作','1.连接：$pdo = new PDO("mysql:host=localhost;dbname=数据库名","用户名","密码");
+  2.query($sql); 用于执行查询SQL语句。返回PDOStatement对象
+  3.exec($sql); 用于执行增、删、改操作，返回影响的行数
+  4.lastInsertId 获取刚刚添加的主键值；',default,1,'10.jpg');
+insert into articles values(default,'php得到数据库结果','php得到数据库结果','1.fetch() 返回结果集的下一行，结果指针下移，到头返回false；
+2.fetchAll() 通过一次调用返回所有结果，结果是以数组形式保存；
+3.fetchColumn()返回结果集中下一行某个列的值；',default,1,'555.jpg');
+
+

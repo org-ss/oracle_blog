@@ -22,15 +22,16 @@ class AdminArticleController{
 		$articles = $articleModel->page($page);
 		$page = $page+1;
 		$num = $articleModel->getCount();
-		if(($num-1)%5==0){
-			$num = $num/5+1;
-		}else{
+		if($num-%5==0){
 			$num = $num/5;
+		}else{
+			$num = $num/5+1;
 		}
 
 		include('../view/admin/article/article_list.php');
 	}
 
+	#跳转到修改文章界面
 	public function updateArticle(){
 		$user = $_SESSION['user'];
 		$name = $user['u_name'];
@@ -46,6 +47,7 @@ class AdminArticleController{
 		include('../view/admin/article/article_release.php');
 	}
 
+	#修改文章
 	public function saveArticle(){
 		$tmp_name = $_FILES['a_photo']['tmp_name'];
 		$filename = $_FILES['a_photo']['name'];
@@ -67,6 +69,7 @@ class AdminArticleController{
 		self::home();
 	}
 
+	#删除某篇文章
 	public function deleteArticle(){
 		$a_id = $_GET['a_id'];
 
@@ -76,6 +79,7 @@ class AdminArticleController{
 		self::home();
 	}
 
+	#跳转到添加文章界面
 	public function addArticle(){
 		$user = $_SESSION['user'];
 		$name = $user['u_name'];
@@ -87,6 +91,7 @@ class AdminArticleController{
 		include('../view/admin/article/article_add.php');
 	}
 
+	#添加文章
 	public function do_addArticle(){
 
 		$tmp_name = $_FILES['a_photo']['tmp_name'];
@@ -109,12 +114,14 @@ class AdminArticleController{
 		self::home();
 	}
 
+	#删除所有文章
 	public function deleteAllArticle(){
 		$articleModel = new Article();
 		$articleModel->deleteAll();
 		self::home();
 	}
 
+	#查找文章
 	public function search(){
 		$keywords = $_REQUEST['keywords'];
 		if($keywords==null || $keywords==""){

@@ -89,14 +89,22 @@ class User extends Model{
 
     #删除某个用户
     public function delete($uId){
+        $statment = $this->pdo->prepare("select *from users where u_id=?");
+        $statment->execute([$uId]);
+        $result = $statment->fetch();
+
         $statment = $this->pdo->prepare("delete from users where u_id=?");
         $statment->execute([$uId]);
+        $statment = $this->pdo->prepare("delete from messages where m_name=?");
+        $statment->execute([$result['u_name']]);
     }
 
     #删除所有用户
     public function delAll($uId){
-        $statment = $this->pdo->prepare("delete() from users where u_id!=?");
+        $statment = $this->pdo->prepare("delete from users where u_id!=?");
         $statment->execute([$uId]);
+
+        $statment = $this->pdo->query("delete from messages");
     }
 
 }

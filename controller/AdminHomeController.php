@@ -101,10 +101,10 @@ class AdminHomeController{
 		$users = $userModel->page($page,$uid);
 		$page = $page+1;
 		$num = $userModel->getCount($uid);
-		if(($num-1)%5==0){
-			$num = $num/5+1;
-		}else{
+		if($num%5==0){
 			$num = $num/5;
+		}else{
+			$num = $num/5+1;
 		}
 
 		include('../view/admin/user_list.php');

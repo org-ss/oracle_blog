@@ -23,9 +23,9 @@ class AdminPhotoController{
 		$photos = $photoModel->page($page);
 		$num = $photoModel->getCount();
 		if($num%5==0){
-			$num = $num/5+1;
-		}else{
 			$num = $num/5;
+		}else{
+			$num = $num/5+1;
 		}
 		$page = $page+1;
 

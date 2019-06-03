@@ -64,6 +64,7 @@
                                 <thead>
                                     <tr>
                                         <th>图片</th>
+                                        <th>图片名称</th>
                                         <th>作者</th>
                                         <th>时间</th>
                                         <th>操作</th>
@@ -73,6 +74,7 @@
                                     <?php foreach ($photos as $value):?>
                                     <tr class="gradeX">
                                         <td><img src="/images/photos/<?=$value['p_name']?>" class="tpl-table-line-img"></td>
+                                        <td><?=$value['p_name']?></td>
                                         <td><?=$value['uname']?></td>
                                         <td><?=$value['p_date']?></td>
                                         <td>
