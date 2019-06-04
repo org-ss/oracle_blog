@@ -1,5 +1,6 @@
 <?php
 include ('../model/Article.php');
+include ('../model/Message.php');
 
 class BlogArticleController{
 	
@@ -13,13 +14,22 @@ class BlogArticleController{
 	}
 
 	#首先判断用户是否登录，若为登录则跳出提示，若登录，则展示对应文章的详细内容
-	public function show_article_content(){
+	public function show_article_detail(){
+
+		$user = $_SESSION['admin'];
+		$messageModel = new Message();
+		$messages = $messageModel->showAll($user['u_id']);
+		
 
 		$isLogin=$_SESSION['isLogin'];
 		if ($isLogin) {
 			$a_id=$_GET['a_id'];
 			$articleModel = new Article();
 			$article = $articleModel->find($a_id);
+
+			$messageModel = new Message();
+			$messages = $messageModel->showAll($a_id);
+
 			//var_export($articles);
 
 			include('../view/blog/article_show_All.php');

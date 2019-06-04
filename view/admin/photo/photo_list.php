@@ -74,7 +74,7 @@
                                     <?php foreach ($photos as $value):?>
                                     <tr class="gradeX">
                                         <td><img src="/images/photos/<?=$value['p_name']?>" class="tpl-table-line-img"></td>
-                                        <td><?=$value['p_name']?></td>
+                                        <td><?php $array=explode('.', $value['p_name']); echo $array[0];?></td>
                                         <td><?=$value['uname']?></td>
                                         <td><?=$value['p_date']?></td>
                                         <td>

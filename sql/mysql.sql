@@ -1,74 +1,143 @@
-create database blog default charset 'utf8mb4';
+create sequence articles_id
+  increment by 1
+  start with 1
+  maxvalue 1000
+  nominvalue 
+  nocycle
+  nocache;
 
-use blog;
+create sequence types_id
+  increment by 1
+  start with 1
+  maxvalue 1000
+  nominvalue
+  nocycle
+  nocache;
+  
+create sequence users_id
+  increment by 1
+  start with 1
+  maxvalue 1000
+  nominvalue
+  nocycle
+  nocache;
+  
+create sequence messages_id
+  increment by 1
+  start with 1
+  maxvalue 1000
+  nominvalue
+  nocycle
+  nocache;
+  
+create sequence photos_id
+  increment by 1
+  start with 1
+  maxvalue 1000
+  nominvalue
+  nocycle
+  nocache;
+
+ --文章id自增的触发器
+create or replace trigger tr_aid
+before insert on articles
+for each row
+begin
+select articles_id.nextval,sysdate into :new.id,:new.created_at from dual;
+end;
+/
+
+--分类id自增的触发器
+create or replace trigger tr_tid
+before insert on types
+for each row
+begin
+select types_id.nextval,sysdate into :new.id,:new.created_at from dual;
+end;
+/
+
+--用户id自增的触发器
+create or replace trigger tr_uid
+before insert on users
+for each row
+begin
+select users_id.nextval,sysdate into :new.id,:new.lasttime from dual;
+end;
+/
+
+--留言id自增的触发器
+create or replace trigger tr_mid
+before insert on messages
+for each row
+begin
+select messages_id.nextval,sysdate into :new.id,:new.created_at from dual;
+end;
+/
+
+--相册id自增的触发器
+create or replace trigger tr_pid
+before insert on photos
+for each row
+begin
+select photos_id.nextval,sysdate into :new.id,:new.created_at from dual;
+end;
+/
 
 create table articles(
-	a_id int(11) primary key auto_increment comment '文章的id',
-	a_title varchar(100) comment '文章的标题',
-	a_begin_text varchar(400) comment '文章的简介',
-	a_content varchar(800) comment '文章内容',
-	a_date timestamp comment '文章创建时间',
-	a_uid int(11) comment'文章作者id',
-	a_photo varchar(50) comment'文章配图名称'
+	id number primary key,
+	title varchar2(100) not null,
+	introduction varchar2(400) not null,
+	content varchar2(800) not null,
+	created_at timestamp,
+	userId number not null,
+	image varchar2(50),
+	typeId number not null,
+	constraints articles_uid_fk foreign key(userId)
+	references users(id),
+	constraints articles_tid_fk foreign key(typeId)
+	references types(id)
 );
+comment on table articles is '文章信息';
 
+create table types(
+	id number primary key,
+	name varchar2(10) not null,
+	created_at timestamp
+);
+comment on table types is '文章类型';
 
 create table users(
-	u_id int(11) primary key auto_increment,
-	u_email varchar(50) comment '邮箱',
-	u_name varchar(50) comment '用户名',
-	u_password varchar(50),
-	u_role int comment'身份，1为普通用户',
-	u_photo varchar(50) comment'用户头像名称',
-	u_introduce varchar(800) comment '个人简介',
-	u_lasttime timestamp default current_timestamp on update current_timestamp comment '最近登录的时间'
+	id number primary key,
+	email varchar2(50) unique,
+	name varchar2(50) not null,
+	password varchar2(50) not null,
+	role number default 1,
+	image varchar2(50),
+	introduce varchar2(800),
+	lasttime timestamp
+
 );
+comment on table users is '用户信息，其中role为1时表示普通身份';
 
 create table messages(
-	m_id int(11) primary key auto_increment,
-	m_name varchar(100) comment'浏览者用户名',
-	m_content varchar(300) comment'留言内容',
-	m_uid int(11),
-	m_date timestamp comment'留言添加时间'
-
+	id number primary key,
+	name varchar2(100) not null,
+	content varchar2(300) not null,
+	articleId number,
+	created_at timestamp,
+	constraints messages_aid_fk foreign key(articleId)
+	references articles(id)
 );
+comment on table messages is '文章留言';
 
 create table photos(
-	p_id int(11) primary key auto_increment,
-	p_name varchar(50) comment'照片名称',
-	p_date timestamp comment'照片上传时间',
-	p_uid int(11)
+	id number primary key,
+	name varchar2(50) not null,
+	created_at timestamp,
+	userId number,
+	constraints photos_uid_fk foreign key(userId)
+	references users(id)
 );
-
-insert into users values(default,'123456@qq.com','admin','123456',0,'gsm.jpg','第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',default);
-
-insert into articles values
-	(default,'关于我的介绍','第一次尝试制作php个人博客网站',
-	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',default,1,'first.jpg');
-insert into articles values(default,'Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',default,1,'text1.jpg');
-
-
-insert into photos values(default,'001.jpg',default,'1');
-insert into photos values(default,'002.jpg',default,'1');
-insert into photos values(default,'003.jpg',default,'1');
-insert into photos values(default,'004.jpg',default,'1');
-insert into photos values(default,'005.jpg',default,'1');
-
-
-insert into messages values(default,'bobo','很喜欢你写的文章，希望继续更新',1,default);
-insert into articles values(default,'mysql中文乱码','mysql中文乱码','1.创建数据库时就用default charset 'utf8'设置编码
-  2.通过show variables like '%char%';查看数据库默认字符集
-  3.编辑my.cnf文件，在文件的[client],[mysqld_safe],[mysqld],[mysql]下新加 default-character-set=utf8',default,1,'11.jpg');
-
-insert into articles values(default,'mysql单表多个查询','mysql单表多个查询','通过select *from 表名 where locate(?,concat(列名,列名,列名))查询',default,1,'22.jpg');
-
-insert into articles values(default,'mysql分页','mysql分页','通过“select *from 表名 limit pageno”结构的语句查询',default,1,'33.jpg');
-insert into articles values(default,'php操作数据库','php的pdo操作','1.连接：$pdo = new PDO("mysql:host=localhost;dbname=数据库名","用户名","密码");
-  2.query($sql); 用于执行查询SQL语句。返回PDOStatement对象
-  3.exec($sql); 用于执行增、删、改操作，返回影响的行数
-  4.lastInsertId 获取刚刚添加的主键值；',default,1,'10.jpg');
-insert into articles values(default,'php得到数据库结果','php得到数据库结果','1.fetch() 返回结果集的下一行，结果指针下移，到头返回false；
-2.fetchAll() 通过一次调用返回所有结果，结果是以数组形式保存；
-3.fetchColumn()返回结果集中下一行某个列的值；',default,1,'555.jpg');
+comment on table photos is '图片信息';
 
 

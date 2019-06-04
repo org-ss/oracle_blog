@@ -2,9 +2,9 @@
 include_once("Model.php");
 class Message extends Model{
 
-	public function showAll($uId){
-		$statement = $this->pdo->prepare("select * from messages where m_uid=?");
-		$statement->execute([$uId]);
+	public function showAll($aId){
+		$statement = $this->pdo->prepare("select * from messages where m_aid=?");
+		$statement->execute([$aId]);
 		$messages = $statement->fetchAll();
 		return $messages;
 	}

@@ -11,6 +11,28 @@
 	<link href="css/media.css" rel="stylesheet">
 	<!-- CuFon ends -->
 </head>
+<script type="text/javascript">
+function validate(){
+	alert("456");
+	var name = document.getElementById("m_name");
+	var text = document.getElementById("m_text");
+	var verification = document.getElementById("verification");
+	if(username.value==""){
+//		document.getElementById("UN_status").innerHTML = "账号未填写！";
+		alert("ID未填写！");
+		m_name.focus();
+		return false;
+	}
+	if(password.value==""){
+//		document.getElementById("PW_status").innerHTML = "密码未填写！";
+		alert("内容未填写！");
+		m_text.focus();
+		return false;
+	}
+	return true;
+}
+}
+</script>
 <body>
 	<div class="main">
 		<div class="header">
@@ -64,6 +86,50 @@
 								</ul>
 							</div>
 						</article>
+					</div>
+					<br>
+					<br>
+					<br>
+					<br>
+					<hr>
+
+					<div class="article">
+						<div class="article">
+							<div class="clr" align="center">
+								<h2>
+									留言板
+								</h2>
+							</div>
+							<form action="/index.php?r=blogMessage/message_save" method="post" id="sendemail" onsubmit="return validate();">
+								<ol>
+									<!-- <li><label for="name"><span style="color: red">*</span>你的用户名</label>
+										<input id="m_name" name="m_name" class="text" rows="3"/></li> -->
+									<li><label for="message"><span style="color: red">*</span>我要留言</label>
+										<textarea id="m_text" name="m_text" rows="7" cols="30"></textarea>
+									</li>
+									<li><!-- <input type="image" name="imageField" id="imageField"
+										src="images/submit.gif" class="send" /> -->
+										<button type="submit" class="btn btn-primary mb-2" style="margin-top:10px; ">提交</button>
+										<div class="clr"></div></li>
+								</ol>
+							</form>
+						</div>
+
+						<br>
+						<h2>
+							<span>最近的留言</span> 
+						</h2>
+						
+								<?php foreach ($messages as $value): ?>
+							<div class="comment">
+								<!-- <a href="#"><img src="<?php echo $value['m_photo'];?>" width="40"
+									height="40" alt="user" class="userpic" /></a> -->
+								<p style="font-size: 13px; margin-bottom: 0px">
+									<a href="#"><?php echo $value['m_name'];?></a> &nbsp;留言时间:<br /><?php echo $value['m_date'];?>
+								</p>
+								<p style="font-size: 16px;"><?php echo $value['m_content'];?>.</p>
+							</div>
+								<?php endforeach; ?>
 					</div>
 					
 				</div>

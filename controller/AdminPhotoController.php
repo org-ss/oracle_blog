@@ -48,7 +48,7 @@ class AdminPhotoController{
 	}
 	#执行添加图片操作
 	public function do_addPhoto(){
-		var_export($_FILES['p_photo']);
+		//var_export($_FILES['p_photo']);
 		$tmp_name = $_FILES['p_photo']['tmp_name'];
 		$filename = $_FILES['p_photo']['name'];
 

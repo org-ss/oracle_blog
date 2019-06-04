@@ -55,7 +55,7 @@
 				<?php foreach($articles as $value):?>										
 					<div class="blogs">
 						<h3>
-							<a href="/index.php?r=blogArticle/show_article_content&a_id=<?php echo $value['a_id'];?>" target="_blank">
+							<a href="/index.php?r=blogArticle/show_article_detail&a_id=<?php echo $value['a_id'];?>" target="_blank">
 								<?php echo $value['a_title']; ?>
 							</a>
 						</h3>
@@ -63,7 +63,7 @@
 							<img src="images/articleimg/<?php echo $value['a_photo'];?>" width="100" height="100">
 						</figure>
 						<?php echo $value['a_begin_text'];?>
-						<a href="/index.php?r=blogArticle/show_article_content&a_id=<?php echo $value['a_id'];?>" target="_blank"class="readmore">阅读全文&gt;&gt;</a>
+						<a href="/index.php?r=blogArticle/show_article_detail&a_id=<?php echo $value['a_id'];?>" target="_blank"class="readmore">阅读全文&gt;&gt;</a>
 						<p class="autor">
 							<span>作者：<?php echo $value['a_uname'];?></span>
 						</p>

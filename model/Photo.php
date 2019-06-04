@@ -49,10 +49,16 @@ class Photo extends Model{
 
 	#将表格中的数据按照5条/页的格式显示
 	public function page($page){
+		
 		$page = $page*5;
 		$sql = "select p.*,u.u_name uname from photos p join users u on p.p_uid=u.u_id order by p_id limit ".$page.",5";
 		$statement = $this->pdo->query($sql);
 		$result = $statement->fetchAll();
 		return $result;
+		// $pageSize = 5;
+		// $statement = $this->pdo->prepare("select p.*,u.u_name uname from photos p join users u on p.p_uid=u.u_id order by p_id limit ?,?");
+		// $statement->execute([$page,$pageSize]);
+		// $result = $statement->fetchAll();
+		// return $result;
 	}
 }
