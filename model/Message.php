@@ -1,18 +1,34 @@
 <?php
 include_once("Model.php");
-class Message extends Model{
 
-	public function showAll($aId){
-		$statement = $this->pdo->prepare("select * from messages where m_aid=?");
-		$statement->execute([$aId]);
+class Message extends Model{
+	
+	public function conn(){
+        return oci_connect("blogdata", "123456","orcl");
+    }
+
+	public function showAll($aid){
+
+		$statement = $this->pdo->prepare("select * from messages where articleId=?");
+		$statement->execute([$aid]);
 		$messages = $statement->fetchAll();
 		return $messages;
+
+		// $conn = $this->conn();
+		// $statement = oci_parse($conn, "select * from messages where articleId=:aid");
+		// oci_bind_by_name($statement, ":aId", $aid);
+		// oci_execute($statement);
+		// $nrows=oci_fetch_all($statement, $result);
+		// $array = array(0 =>$nrows , 1=>$result);
+		// return $array;
 	}
 
-	public function messageSave($m_name,$m_content,$m_uid){
-		$statment = $this->pdo->prepare("insert into messages values(default,?,?,?,default)");
-		$statment->execute([$m_name,$m_content,$m_uid]);
+	public function messageSave($name,$content,$articleId){
 
+		$query="insert into messages(name,content,articleId) values(?,?,?)";
+
+		$statement = $this->pdo->prepare($query);
+		$statement->execute([$name,$content,$articleId]);
 	}
 
 	#删除某条留言

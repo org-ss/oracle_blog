@@ -51,8 +51,8 @@ function validate(){
 		          ?>
 		          	<li>
 		          		<a href="index.php?r=adminLogin/go_out">
-		          			<!-- <img src="../images/people.png" width="30px" height="30px"> -->
-		          			<span ><?php echo $user['u_name'];?>/退出登录</span>
+		          			
+		          			<span ><?php echo $user['NAME'];?>/退出登录</span>
 		          		</a>		          		
 		          	</li>
 		     	 <?php else: ?>
@@ -76,13 +76,14 @@ function validate(){
 					<div class="ibody">
 						<article>
 							<div class="index_about">
-								<h2 class="c_titile"><?php echo $article['a_title'];?></h2>
+								<h2 class="c_titile"><?php echo $article['TITLE'];?></h2>
 								<p class="box_c">
-									<span class="d_time">发布时间：<?php echo $article['a_date'];?></span>
-									<span>编辑：<?php echo $article['a_uname'];?>
+									<span class="d_time">发布时间：<?php echo $article['CREATED_TIME'];?></span>
+									<span>编辑：<?php echo $article['AUTHOR'];?><br>
+									<span>类型：<?php echo $article['TYPE'];?>
 								</p>
 								<ul class="infos">
-									<?php echo $article['a_content'];?>
+									<?php echo $article['CONTENT'];?>
 								</ul>
 							</div>
 						</article>
@@ -100,12 +101,12 @@ function validate(){
 									留言板
 								</h2>
 							</div>
-							<form action="/index.php?r=blogMessage/message_save" method="post" id="sendemail" onsubmit="return validate();">
+							<form action="/index.php?r=blogMessage/message_save&a_id=<?php echo $article['ID'] ?>" method="post" id="sendemail" onsubmit="return validate();">
 								<ol>
 									<!-- <li><label for="name"><span style="color: red">*</span>你的用户名</label>
 										<input id="m_name" name="m_name" class="text" rows="3"/></li> -->
 									<li><label for="message"><span style="color: red">*</span>我要留言</label>
-										<textarea id="m_text" name="m_text" rows="7" cols="30"></textarea>
+										<textarea id="m_text" name="content" rows="7" cols="30"></textarea>
 									</li>
 									<li><!-- <input type="image" name="imageField" id="imageField"
 										src="images/submit.gif" class="send" /> -->
@@ -120,20 +121,26 @@ function validate(){
 							<span>最近的留言</span> 
 						</h2>
 						
-								<?php foreach ($messages as $value): ?>
+								<?php foreach($messages as $value): ?>
 							<div class="comment">
-								<!-- <a href="#"><img src="<?php echo $value['m_photo'];?>" width="40"
-									height="40" alt="user" class="userpic" /></a> -->
 								<p style="font-size: 13px; margin-bottom: 0px">
-									<a href="#"><?php echo $value['m_name'];?></a> &nbsp;留言时间:<br /><?php echo $value['m_date'];?>
+									<a href="#"><?php echo $value['NAME'];?></a> &nbsp;留言时间:<br /><?php echo $value['CREATED_AT'];?>
 								</p>
-								<p style="font-size: 16px;"><?php echo $value['m_content'];?>.</p>
+								<p style="font-size: 16px;"><?php echo $value['CONTENT'];?>.</p>
 							</div>
 								<?php endforeach; ?>
 					</div>
 					
 				</div>
 				<div class="sidebar">
+
+					<div class="gadget">
+						<h2 class="star"><span>Article</span> Type</h2>
+						<div class="clr"></div>
+						<ul class="sb_menu">
+							<?php include '../view/menu/types.php' ?>
+						</ul>
+					</div>
 					
 					<div class="gadget">
 						<h2 class="star"><span>Blog_</span> Menu</h2>

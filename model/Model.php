@@ -1,11 +1,9 @@
 <?php
 class Model{
 	protected $pdo;
-
 	public function __construct(){
-		$this->pdo = new PDO("mysql:host=127.0.0.1;dbname=blog_test",'root','root');
+		$this->pdo = new PDO("oci:dbname=orcl;charset=utf8",'blogdata','123456');
 	}
-
 	public function __destruct(){
         $this->pdo = NULL;
     }

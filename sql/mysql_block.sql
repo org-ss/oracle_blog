@@ -6,7 +6,7 @@ return sys_refcursor
 is
 messages_cur sys_refcursor;
 begin
-    open type_cur for
+    open messages_cur for
     select * from 
         (select rownum rn,m.* from messages m where m.articleId=v_articleId)e 
         where e.rn>=(v_page-1)*5+1 and e.rn<=v_page*5;
@@ -17,7 +17,7 @@ select fun_messages(1,4) from dual;
 
 --留言分页过程
 create or replace procedure pro_messages
-(v_page in number,v_articleId in number,type_cur out sys_refcursor)
+(v_page in number,v_articleId in number,messages_cur out sys_refcursor)
 is
 begin
     open messages_cur for
@@ -91,9 +91,12 @@ end;
 --文章视图
 create view v_articles
 as
-select a.*,u.name from articles a 
+select a.id,a.title,a.introduction,a.content,a.image,t.name type,
+to_char(a.created_at,'yyyy-mm-dd hh24:mi:ss') created_time,u.name author from articles a 
 left join users u
-on a.userId=u.id;
+on a.userId=u.id
+left join types t
+on a.typeid=t.id;
 
 --grant create trigger,create procedure to blogdata;--给用户赋予创建触发器和过程的权限
 

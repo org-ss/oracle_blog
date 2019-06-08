@@ -2,9 +2,20 @@
 include_once('Model.php');
 
 class User extends Model{
+    
     #返回用户信息
 	public function returnUser($uid){
-		$statement = $this->pdo->prepare("select * from users where u_id=?");
+
+        // $conn = $this->conn();
+        // $query = "select * from users where id=1";
+        // $statement = oci_parse($conn, $query);
+        // //oci_bind_by_name($statement, ":uId", $uid);
+        // oci_execute($statement);
+        // $result = oci_fetch_assoc($statement);
+        // return $result;
+
+
+		$statement = $this->pdo->prepare("select * from users where id=?");
 		$statement->execute([$uid]);
 		$user = $statement->fetch();
 		return $user;
@@ -12,14 +23,21 @@ class User extends Model{
 	}
 
 	#验证登录身份
-	public function verify($uEmail,$uPassword){
+	public function verify($email,$password){
 
-    	$statment=$this->pdo->prepare("select * from users where u_email=?");
-    	$statment->execute([$uEmail]);    	
-    	$user=$statment->fetch();
+        $statement = $this->pdo->prepare("select * from users where email=?");
+        $statement->execute([$email]);
+        $user = $statement->fetch();
+        
+
+        // $conn = $this->conn();
+        // $statement = oci_parse($conn, "select * from users where email=:email");
+        // oci_bind_by_name($statement, ":email", $email);
+        // oci_execute($statement);
+        // $nrows=oci_fetch_all($statement, $user);
         
         if ($user) {
-            if ($user['u_email']==$uEmail && $user['u_password']==$uPassword) {
+            if ($user['EMAIL']==$email && $user['PASSWORD']==$password) {
                 return $user;
             }else{
                 return 1;

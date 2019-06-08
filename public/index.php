@@ -33,7 +33,7 @@ if($route){
 			header('Location:/index.php?r=adminLogin/login_page');
 		}
 		$user = $_SESSION['user'];
-		if($user['u_role']==1){
+		if($user['ROLE']==1){
 			die('权限不足');
 		}
 	}
@@ -67,4 +67,5 @@ if($route){
 	$blogArticleController = new BlogArticleController();
 
 	$blogArticleController->showAll();
+
 }

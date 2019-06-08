@@ -18,7 +18,7 @@
 	      <div class="menu_nav">
 	        <ul>
 	          <li><a href="index.php?r=blogArticle/showAll">博客首页</a></li>
-	          <li class="active"><a href="index.php?r=blogPhoto/showAll">相册</a></li>
+	          <li class="active"><a href="index.php?r=blogPhoto/showEveryPage">相册</a></li>
 	          <li><a href="index.php?r=blogMessage/showAll">留言板</a></li>
 	          <li><a href="index.php?r=blogIntroduce/about_me">关于我</a></li>
 	          <?php 
@@ -30,7 +30,7 @@
 	          	<li>
 	          		<a href="index.php?r=adminLogin/go_out">
 	          			<!-- <img src="../images/people.png" width="30px" height="30px"> -->
-	          			<span ><?php echo $user['u_name'];?>/退出登录</span>
+	          			<span ><?php echo $user['NAME'];?>/退出登录</span>
 	          		</a>		          		
 	          	</li>
 	     	 <?php else: ?>
@@ -59,9 +59,9 @@
 						foreach ($photos as $value):
 					?>	
 						<div style="width: 185px; height: 212px; float:left;">
-							<img src="images/photos/<?php $i++; echo $value['p_name']; ?>" width="180" height="180" alt="pix" />
+							<img src="images/photos/<?php $i++; echo $value['NAME']; ?>" width="180" height="180" alt="pix" />
 						<p style="text-align: center; line-height: 10px">
-							<?php $array=explode('.', $value['p_name']); echo $array[0]; ?>		
+							<?php $array=explode('.', $value['NAME']); echo $array[0]; ?>		
 						</p>
 						</div>											
 						<?php if($i==3):
@@ -73,6 +73,18 @@
 					<div class="clr"></div>
 					<p></p>										
 				</div>
+
+				<div class="am-u-lg-12 am-cf">
+		            <div class="am-fr">
+		                <ul class="am-pagination tpl-pagination">
+		                    <li class="am-disabled"><a href="#">«</a></li>
+		                    <?php for ($i=1; $i<=$page; $i++): ?>
+		                        <li <?php if($curPage==$i){echo 'class="am-active"';}?>><a href="index.php?r=blogPhoto/showEveryPage&curPage=<?=$i?>"><?=$i+1?></a></li>
+		                    <?php endfor;?> 
+		                    <li><a href="#">»</a></li>
+		                </ul>
+		            </div>
+		        </div>
 			</div>
 			<div class="sidebar">
 				

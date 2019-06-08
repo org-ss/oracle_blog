@@ -4,16 +4,18 @@ include_once("Model.php");
 class Article extends Model{
 
 	#展示所有文章
-	public function showAll($uid){
-		$statement = $this->pdo->prepare("select a.*,u.u_name as a_uname from articles a join users u on a.a_uid=u.u_id  where a_uid=?");
-		$statement->execute([$uid]);
+	public function showAll(){
+		
+		$statement = $this->pdo->prepare("select * from v_articles");
+		$statement->execute();
 		$articles = $statement->fetchAll();
 		return $articles;
 	}
 
 	#展示某一篇文章的具体内容
 	public function find($aid){
-		$statement = $this->pdo->prepare("select a.*,u.u_name as a_uname from articles a join users u on a.a_uid=u.u_id  where a_id=?");
+
+		$statement = $this->pdo->prepare("select * from v_articles where id=?");
 		$statement->execute([$aid]);
 		$article = $statement->fetch();
 		return $article;
@@ -60,10 +62,17 @@ class Article extends Model{
 
 	#通过关键词查找具有关键词的记录
 	public function search($keywords){
-		$statement = $this->pdo->prepare("select a.*,u.u_name as a_uname from articles a join users u on a.a_uid=u.u_id where locate(?,concat(a_title,a_content,a_begin_text))");
-		$statement->execute([$keywords]);
-		$result = $statement->fetchAll();
-		return $result;
+
+		$keywords=$keywords.'+';
+
+		
+		$query="select * from v_articles where (regexp_like(title,?) or regexp_like(introduction,?))";
+
+		$statement = $this->pdo->prepare($query);
+		$statement->execute([$keywords,$keywords]);
+		$articles = $statement->fetchAll();
+		return $articles;
+
 	}
 
 	#删除所有文章

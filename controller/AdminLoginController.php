@@ -21,6 +21,7 @@ class AdminLoginController{
 		$uEmail=$_POST['u_email'];
 		$uPassword=$_POST['u_password'];
 		$remember = $_POST['remember'];
+		
 
 		if (trim($uEmail)==""||trim($uPassword)=="") {
 			
@@ -30,6 +31,8 @@ class AdminLoginController{
 		$userModel=new User();
 
 		$user=$userModel->verify($uEmail,$uPassword);
+		var_export($user);
+		
 
 		if ($user==0) {
 
@@ -42,8 +45,8 @@ class AdminLoginController{
 		}else{
 			session_start();
 			$_SESSION['user']=$user;
-			var_export($user);
-			if ($user['u_role']==0) {
+			
+			if ($user['ROLE']==0) {
 				$_SESSION['isAdminLogin']=true;
 				header('Location:/index.php?r=adminHome/home');
 			}else{
