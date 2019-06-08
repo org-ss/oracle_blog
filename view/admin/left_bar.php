@@ -25,6 +25,11 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
+                    <a href="index.php?r=AdminHome/show" <?php if($index==7){echo 'class="active"';} ?> >
+                        <i class="am-icon-home sidebar-nav-link-logo"></i>标签管理
+                    </a>
+                </li>
+                <li class="sidebar-nav-link">
                     <a href="javascript:;" class="sidebar-nav-sub-title <?php if($index==2){echo 'active';} ?>"><!--href="/admin/article/article_list.php"-->
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 文章管理
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
