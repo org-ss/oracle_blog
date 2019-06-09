@@ -31,7 +31,6 @@ class AdminLoginController{
 		$userModel=new User();
 
 		$user=$userModel->verify($uEmail,$uPassword);
-		var_export($user);
 		
 
 		if ($user==0) {
@@ -45,7 +44,6 @@ class AdminLoginController{
 		}else{
 			session_start();
 			$_SESSION['user']=$user;
-			
 			if ($user['ROLE']==0) {
 				$_SESSION['isAdminLogin']=true;
 				header('Location:/index.php?r=adminHome/home');

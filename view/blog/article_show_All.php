@@ -78,7 +78,7 @@ function validate(){
 							<div class="index_about">
 								<h2 class="c_titile"><?php echo $article['TITLE'];?></h2>
 								<p class="box_c">
-									<span class="d_time">发布时间：<?php echo $article['CREATED_TIME'];?></span>
+									<span class="d_time">发布时间：<?php echo $article['CREATED_AT'];?></span>
 									<span>编辑：<?php echo $article['AUTHOR'];?><br>
 									<span>类型：<?php echo $article['TYPE'];?>
 								</p>

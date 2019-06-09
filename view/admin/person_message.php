@@ -15,14 +15,14 @@
                     <div class="widget-body am-fr">
 
                         <form class="am-form tpl-form-border-form tpl-form-border-br" action="index.php?r=adminHome/updateUser" method="post" enctype="multipart/form-data">
-                        <input type="hidden" value="<?=$user2['u_id']?>" name="u2_id">
+                        <input type="hidden" value="<?=$user2['ID']?>" name="u2_id">
 
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">邮箱 
                                     <span class="tpl-form-line-small-title"></span>
                                 </label>
                                 <div class="am-u-sm-9">
-                                    <input type="email" class="tpl-form-input" id="user-name" value="<?=$user2['u_email']?>" name="u2_email" placeholder="" readonly="true">
+                                    <input type="email" class="tpl-form-input" id="user-name" value="<?=$user2['EMAIL']?>" name="u2_email" placeholder="" readonly="true">
                                 </div>
                             </div>
                         
@@ -31,10 +31,9 @@
                                     <span class="tpl-form-line-small-title"></span>
                                 </label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" class="tpl-form-input" id="user-name" value="<?=$user2['u_name']?>" name="u2_name" placeholder="请输入用户名">
+                                    <input type="text" class="tpl-form-input" id="user-name" value="<?=$user2['NAME']?>" name="u2_name" placeholder="请输入用户名">
                                 </div>
                             </div>
-
                             
 							<div class="am-form-group">
                                 <label for="user-phone" class="am-u-sm-3 am-form-label">密码 <span class="tpl-form-line-small-title"></span></label>
@@ -56,7 +55,7 @@
                                 <div class="am-u-sm-9">
                                     <div class="am-form-group am-form-file">
                                         <div class="tpl-form-file-img">
-                                            <img src="/images/headimg/<?=$user2['u_photo']?>" alt="" width="100px" height="100px" id="show">
+                                            <img src="/images/headimg/<?=$user2['IMAGE']?>" alt="" width="100px" height="100px" id="show">
                                         </div>
                                         <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                             <i class="am-icon-cloud-upload"></i> 选择图片
@@ -71,7 +70,7 @@
 							<div class="am-form-group">
                                 <label for="user-phone" class="am-u-sm-3 am-form-label">个人简介 <span class="tpl-form-line-small-title"></span></label>
                                 <div class="am-u-sm-9">
-                                     <textarea class="" rows="10" id="user-intro"placeholder="请输入文章内容"  name="u2_introduce"><?=$user2['u_introduce']?></textarea>
+                                     <textarea class="" rows="10" id="user-intro"placeholder="请输入文章内容"  name="u2_introduce"><?=$user2['INTRODUCE']?></textarea>
                                 </div>
                             </div>
 

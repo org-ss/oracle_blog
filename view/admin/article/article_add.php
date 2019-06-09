@@ -63,6 +63,19 @@
                             </div>
 
                             <div class="am-form-group">
+                                <label for="user-phone" class="am-u-sm-3 am-form-label">标签 <span class="tpl-form-line-small-title"></span></label>
+                                <div class="am-u-sm-9">
+                                        <select id="typeid" onchange="fuzhi()">
+                                            <?php foreach ($types as $value):?>
+                                            <option value="<?=$value['ID']?>"><?=$value['NAME']?></option>
+                                            <?php endforeach?>
+                                        </select>
+                                    <small>标签为必填</small>
+                                </div>
+                                <input type="hidden" name="select_value" id="select_value" value="<?=$types[0]['ID']?>"></input>
+                            </div>
+
+                            <div class="am-form-group">
                                 <label for="user-intro" class="am-u-sm-3 am-form-label">文章内容</label>
                                 <div class="am-u-sm-9">
                                     <textarea class="" rows="10" id="user-intro" placeholder="请输入文章内容"  name="a_content"></textarea>
@@ -72,6 +85,7 @@
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
                                     <input type="submit" value="提交" class="am-btn am-btn-primary tpl-btn-bg-color-success ">
+                                    
                                 </div>
                             </div>
                         </form>
@@ -92,6 +106,10 @@
                     url = window.webkitURL.createObjectURL(file);
                 }
                 return url;
+            }
+
+            function fuzhi(){
+                document.getElementById("select_value").value=document.getElementById("typeid").value;
             }
         </script>
 <?php include('../view/admin/layout/foot.php');

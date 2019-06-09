@@ -25,7 +25,7 @@
     <script src="assets/js/theme.js"></script>
     <div class="am-g tpl-g">
         <!-- 头部 -->
-       <?php include '/top_bar.php'?>
+       <?php include '/top_bar.php';?>
         <!-- 风格切换 -->
         <div class="tpl-skiner">
             <div class="tpl-skiner-toggle am-icon-cog">
@@ -42,7 +42,7 @@
         </div>
         <!-- 侧边导航栏 -->
         
-        <?php include '../view/admin/left_bar.php'?>
+        <?php include '../view/admin/left_bar.php';?>
 
 
         <!-- 内容区域 -->
@@ -55,9 +55,9 @@
                             <span class="am-icon-home page-header-heading-icon"></span> 个人博客
                         </div>
                     </div>
-                    <div class="am-u-lg-3 tpl-index-settings-button">
+                    <!--<div class="am-u-lg-3 tpl-index-settings-button">
                         <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
-                    </div>
+                    </div>-->
                 </div>
 
             </div>
@@ -84,15 +84,15 @@
                                         <tbody>
                                             <?php foreach ($articles as $value):?>
                                                 <tr class="gradeX">
-                                                    <td><?=$value['a_title']?></td>
-                                                    <td><?=$value['uname']?></td>
-                                                    <td><?=$value['a_date']?></td>
+                                                    <td><?=$value['TITLE']?></td>
+                                                    <td><?=$value['UNAME']?></td>
+                                                    <td><?=$value['CREATED_AT']?></td>
                                                     <td>
                                                         <div class="tpl-table-black-operation">
-                                                            <a href="index.php?r=adminArticle/updateArticle&a_id=<?=$value['a_id'];?>">
+                                                            <a href="index.php?r=adminArticle/updateArticle&a_id=<?=$value['ID'];?>">
                                                                 <i class="am-icon-pencil"></i> 编辑
                                                             </a>
-                                                            <a href="index.php?r=adminArticle/deleteArticle&a_id=<?=$value['a_id']?>" class="tpl-table-black-operation-del">
+                                                            <a href="index.php?r=adminArticle/deleteArticle&a_id=<?=$value['ID']?>" class="tpl-table-black-operation-del">
                                                                 <i class="am-icon-trash"></i> 删除
                                                             </a>
                                                         </div>
@@ -131,13 +131,13 @@
                                             <?php foreach ($photos as $value):?>
                                                 <tr class="gradeX">
                                                     <td>
-                                                        <img src="/images/photos/<?=$value['p_name']?>" width="100px" height="100px">
+                                                        <img src="/images/photos/<?=$value['NAME']?>" width="100px" height="100px">
                                                     </td>
-                                                    <td><?=$value['uname']?></td>
-                                                    <td><?=$value['p_date']?></td>
+                                                    <td><?=$value['UNAME']?></td>
+                                                    <td><?=$value['CREATED_AT']?></td>
                                                     <td>
                                                         <div class="tpl-table-black-operation">
-                                                            <a href="index.php?r=adminPhoto/deletePhoto&p_id=<?=$value['p_id']?>" class="tpl-table-black-operation-del">
+                                                            <a href="index.php?r=adminPhoto/deletePhoto&p_id=<?=$value['ID']?>" class="tpl-table-black-operation-del">
                                                                 <i class="am-icon-trash"></i> 删除
                                                             </a>
                                                         </div>

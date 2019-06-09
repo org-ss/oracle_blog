@@ -3,6 +3,7 @@ select * from user_users;
 create user blogdata identified by 123456;
 grant connect,resource to blogdata;
 grant create view to blogdata;
+grant select any dictionary to blogdata;
 
 
 create sequence articles_id
@@ -48,7 +49,7 @@ create sequence photos_id
 create table types(
 	id number primary key,
 	name varchar2(10) not null,
-	created_at timestamp
+	created_at varchar2(50)
 );
 comment on table types is '文章类型';
 
@@ -60,7 +61,7 @@ create table users(
 	role number default 1,
 	image varchar2(50),
 	introduce varchar2(800),
-	lasttime timestamp
+	lasttime varchar2(50)
 );
 comment on table users is '用户信息，其中role为1时表示普通身份';
 
@@ -70,7 +71,7 @@ create table articles(
 	title varchar2(100) not null,
 	introduction varchar2(400) not null,
 	content varchar2(800) not null,
-	created_at timestamp,
+	created_at varchar2(50),
 	userId number not null,
 	image varchar2(50),
 	typeId number not null,
@@ -87,7 +88,7 @@ create table messages(
 	name varchar2(100) not null,
 	content varchar2(300) not null,
 	articleId number,
-	created_at timestamp,
+	created_at varchar2(50),
 	constraints messages_aid_fk foreign key(articleId)
 	references articles(id)
 );
@@ -96,7 +97,7 @@ comment on table messages is '文章留言';
 create table photos(
 	id number primary key,
 	name varchar2(50) not null,
-	created_at timestamp,
+	created_at varchar2(50),
 	userId number,
 	constraints photos_uid_fk foreign key(userId)
 	references users(id)
@@ -108,7 +109,7 @@ create or replace trigger tr_aid
 before insert on articles
 for each row
 begin
-select articles_id.nextval,sysdate into :new.id,:new.created_at from dual;
+select articles_id.nextval,to_char(sysdate,'yyyy-mm-dd hh24:mi:ss') into :new.id,:new.created_at from dual;
 end;
 /
 
@@ -117,7 +118,7 @@ create or replace trigger tr_tid
 before insert on types
 for each row
 begin
-select types_id.nextval,sysdate into :new.id,:new.created_at from dual;
+select types_id.nextval,to_char(sysdate,'yyyy-mm-dd hh24:mi:ss') into :new.id,:new.created_at from dual;
 end;
 /
 
@@ -126,7 +127,7 @@ create or replace trigger tr_uid
 before insert on users
 for each row
 begin
-select users_id.nextval,sysdate into :new.id,:new.lasttime from dual;
+select users_id.nextval,to_char(sysdate,'yyyy-mm-dd hh24:mi:ss') into :new.id,:new.lasttime from dual;
 end;
 /
 
@@ -135,7 +136,7 @@ create or replace trigger tr_mid
 before insert on messages
 for each row
 begin
-select messages_id.nextval,sysdate into :new.id,:new.created_at from dual;
+select messages_id.nextval,to_char(sysdate,'yyyy-mm-dd hh24:mi:ss') into :new.id,:new.created_at from dual;
 end;
 /
 
@@ -144,6 +145,17 @@ create or replace trigger tr_pid
 before insert on photos
 for each row
 begin
-select photos_id.nextval,sysdate into :new.id,:new.created_at from dual;
+select photos_id.nextval,to_char(sysdate,'yyyy-mm-dd hh24:mi:ss') into :new.id,:new.created_at from dual;
 end;
 /
+
+--用户更新最近登录时间的触发器：
+create or replace trigger tr_updateid
+before update on users
+for each row
+begin
+  if updating('lasttime') then
+    select to_char(sysdate,'yyyy-mm-dd hh24:mi:ss') into :new.lasttime from dual;
+  end if;
+end;
+/ 

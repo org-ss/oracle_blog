@@ -23,40 +23,54 @@ class Article extends Model{
 
 	#展示最新的5篇文章
 	public function find5Record($uId){
-		$statement = $this->pdo->prepare("select a.*,u.u_name uname from articles a 
-			join users u on a.a_uid=u.u_id where a.a_uid=? 
-			order by a_date limit 5;");
+		$statement = $this->pdo->prepare("select *from (select rownum rn,a.*,u.name uname from articles a 
+			join users u on a.userid=u.id where u.id=? order by created_at) where rn<=5");
 		$statement->execute([$uId]);
 		$articles = $statement->fetchAll();
 		return $articles;
 	}
 
 	#更新文章内容
-	public function update($a_id,$a_title,$a_begin_text,$a_photo,$a_content){
-		$statement = $this->pdo->prepare("update articles set a_title=?,a_begin_text=?,a_photo=?,a_content=? where a_id=?");
-		$statement->execute([$a_title,$a_begin_text,$a_photo,$a_content,$a_id]);
+	public function update($a_id,$a_title,$a_begin_text,$a_photo,$a_content,$typeId){
+		$statement = $this->pdo->prepare("update articles set title=?,introduction=?,image=?,content=?,typeId=? where a_id=?");
+		$statement->execute([$a_title,$a_begin_text,$a_photo,$a_content,$typeId,$a_id]);
 	}
 
 	#删除某篇文章
-	public function delete($a_id){
-		$statement = $this->pdo->prepare("delete from articles where a_id=?");
-		$statement->execute([$a_id]);
+	public function delete($id){
+		$statement = $this->pdo->prepare("delete from messages where articleid=?");
+		$statement->execute([$id]);
+		
+		$statement = $this->pdo->prepare("delete from articles where id=?");
+		$statement->execute([$id]);
 	}
 
 	#获取表格中的记录条数
 	public function getCount(){
-		$statement = $this->pdo->prepare("select * from articles");
-		$statement->execute();#返回结果集中的一个字段
-		$num = $statement->rowCount();
-		return $num;
+		$statement = $this->pdo->query("select count(*) from articles");
+		$rows = $statement->fetch();
+		return $rows[0];
 	}
 
 	#将表格中的记录分页显示
 	public function page($page){
-		$page = $page*5;
-		$sql = "select a.*,u.u_name a_uname from articles a join users u on a.a_uid=u.u_id order by a_id limit ".$page.",5";
-		$statement = $this->pdo->query($sql);
+		$page = $page*5+1;
+		$nextPage =$page+5;
+		$statement = $this->pdo->prepare("select * from 
+        (select rownum rn,a.* from v_articles a) e 
+        where e.rn>=? and e.rn<?");
+		$statement->execute([$page,$nextPage]);
 		$result = $statement->fetchAll();
+		
+		// $statement = $this->pdo->prepare('exec testPage ?');
+		// $statement->bindParam(1,$page);
+		// $statement->execute();
+		// $result = $statement->fetchAll();
+		// return $result;
+
+		// $sql = "select *from v_articles";
+		// $statement = $this->pdo->query($sql);
+		// $result = $statement->fetchAll();
 		return $result;
 	}
 
@@ -81,10 +95,9 @@ class Article extends Model{
 	}
 
 	#保存文章
-	public function save($a_title,$a_begin_text,$a_content,$a_uid,$clean_filename){
-		$statement = $this->pdo->prepare("insert into articles values(default,?,?,?,default,?,?)");
-		$statement->execute([$a_title,$a_begin_text,$a_content,$a_uid,$clean_filename]);
-		return $this->pdo->lastInsertId();
+	public function save($title,$introduction,$content,$uid,$clean_filename,$typeId){
+		$statement = $this->pdo->prepare("insert into articles values(null,?,?,?,null,?,?,?)");
+		$statement->execute([$title,$introduction,$content,$uid,$clean_filename,$typeId]);
 	}
 
 

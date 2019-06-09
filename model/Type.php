@@ -30,5 +30,24 @@ class Type extends Model{
 		
 	}
 
+	#获取表格中的记录条数
+	public function getCount(){
+		$statement = $this->pdo->query("select count(*) from types");
+		$rows = $statement->fetch();
+		return $rows[0];
+	}
+
+	#将表格中的记录分页显示
+	public function page($page){
+		$page = $page*5+1;
+		$nextPage =$page+5;
+		$statement = $this->pdo->prepare("select * from 
+        (select rownum rn,t.* from types t) e 
+        where e.rn>=? and e.rn<?");
+		$statement->execute([$page,$nextPage]);
+		$result = $statement->fetchAll();
+		return $result;
+	}
+
 	
 }

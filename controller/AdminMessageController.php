@@ -6,10 +6,10 @@ class AdminMessageController{
 	#留言的分页显示
 	public function home(){
 		$user = $_SESSION['user'];
-		$name = $user['u_name'];
-		$headimg = $user['u_photo'];
-		$uid = $user['u_id'];
-		$utime = $user['u_lasttime'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 		$index = 4;
 
 		if(isset($_GET['page'])){

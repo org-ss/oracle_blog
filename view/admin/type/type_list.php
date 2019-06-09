@@ -34,21 +34,28 @@
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">
 										<script type="text/javascript">
-												function delAllMessage(){
+												function delAllTypes(){
 													var con = confirm("是否确认全部删除！！！");
 													if(con==true){
 														location.href = "index.php?r=adminType/deleteAllType&u_id=<?=$uid?>";
 													}else{
 														return false;
-													}
-													
+													}	
 												}
+												function delType(a){
+		                                            var con = confirm("是否确认删除这条数据???");
+		                                            if(con==true){
+		                                                location.href = "index.php?r=adminType/deleteType&id="+a;
+		                                            }else{
+		                                            	return false;
+		                                            }
+	                                        	}
 										</script>
 										<button type="button" class="am-btn am-btn-default am-btn-success">
                                             <span class="am-icon-plus"></span> 
                                             <a href="index.php?r=adminType/addType" class="color">新增</a>
                                         </button>
-										<button type="button" onclick="delAllMessage();" class="am-btn am-btn-default am-btn-danger">
+										<button type="button" onclick="delAllTypes();" class="am-btn am-btn-default am-btn-danger">
 											<span class="am-icon-trash-o"></span> 删除全部
 										</button>
 									</div>
@@ -77,16 +84,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach ($typess as $value):?>
+									<?php foreach ($types as $value):?>
 											<tr class="gradeX">
-												<td class="am-text-middle"><?=$value['name'];?></td>
-												<td class="am-text-middle"><?=$value['created_at'];?></td>
+												<td class="am-text-middle"><?=$value['NAME'];?></td>
+												<td class="am-text-middle"><?=$value['CREATED_AT'];?></td>
 												<td class="am-text-middle">
 													<div class="tpl-table-black-operation"> 
-														<a href="index.php?r=adminType/updateType&id=<?=$value['id'];?>"> 
+														<a href="index.php?r=adminType/updateType&id=<?=$value['ID'];?>"> 
 															<i class="am-icon-pencil"></i> 编辑 
 														</a> 
-														<a href="index.php?r=adminType/deleteType&id=<?=$value['id']?>" class="tpl-table-black-operation-del"> 
+														<a href="javascript:void(0);" onclick="delType(<?=$value['ID']?>)" class="tpl-table-black-operation-del">
 															<i class="am-icon-trash"></i>删除 
 														</a>
 													</div>
@@ -100,11 +107,11 @@
 
 							<div class="am-fr">
 								<ul class="am-pagination tpl-pagination">
-									<li class="am-disabled"><a href="index.php?r=adminType/home&id=<?=$id?>&page=1">«</a></li>
+									<li><a href="index.php?r=adminType/home&id=<?=$id?>">首页</a></li>
 									<?php for ($i=0; $i<$endPage; $i++): ?>
 										<li <?php if($page==$i){echo 'class="am-active"';}?>><a href="index.php?r=adminType/home&id=<?=$id?>&page=<?=$i?>"><?=$i+1?></a></li>
 									<?php endfor?> 
-									<li><a href="index.php?r=adminType/home&id=<?=$id?>&page=<?=$num-1?>">»</a></li>
+									<li><a href="index.php?r=adminType/home&id=<?=$id?>&page=<?=$endPage-1?>">末页</a></li>
 								</ul>
 							</div>
 						</div>

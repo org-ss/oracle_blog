@@ -6,10 +6,10 @@ class AdminPhotoController{
 	#照片的分页显示
 	public function home(){
 		$user = $_SESSION['user'];
-		$name = $user['u_name'];
-		$headimg = $user['u_photo'];
-		$utime = $user['u_lasttime'];
-		$uid = $user['u_id'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 
 		$index = 3;
 
@@ -38,10 +38,10 @@ class AdminPhotoController{
 	#跳转到添加图片页面
 	public function addPhoto(){
 		$user = $_SESSION['user'];
-		$name = $user['u_name'];
-		$headimg = $user['u_photo'];
-		$uid = $user['u_id'];
-		$utime = $user['u_lasttime'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 		$index = 3;
 
 		include('../view/admin/photo/photo_add.php');

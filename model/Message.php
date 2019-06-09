@@ -2,10 +2,6 @@
 include_once("Model.php");
 
 class Message extends Model{
-	
-	public function conn(){
-        return oci_connect("blogdata", "123456","orcl");
-    }
 
 	public function showAll($aid){
 
@@ -33,7 +29,7 @@ class Message extends Model{
 
 	#删除某条留言
 	public function delete($mId){
-		$statement = $this->pdo->prepare("delete from messages where m_id=?");
+		$statement = $this->pdo->prepare("delete from messages where id=?");
 		$statement->execute([$mId]);
 	}
 
@@ -44,17 +40,19 @@ class Message extends Model{
 
 	#获取表格中的记录条数
 	public function getCount(){
-		$statement = $this->pdo->prepare("select * from messages");
-		$statement->execute();#返回结果集中的一个字段
-		$num = $statement->rowCount();
-		return $num;
+		$statement = $this->pdo->query("select count(*) from messages");
+		$rows = $statement->fetch();
+		return $rows[0];
 	}
 
 	#将表中数据分页显示
 	public function page($page){
-		$page = $page*5;
-		$sql = "select m.*,u.u_name uname from messages m join users u on m.m_uid=u.u_id order by m_id limit ".$page.",5";
-		$statement = $this->pdo->query($sql);
+		$page = $page*5+1;
+		$nextPage =$page+5;
+		$statement = $this->pdo->prepare("select * from 
+        (select rownum rn,m.*,a.title as title from messages m left join articles a on m.articleid=a.id order by m.id desc)e 
+        where e.rn>=? and e.rn<?");
+		$statement->execute([$page,$nextPage]);
 		$result = $statement->fetchAll();
 		return $result;
 	}

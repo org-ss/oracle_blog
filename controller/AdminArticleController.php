@@ -1,6 +1,7 @@
 <?php
 
 include('../model/Article.php');
+include('../model/Type.php');
 
 class AdminArticleController{
 
@@ -12,10 +13,10 @@ class AdminArticleController{
 		}
 
 		$user = $_SESSION['user'];
-		$name = $user['u_name'];
-		$headimg = $user['u_photo'];
-		$uid = $user['u_id'];
-		$utime = $user['u_lasttime'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 		$index = 2;
 
 		$articleModel = new Article();
@@ -25,22 +26,24 @@ class AdminArticleController{
 		$endPage = ceil($num/$pageSize);
 		$articles = $articleModel->page($page);
 
-
 		include('../view/admin/article/article_list.php');
 	}
 
 	#跳转到修改文章界面
 	public function updateArticle(){
 		$user = $_SESSION['user'];
-		$name = $user['u_name'];
-		$headimg = $user['u_photo'];
-		$uid = $user['u_id'];
-		$utime = $user['u_lasttime'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 		$index = 2;
 
 		$aId = $_GET['a_id'];
 		$articleModel = new Article();
 		$article = $articleModel->find($aId);
+
+		$typeModel = new Type();
+		$types = $typeModel->showAll();
 
 		include('../view/admin/article/article_release.php');
 	}
@@ -59,10 +62,11 @@ class AdminArticleController{
 		$a_title = $_REQUEST['a_title'];
 		$a_begin_text = $_REQUEST['a_begin_text'];
 		$a_content = $_REQUEST['a_content'];
+		$typeId = $_REQUEST['select_value'];
 
 
 		$articleModel = new Article();
-		$article = $articleModel->update($a_id,$a_title,$a_begin_text,$filename,$a_content);
+		$article = $articleModel->update($a_id,$a_title,$a_begin_text,$filename,$a_content,$typeId);
 
 		self::home();
 	}
@@ -80,11 +84,14 @@ class AdminArticleController{
 	#跳转到添加文章界面
 	public function addArticle(){
 		$user = $_SESSION['user'];
-		$name = $user['u_name'];
-		$headimg = $user['u_photo'];
-		$uid = $user['u_id'];
-		$utime = $user['u_lasttime'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 		$index = 2;
+
+		$typeModel = new Type();
+		$types = $typeModel->showAll();
 
 		include('../view/admin/article/article_add.php');
 	}
@@ -105,9 +112,10 @@ class AdminArticleController{
 		$a_begin_text = $_REQUEST['a_begin_text'];
 		$a_content = $_REQUEST['a_content'];
 		$a_uname = $_REQUEST['a_uname'];
+		$typeId = $_REQUEST['select_value'];
 
 		$articleModel = new Article();
-		$article = $articleModel->save($a_title,$a_begin_text,$a_content,$a_uid,$filename);
+		$article = $articleModel->save($a_title,$a_begin_text,$a_content,$a_uid,$filename,$typeId);
 
 		self::home();
 	}

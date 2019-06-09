@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="index.php?r=AdminHome/show" <?php if($index==7){echo 'class="active"';} ?> >
+                    <a href="index.php?r=AdminType/home" <?php if($index==7){echo 'class="active"';} ?> >
                         <i class="am-icon-home sidebar-nav-link-logo"></i>标签管理
                     </a>
                 </li>

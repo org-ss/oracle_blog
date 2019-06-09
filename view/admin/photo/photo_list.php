@@ -41,6 +41,15 @@
                                                     }
                                                     
                                                 }
+
+                                            function delMessage(a){
+                                                var con = confirm("是否确认删除这条数据???");
+                                                if(con==true){
+                                                    location.href = "index.php?r=adminPhoto/deletePhoto&p_id="+a;
+                                                }else{
+                                                    return false;
+                                                }
+                                            }
                                         </script>
                                         <button type="button" class="am-btn am-btn-default am-btn-success">
                                             <span class="am-icon-plus"></span> 
@@ -73,13 +82,13 @@
                                 <tbody>
                                     <?php foreach ($photos as $value):?>
                                     <tr class="gradeX">
-                                        <td><img src="/images/photos/<?=$value['p_name']?>" class="tpl-table-line-img"></td>
-                                        <td><?php $array=explode('.', $value['p_name']); echo $array[0];?></td>
-                                        <td><?=$value['uname']?></td>
-                                        <td><?=$value['p_date']?></td>
+                                        <td><img src="/images/photos/<?=$value['NAME']?>" class="tpl-table-line-img"></td>
+                                        <td><?php $array=explode('.', $value['NAME']); echo $array[0];?></td>
+                                        <td><?=$value['UNAME']?></td>
+                                        <td><?=$value['CREATED_AT']?></td>
                                         <td>
                                             <div class="tpl-table-black-operation">
-                                                <a href="index.php?r=adminPhoto/deletePhoto&p_id=<?=$value['p_id']?>" class="tpl-table-black-operation-del">
+                                                <a href="javascript:void(0);" onclick="delMessage(<?=$value['ID']?>)" class="tpl-table-black-operation-del">
                                                     <i class="am-icon-trash"></i> 删除
                                                 </a>
                                             </div>
@@ -93,11 +102,11 @@
 
                             <div class="am-fr">
                                 <ul class="am-pagination tpl-pagination">
-                                    <li class="am-disabled"><a href="#">«</a></li>
+                                    <li><a href="index.php?r=adminPhoto/home&uid=<?=$uid?>">首页</a></li>
                                     <?php for ($i=0; $i<$endPage; $i++): ?>
                                         <li <?php if($page==$i){echo 'class="am-active"';}?>><a href="index.php?r=adminPhoto/home&uid=<?=$uid?>&page=<?=$i?>"><?=$i+1?></a></li>
                                     <?php endfor?> 
-                                    <li><a href="#">»</a></li>
+                                    <li><a href="index.php?r=adminPhoto/home&uid=<?=$uid?>&page=<?=$endPage-1?>">末页</a></li>
                                 </ul>
                             </div>
                         </div>

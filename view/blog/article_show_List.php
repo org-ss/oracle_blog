@@ -98,7 +98,7 @@
 						</p>
 						
 						<div class="dateview" align="center" style="left:-143px;">
-							<?php echo $value['CREATED_TIME'];?>
+							<?php echo $value['CREATED_AT'];?>
 						</div>
 					</div>
 					<?php endforeach; ?>					

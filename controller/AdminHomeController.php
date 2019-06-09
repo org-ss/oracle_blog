@@ -8,10 +8,10 @@ class AdminHomeController{
 
 	public function home(){
 		$user = $_SESSION['user'];
-		$name = $user['u_name'];
-		$headimg = $user['u_photo'];
-		$uid = $user['u_id'];
-		$utime = $user['u_lasttime'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 
 		$index = 1;
 
@@ -27,10 +27,10 @@ class AdminHomeController{
 	#展示个人信息
 	public function show(){
 		$user = $_SESSION['user'];
-		$name = $user['u_name'];
-		$headimg = $user['u_photo'];
-		$uid = $user['u_id'];
-		$utime = $user['u_lasttime'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 
 		$index = 5;
 		$usereModel = new User();
@@ -49,8 +49,8 @@ class AdminHomeController{
 		$u2_introduce = $_REQUEST['u2_introduce'];
 		if($u2_password==""||$u2_password==null){
 			if($u2_password2==""||$u2_password2==null){
-				$u2_password = $_SESSION['user']['u_password'];
-				$u2_password2 = $_SESSION['user']['u_password'];
+				$u2_password = $_SESSION['user']['PASSWORD'];
+				$u2_password2 = $_SESSION['user']['PASSWORD'];
 			}else{
 				echo '<script>alert("请确认密码！！");window.location.href="index.php?r=adminHome/show";</script>';
 			}
@@ -70,10 +70,10 @@ class AdminHomeController{
 			$user2 = $userModel->returnUser($u2_id);
 			
 			$_SESSION['user'] = $user2;
-			$name = $user2['u_name'];
-			$headimg = $user2['u_photo'];
-			$uid = $user2['u_id'];
-			$utime = $user2['u_lasttime'];
+			$name = $user2['NAME'];
+			$headimg = $user2['IMAGE'];
+			$uid = $user2['ID'];
+			$utime = $user2['LASTTIME'];
 			$index = 5;
 
 			include('../view/admin/person_message.php');
@@ -90,11 +90,10 @@ class AdminHomeController{
 		}
 
 		$user = $_SESSION['user'];
-		$name = $user['u_name'];
-		$headimg = $user['u_photo'];
-		$uid = $user['u_id'];
-		$utime = $user['u_lasttime'];
-
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 		$index = 6;
 
 

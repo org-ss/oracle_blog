@@ -34,22 +34,29 @@
 								<div class="am-btn-toolbar">
 									<div class="am-btn-group am-btn-group-xs">
 										<script type="text/javascript">
-											function delAllMessage(){
+											function delAllArticles(){
 													var con = confirm("是否确认全部删除！！！");
 													if(con==true){
 														location.href = "index.php?r=adminArticle/deleteAllArticle";
 													}else{
 														return false;
 													}
-													
 												}
+											function delArticle(a){
+	                                            var con = confirm("是否确认删除这条数据???");
+	                                            if(con==true){
+	                                                location.href = "index.php?r=adminArticle/deleteArticle&a_id="+a;
+	                                            }else{
+	                                            	return false;
+	                                            }
+	                                        }
 										</script>
 										<button type="button" class="am-btn am-btn-default am-btn-success"
 											onclick="location.href='index.php?r=adminArticle/addArticle';">
 											<span class="am-icon-plus"></span> 
 											<a href="index.php?r=adminArticle/addArticle" class="color">新增</a>
 										</button>
-										<button type="button" onclick="delAllMessage();" class="am-btn am-btn-default am-btn-danger">
+										<button type="button" onclick="delAllArticles();" class="am-btn am-btn-default am-btn-danger">
 											<span class="am-icon-trash-o"></span> 删除全部
 										</button>
 									</div>
@@ -77,6 +84,7 @@
 										<th>文章缩略图</th>
 										<th>文章标题</th>
 										<th>作者</th>
+										<th>分类</th>
 										<th>时间</th>
 										<th>操作</th>
 									</tr>
@@ -84,17 +92,18 @@
 								<tbody>
 									<?php foreach ($articles as $value):?>
 											<tr class="gradeX">
-												<td><img src="/images/articleimg/<?=$value['a_photo'];?>" class="tpl-table-line-img"
+												<td><img src="/images/articleimg/<?=$value['IMAGE'];?>" class="tpl-table-line-img"
 													alt=""></td>
-												<td class="am-text-middle"><?=$value['a_title'];?></td>
-												<td class="am-text-middle"><?=$value['a_uname'];?></td>
-												<td class="am-text-middle"><?=$value['a_date'];?></td>
+												<td class="am-text-middle"><?=$value['TITLE'];?></td>
+												<td class="am-text-middle"><?=$value['AUTHOR'];?></td>
+												<td class="am-text-middle"><?=$value['TYPE'];?></td>
+												<td class="am-text-middle"><?=$value['CREATED_TIME'];?></td>
 												<td class="am-text-middle">
 													<div class="tpl-table-black-operation">
-														<a href="index.php?r=adminArticle/updateArticle&a_id=<?=$value['a_id'];?>"> 
+														<a href="index.php?r=adminArticle/updateArticle&a_id=<?=$value['ID'];?>"> 
 															<i class="am-icon-pencil"></i> 编辑 
 														</a> 
-														<a href="index.php?r=adminArticle/deleteArticle&a_id=<?=$value['a_id']?>" class="tpl-table-black-operation-del"> 
+														<a href="javascript:void(0);" onclick="delArticle(<?=$value['ID']?>)" class="tpl-table-black-operation-del">
 															<i class="am-icon-trash"></i>删除 
 														</a>
 													</div>
@@ -108,11 +117,11 @@
 
 							<div class="am-fr">
 								<ul class="am-pagination tpl-pagination">
-									<li class="am-disabled"><a href="#">«</a></li>
+									<li><a href="index.php?r=adminArticle/home&uid=<?=$uid?>">首页</a></li>
 									<?php for ($i=0; $i<$endPage; $i++): ?>
 										<li <?php if($page==$i){echo 'class="am-active"';}?>><a href="index.php?r=adminArticle/home&uid=<?=$uid?>&page=<?=$i?>"><?=$i+1?></a></li>
 									<?php endfor?> 
-									<li><a href="#">»</a></li>
+									<li><a href="index.php?r=adminArticle/home&uid=<?=$uid?>&page=<?=$endPage-1?>">末页</a></li>
 								</ul>
 							</div>
 						</div>

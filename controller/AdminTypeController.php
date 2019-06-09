@@ -5,24 +5,34 @@ include('../model/Type.php');
 class AdminTypeController{
 	public function home(){
 		$user = $_SESSION['user'];
-		$name = $user['name'];
-		$headimg = $user['image'];
-		$uid = $user['id'];
-		$utime = $user['lasttime'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 		$index = 7;
 
+		if(isset($_GET['page'])){
+			$page = $_GET['page'];
+		}else{
+			$page = 0;
+		}
+
 		$typeModel = new Type();
-		$types = $typeModel->showAll();
+		$num = $typeModel->getCount();
+
+		$pageSize=5;
+		$endPage = ceil($num/$pageSize);
+		$types = $typeModel->page($page);
 
 		include('../view/admin/type/type_list.php');
 	}
 
 	public function addType(){
 		$user = $_SESSION['user'];
-		$name = $user['name'];
-		$headimg = $user['image'];
-		$uid = $user['id'];
-		$utime = $user['lasttime'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 		$index = 7;
 
 		include('../view/admin/type/type_add.php');
@@ -39,10 +49,10 @@ class AdminTypeController{
 
 	public function updateType(){
 		$user = $_SESSION['user'];
-		$name = $user['name'];
-		$headimg = $user['image'];
-		$uid = $user['id'];
-		$utime = $user['lasttime'];
+		$name = $user['NAME'];
+		$headimg = $user['IMAGE'];
+		$uid = $user['ID'];
+		$utime = $user['LASTTIME'];
 		$index = 7;
 
 		$tid = $_GET['id'];

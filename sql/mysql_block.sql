@@ -91,12 +91,12 @@ end;
 --文章视图
 create view v_articles
 as
-select a.id,a.title,a.introduction,a.content,a.image,t.name type,
-to_char(a.created_at,'yyyy-mm-dd hh24:mi:ss') created_time,u.name author from articles a 
+select a.*,t.name type,u.name author from articles a 
 left join users u
 on a.userId=u.id
 left join types t
 on a.typeid=t.id;
+
 
 --grant create trigger,create procedure to blogdata;--给用户赋予创建触发器和过程的权限
 

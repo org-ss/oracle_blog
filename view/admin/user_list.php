@@ -41,8 +41,15 @@
 													}else{
 														return false;
 													}
-													
 												}
+												function delUser(a){
+		                                            var con = confirm("是否确认删除这条数据???");
+		                                            if(con==true){
+		                                                location.href = "index.php?r=adminHome/deleteUser&u_id="+a;
+		                                            }else{
+		                                            	return false;
+		                                            }
+	                                        	}
 										</script>
 										<button type="button" onclick="delAllMessage();" class="am-btn am-btn-default am-btn-danger">
 											<span class="am-icon-trash-o"></span> 删除全部
@@ -77,13 +84,13 @@
 								<tbody>
 									<?php foreach ($users as $value):?>
 											<tr class="gradeX">
-												<td class="am-text-middle"><?=$value['u_email'];?></td>
-												<td class="am-text-middle"><?=$value['u_name'];?></td>
-												<td class="am-text-middle"><?=$value['u_password'];?></td>
-												<td class="am-text-middle"><?=$value['u_lasttime'];?></td>
+												<td class="am-text-middle"><?=$value['EMAIL'];?></td>
+												<td class="am-text-middle"><?=$value['NAME'];?></td>
+												<td class="am-text-middle"><?=$value['PASSWORD'];?></td>
+												<td class="am-text-middle"><?=$value['LASTTIME'];?></td>
 												<td class="am-text-middle">
 													<div class="tpl-table-black-operation"> 
-														<a href="index.php?r=adminHome/deleteUser&u_id=<?=$value['u_id']?>" class="tpl-table-black-operation-del"> 
+														<a href="javascript:void(0);" onclick="delUser(<?=$value['ID']?>)" class="tpl-table-black-operation-del"> 
 															<i class="am-icon-trash"></i>删除 
 														</a>
 													</div>
@@ -97,11 +104,11 @@
 
 							<div class="am-fr">
 								<ul class="am-pagination tpl-pagination">
-									<li class="am-disabled"><a href="index.php?r=adminMessage/home&uid=<?=$uid?>&page=1">«</a></li>
+									<li><a href="index.php?r=adminHome/userList&uid=<?=$uid?>">首页</a></li>
 									<?php for ($i=0; $i<$endPage; $i++): ?>
-										<li <?php if($page==$i){echo 'class="am-active"';}?>><a href="index.php?r=adminMessage/home&uid=<?=$uid?>&page=<?=$i?>"><?=$i+1?></a></li>
+										<li <?php if($page==$i){echo 'class="am-active"';}?>><a href="index.php?r=adminHome/userList&uid=<?=$uid?>&page=<?=$i?>"><?=$i+1?></a></li>
 									<?php endfor?> 
-									<li><a href="index.php?r=adminMessage/home&uid=<?=$uid?>&page=<?=$num-1?>">»</a></li>
+									<li><a href="index.php?r=adminHome/userList&uid=<?=$uid?>&page=<?=$endPage-1?>">末页</a></li>
 								</ul>
 							</div>
 						</div>
