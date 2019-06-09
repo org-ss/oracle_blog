@@ -91,7 +91,12 @@ end;
 --文章视图
 create view v_articles
 as
+<<<<<<< Updated upstream
 select a.*,t.name type,u.name author from articles a 
+=======
+select a.id,a.title,a.introduction,a.content,a.image,a.typeid,t.name type,
+to_char(a.created_at,'yyyy-mm-dd hh24:mi:ss') created_time,u.name author from articles a 
+>>>>>>> Stashed changes
 left join users u
 on a.userId=u.id
 left join types t
@@ -124,3 +129,18 @@ end;
 --文章查询
 select *from v_articles where (regexp_like(title,'(keyword)+') or regexp_like(introduction,'(keyword)+'));
 
+--计算照片总数
+create or replace procedure pro_count_photos(v_count out number)
+is
+begin
+    select count(*) into v_count from photos;
+end;
+/
+
+--计算文章总数
+create or replace procedure pro_count_articles(v_count out number)
+is
+begin
+    select count(*) into v_count from articles;
+end;
+/

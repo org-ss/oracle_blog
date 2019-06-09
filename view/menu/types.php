@@ -7,7 +7,7 @@
 <body>
 
 	<?php foreach($types as $value):?>
-	<li><a href="#"><?php echo $value['NAME']; ?></a></li>
+	<li><a href="index.php?r=blogArticle/showType&typeId=<?=$value['ID']?>" target="_blank"><?php echo $value['NAME']; ?></a></li>
 	<?php endforeach;?>
 	
 </body>

@@ -7,9 +7,18 @@ class BlogArticleController{
 
 	public function showAll(){
 		
-		$admin = $_SESSION['admin'];				
+		$admin = $_SESSION['admin'];
+
+		if(isset($_GET['cur_page'])){
+			$curPage = $_GET['cur_page'];
+		}else{
+			$curPage = 1;
+		}
+
 		$articleModel = new Article();
-		$articles = $articleModel->showAll();
+		$articles = $articleModel->showAll($curPage);
+		$count=$articleModel->getCount();
+		$page=ceil($count/5);
 		
 		$typeModel = new Type();
 		$types = $typeModel->showAll();
@@ -25,6 +34,11 @@ class BlogArticleController{
 	public function show_article_detail(){
 
 		$isLogin=$_SESSION['isLogin'];
+		if(isset($_GET['cur_page'])){
+			$curPage = $_GET['cur_page'];
+		}else{
+			$curPage = 1;
+		}
 		if ($isLogin) {
 			$aid=$_GET['a_id'];
 			$articleModel = new Article();
@@ -35,7 +49,9 @@ class BlogArticleController{
 			$types = $typeModel->showAll();
 			
 			$messageModel = new Message();
-			$messages = $messageModel->showAll($aid);
+			$messages = $messageModel->showAll($aid,$curPage);
+			$count=count($messages);
+			$page=ceil($count/8);
 						
 			//echo "<pre>";print_r($messages);echo "<pre>";
 			include('../view/blog/article_show_All.php');
@@ -48,19 +64,50 @@ class BlogArticleController{
 	#文章查找
 	public function search(){
 		$keywords = $_REQUEST['keywords'];
+
+		if(isset($_GET['cur_page'])){
+			$curPage = $_GET['cur_page'];
+		}else{
+			$curPage = 1;
+		}
 		
 		if($keywords==null || $keywords==""){
 			self::showAll();
 		}else{
 			$articleModel = new Article();
 			
-			$articles=$articleModel->search($keywords);		
+			$articles=$articleModel->search($keywords);
+			$count=count($articles);
+			$page=ceil($count/5);
 			
 			$typeModel = new Type();
 			$types = $typeModel->showAll();
 			
 			include('../view/blog/article_show_List.php');	
 		}
+	}
+
+	public function showType(){
+
+		$typeId=$_GET['typeId'];
+
+		if(isset($_GET['cur_page'])){
+			$curPage = $_GET['cur_page'];
+		}else{
+			$curPage = 1;
+		}
+
+		$articleModel = new Article();
+			
+		$articles=$articleModel->findType($typeId);
+		$count=count($articles);
+		$page=ceil($count/5);
+
+		$typeModel = new Type();
+		$types = $typeModel->showAll();
+			
+		include('../view/blog/article_type_List.php');	
+
 	}
 
 

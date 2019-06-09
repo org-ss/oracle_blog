@@ -43,7 +43,7 @@
                                 <h2 class="c_titile">个人简介</h2>
                                 <ul class="infos">
                                     
-                                    <p><?php echo $user['u_introduce'];?></p>
+                                    <p><?php echo $user['INTRODUCE'];?></p>
                                 </ul>
                             </div>
                         </article>
@@ -51,6 +51,7 @@
 
                 </div>
                 <div class="sidebar">
+                
                 <div class="gadget">
                 <h2 class="star"><span>Blog_</span> Menu</h2>
                 <div class="clr"></div>

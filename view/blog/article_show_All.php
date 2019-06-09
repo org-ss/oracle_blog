@@ -10,6 +10,13 @@
 	<link href="css/style2.css" rel="stylesheet">
 	<link href="css/media.css" rel="stylesheet">
 	<!-- CuFon ends -->
+	<link rel="icon" type="image/png" href="/assets/i/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
+	<link rel="stylesheet" href="/assets/css/amazeui.min.css" />
+	<link rel="stylesheet"
+		href="/assets/css/amazeui.datatables.min.css" />
+	<link rel="stylesheet" href="/assets/css/app.css">
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 </head>
 <script type="text/javascript">
 function validate(){
@@ -130,6 +137,22 @@ function validate(){
 							</div>
 								<?php endforeach; ?>
 					</div>
+					<div class="am-u-lg-12 am-cf">
+			            <div class="am-fr">
+			                <ul class="am-pagination tpl-pagination">
+			                    <li><a href="index.php?r=blogArticle/showAll&cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
+			                    <?php for ($i=1; $i<=$page; $i++): ?>
+			                        <li <?php if($curPage==$i){echo 'class="am-active"'; } ?>>
+			                        	<a href="index.php?r=blogArticle/showAll&cur_page=<?=$i?>">
+			                        		<?php echo $i;?>
+			                        	</a>
+			                        </li>
+			                    <?php endfor;?>
+			                    
+			                    <li><a href="index.php?r=blogArticle/showAll&cur_page=<?php echo $curPage==$page?$page:($curPage+1);?>">»</a></li>
+			                </ul>
+			            </div>
+			        </div>
 					
 				</div>
 				<div class="sidebar">

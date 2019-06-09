@@ -3,13 +3,14 @@ include_once("Model.php");
 
 class Article extends Model{
 
-	#展示所有文章
-	public function showAll(){
-		
-		$statement = $this->pdo->prepare("select * from v_articles");
-		$statement->execute();
-		$articles = $statement->fetchAll();
-		return $articles;
+	#展示所有文章,5篇/页显示
+	public function showAll($curPage){
+
+		$query="select * from  (select rownum rn,a.* from v_articles a)e where e.rn>=(?-1)*5+1 and e.rn<=?*5";
+		$statment=$this->pdo->prepare($query);
+		$statment->execute([$curPage,$curPage]);
+		$articles=$statment->fetchAll();
+    	return $articles;
 	}
 
 	#展示某一篇文章的具体内容
@@ -19,6 +20,15 @@ class Article extends Model{
 		$statement->execute([$aid]);
 		$article = $statement->fetch();
 		return $article;
+	}
+
+	#展示某一类型的文章
+	public function findType($id){
+
+		$statement = $this->pdo->prepare("select * from v_articles where typeid=?");
+		$num=$statement->execute([$id]);
+		$articles = $statement->fetchAll();
+		return $articles;
 	}
 
 	#展示最新的5篇文章
@@ -47,9 +57,12 @@ class Article extends Model{
 
 	#获取表格中的记录条数
 	public function getCount(){
-		$statement = $this->pdo->query("select count(*) from articles");
-		$rows = $statement->fetch();
-		return $rows[0];
+		$statement = $this->pdo->prepare("call pro_count_articles(?)");
+		$statement->bindParam(1,$count,PDO::PARAM_INPUT_OUTPUT,12);
+		$statement->execute();#返回结果集中的一个字段
+		
+		return $count;
+
 	}
 
 	#将表格中的记录分页显示
@@ -85,6 +98,7 @@ class Article extends Model{
 		$statement = $this->pdo->prepare($query);
 		$statement->execute([$keywords,$keywords]);
 		$articles = $statement->fetchAll();
+		
 		return $articles;
 
 	}

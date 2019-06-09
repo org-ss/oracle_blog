@@ -3,10 +3,12 @@ include_once("Model.php");
 
 class Message extends Model{
 
-	public function showAll($aid){
+	public function showAll($aid,$curPage){
 
-		$statement = $this->pdo->prepare("select * from messages where articleId=?");
-		$statement->execute([$aid]);
+
+		$query="select * from (select rownum rn,m.* from messages m where m.articleId=?)e where e.rn>=(?-1)*8+1 and e.rn<=?*8";
+		$statement = $this->pdo->prepare($query);
+		$statement->execute([$aid,$curPage,$curPage]);
 		$messages = $statement->fetchAll();
 		return $messages;
 

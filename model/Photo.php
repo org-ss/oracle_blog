@@ -15,22 +15,12 @@ class Photo extends Model{
 
     #每9张图/页显示
     public function pagingNine($curPage){
-
-    	
-    	$query="begin :content=:fun_photos(:curPage); end;";
-    	// $statement=$this->pdo->prepare($query);
-    	// $statment->execute([$curPage]);
-    	// $photos=$statment->fetchAll();
-    	
-    	$temp = $this->pdo->prepare($query);
-
-		$temp->bindParam(':curPage', $curPage);
-		
-
-		$temp->bindParam(':content', $content, PDO::PARAM_LOB);
-
-		$temp->execute();
-    	return $content;
+   	
+		$query="select * from  (select rownum rn,p.* from photos p)e where e.rn>=(?-1)*9+1 and e.rn<=?*9";
+		$statment=$this->pdo->prepare($query);
+		$statment->execute([$curPage,$curPage]);
+		$photos=$statment->fetchAll();
+    	return $photos;
     }
 
     #展示最新的5张图片
@@ -62,9 +52,12 @@ class Photo extends Model{
 	#获取表格中的记录条数
 	public function getCount(){
 
-		$statement = $this->pdo->query("select count(*) from photos");
-		$rows = $statement->fetch();
-		return $rows[0];
+		$statement = $this->pdo->prepare("call pro_count_photos(?)");
+		$statement->bindParam(1,$count,PDO::PARAM_INPUT_OUTPUT,12);
+		$statement->execute();#返回结果集中的一个字段
+		
+		return $count;
+
 	}
 
 	#将表格中的数据按照5条/页的格式显示

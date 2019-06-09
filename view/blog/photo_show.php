@@ -9,6 +9,17 @@
 <script type="text/javascript" src="js/cufon-yui.js"></script>
 <script type="text/javascript" src="js/cuf_run.js"></script>
 <!-- CuFon ends -->
+
+<link rel="icon" type="image/png" href="/assets/i/favicon.png">
+<link rel="apple-touch-icon-precomposed"
+	href="/assets/i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+<link rel="stylesheet" href="/assets/css/amazeui.min.css" />
+<link rel="stylesheet"
+	href="/assets/css/amazeui.datatables.min.css" />
+<link rel="stylesheet" href="/assets/css/app.css">
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
 </head>
 <body>
 
@@ -77,14 +88,20 @@
 				<div class="am-u-lg-12 am-cf">
 		            <div class="am-fr">
 		                <ul class="am-pagination tpl-pagination">
-		                    <li class="am-disabled"><a href="#">«</a></li>
+		                    <li><a href="index.php?r=blogPhoto/showEveryPage&cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
 		                    <?php for ($i=1; $i<=$page; $i++): ?>
-		                        <li <?php if($curPage==$i){echo 'class="am-active"';}?>><a href="index.php?r=blogPhoto/showEveryPage&curPage=<?=$i?>"><?=$i+1?></a></li>
-		                    <?php endfor;?> 
-		                    <li><a href="#">»</a></li>
+		                        <li <?php if($curPage==$i){echo 'class="am-active"'; } ?>>
+		                        	<a href="index.php?r=blogPhoto/showEveryPage&cur_page=<?=$i?>">
+		                        		<?php echo $i;?>
+		                        	</a>
+		                        </li>
+		                    <?php endfor;?>
+		                    
+		                    <li><a href="index.php?r=blogPhoto/showEveryPage&cur_page=<?php echo $curPage==$page?$page:($curPage+1);?>">»</a></li>
 		                </ul>
 		            </div>
 		        </div>
+		    
 			</div>
 			<div class="sidebar">
 				

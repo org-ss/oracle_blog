@@ -1,5 +1,5 @@
 <?php
-$include('../model/User.php');
+include_once('../model/User.php');
 include('../model/Type.php');
 
 class BlogIntroduceController{
@@ -8,12 +8,7 @@ class BlogIntroduceController{
 		$user = $_SESSION['admin'];
 
 		$userModel = new User();
-		$user = $userModel->returnUser($user['u_id']);
-
-		$typeModel = new Type();
-		$arrayType = $typeModel->showAll();
-		$trows=$arrayType[0];
-		$types=$arrayType[1];
+		$user = $userModel->returnUser($user['ID']);
 		
 		include('../view/blog/about.php');
 	}

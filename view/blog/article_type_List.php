@@ -106,7 +106,7 @@
 						</p>
 						
 						<div class="dateview" align="center" style="left:-143px;">
-							<?php echo $value['CREATED_AT'];?>
+							<?php echo $value['CREATED_TIME'];?>
 						</div>
 					</div>
 					<?php endforeach; ?>					
@@ -114,16 +114,16 @@
 				<div class="am-u-lg-12 am-cf">
 		            <div class="am-fr">
 		                <ul class="am-pagination tpl-pagination">
-		                    <li><a href="index.php?r=blogArticle/showAll&cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
+		                    <li><a href="index.php?r=blogArticle/showType&cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
 		                    <?php for ($i=1; $i<=$page; $i++): ?>
 		                        <li <?php if($curPage==$i){echo 'class="am-active"'; } ?>>
-		                        	<a href="index.php?r=blogArticle/showAll&cur_page=<?=$i?>">
+		                        	<a href="index.php?r=blogArticle/showType&cur_page=<?=$i?>">
 		                        		<?php echo $i;?>
 		                        	</a>
 		                        </li>
 		                    <?php endfor;?>
 		                    
-		                    <li><a href="index.php?r=blogArticle/showAll&cur_page=<?php echo $curPage==$page?$page:($curPage+1);?>">»</a></li>
+		                    <li><a href="index.php?r=blogArticle/showType&cur_page=<?php echo $curPage==$page?$page:($curPage+1);?>">»</a></li>
 		                </ul>
 		            </div>
 		        </div>
