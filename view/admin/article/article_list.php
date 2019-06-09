@@ -63,6 +63,7 @@
 								</div>
 							</div>
 						</div>
+						<!--搜索按钮-->
 						<form action="index.php?r=adminArticle/search" method="post">
 							<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
 								<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
@@ -97,7 +98,7 @@
 												<td class="am-text-middle"><?=$value['TITLE'];?></td>
 												<td class="am-text-middle"><?=$value['AUTHOR'];?></td>
 												<td class="am-text-middle"><?=$value['TYPE'];?></td>
-												<td class="am-text-middle"><?=$value['CREATED_TIME'];?></td>
+												<td class="am-text-middle"><?=$value['CREATED_AT'];?></td>
 												<td class="am-text-middle">
 													<div class="tpl-table-black-operation">
 														<a href="index.php?r=adminArticle/updateArticle&a_id=<?=$value['ID'];?>"> 
@@ -117,11 +118,18 @@
 
 							<div class="am-fr">
 								<ul class="am-pagination tpl-pagination">
-									<li><a href="index.php?r=adminArticle/home&uid=<?=$uid?>">首页</a></li>
+									<?php
+										if(isset($flag)){
+											$text="index.php?r=adminArticle/search&keywords=".$keywords."&uid=".$uid."&page=";
+										}else{
+											$text="index.php?r=adminArticle/home&uid=".$uid."&page=";
+										}
+									?>
+									<li><a href="<?=$text.$uid?>">首页</a></li>
 									<?php for ($i=0; $i<$endPage; $i++): ?>
-										<li <?php if($page==$i){echo 'class="am-active"';}?>><a href="index.php?r=adminArticle/home&uid=<?=$uid?>&page=<?=$i?>"><?=$i+1?></a></li>
+										<li <?php if($page==$i){echo 'class="am-active"';}?>><a href="<?=$text.$i?>"><?=$i+1?></a></li>
 									<?php endfor?> 
-									<li><a href="index.php?r=adminArticle/home&uid=<?=$uid?>&page=<?=$endPage-1?>">末页</a></li>
+									<li><a href="<?=$text.($endPage-1)?>">末页</a></li>
 								</ul>
 							</div>
 						</div>

@@ -6,12 +6,6 @@ include('../model/Type.php');
 class AdminArticleController{
 
 	public function home(){
-		if(isset($_GET['page'])){
-			$page = $_GET['page'];
-		}else{
-			$page = 0;
-		}
-
 		$user = $_SESSION['user'];
 		$name = $user['NAME'];
 		$headimg = $user['IMAGE'];
@@ -19,12 +13,26 @@ class AdminArticleController{
 		$utime = $user['LASTTIME'];
 		$index = 2;
 
-		$articleModel = new Article();
-		$num = $articleModel->getCount();
+		if(isset($_GET['page'])){
+			$page = $_GET['page'];
+		}else{
+			$page = 0;
+		}
 
+		$articleModel = new Article();
+		if(isset($_GET['tid'])){
+			$tId = $_GET['tid'];
+			$num = $articleModel->getVCount($tId);
+			$articles = $articleModel->pageV($page,$tId);
+
+		}else{
+			$num = $articleModel->getCount();
+			$articles = $articleModel->page($page);
+		}
+		
 		$pageSize=5;
 		$endPage = ceil($num/$pageSize);
-		$articles = $articleModel->page($page);
+		
 
 		include('../view/admin/article/article_list.php');
 	}
@@ -129,18 +137,32 @@ class AdminArticleController{
 
 	#查找文章
 	public function search(){
+		$flag = true;
 		$keywords = $_REQUEST['keywords'];
 		if($keywords==null || $keywords==""){
 			self::home();
 		}else{
 			$articleModel = new Article();
-			$articles = $articleModel->search($keywords);
+			$result = $articleModel->search($keywords);
 
 			$user = $_SESSION['user'];
-			$name = $user['u_name'];
-			$headimg = $user['u_photo'];
-			$uid = $user['u_id'];
+			$name = $user['NAME'];
+			$headimg = $user['IMAGE'];
+			$uid = $user['ID'];
+			$utime = $user['LASTTIME'];
 			$index = 2;
+
+			//分页
+			if(isset($_GET['page'])){
+				$page = $_GET['page'];
+			}else{
+				$page = 0;
+			}
+
+			$num = count($result);
+			$pageSize=5;
+			$endPage = ceil($num/$pageSize);
+			$articles = $articleModel->pageSearch($result,$page);
 			include('../view/admin/article/article_list.php');
 		}
 	}

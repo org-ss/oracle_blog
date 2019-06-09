@@ -44,6 +44,7 @@ class AdminLoginController{
 		}else{
 			session_start();
 			$_SESSION['user']=$user;
+			$userModel->updateLasttime($uEmail);
 			if ($user['ROLE']==0) {
 				$_SESSION['isAdminLogin']=true;
 				header('Location:/index.php?r=adminHome/home');

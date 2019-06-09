@@ -62,16 +62,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
-							<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-								<input type="text" class="am-form-field "> 
-								<span class="am-input-group-btn">
-									<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"
-										type="button">
-									</button>
-								</span>
-							</div>
-						</div>
 
 						<div class="am-u-sm-12">
 							<table width="100%"
@@ -80,6 +70,7 @@
 									<tr>
 										<th>标签名</th>
 										<th>创建时间</th>
+										<th>文章数目</th>
 										<th>操作</th>
 									</tr>
 								</thead>
@@ -88,6 +79,7 @@
 											<tr class="gradeX">
 												<td class="am-text-middle"><?=$value['NAME'];?></td>
 												<td class="am-text-middle"><?=$value['CREATED_AT'];?></td>
+												<td class="am-text-middle">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php?r=adminArticle/home&tid=<?=$value['ID']?>"><?=$value['NUM'];?></a></td>
 												<td class="am-text-middle">
 													<div class="tpl-table-black-operation"> 
 														<a href="index.php?r=adminType/updateType&id=<?=$value['ID'];?>"> 

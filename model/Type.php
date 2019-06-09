@@ -42,7 +42,7 @@ class Type extends Model{
 		$page = $page*5+1;
 		$nextPage =$page+5;
 		$statement = $this->pdo->prepare("select * from 
-        (select rownum rn,t.* from types t) e 
+        (select rownum rn,t.* from v_types t) e 
         where e.rn>=? and e.rn<?");
 		$statement->execute([$page,$nextPage]);
 		$result = $statement->fetchAll();

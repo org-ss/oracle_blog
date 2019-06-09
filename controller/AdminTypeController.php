@@ -11,6 +11,7 @@ class AdminTypeController{
 		$utime = $user['LASTTIME'];
 		$index = 7;
 
+		#分页显示
 		if(isset($_GET['page'])){
 			$page = $_GET['page'];
 		}else{

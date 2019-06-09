@@ -63,8 +63,8 @@ class Photo extends Model{
 	#将表格中的数据按照5条/页的格式显示
 	public function page($page){
 		
-		$page = $page*9;
-		$nextPage =$page+9;
+		$page = $page*5+1;
+		$nextPage =$page+5;
 		$statement = $this->pdo->prepare("select * from 
         (select rownum rn,p.*,u.name uname from photos p left join users u on p.userid=u.id)e 
         where e.rn>=? and e.rn<?");
@@ -76,5 +76,17 @@ class Photo extends Model{
 		// $statement->execute([$page,$pageSize]);
 		// $result = $statement->fetchAll();
 		// return $result;
+	}
+
+	#通过关键词查找具有关键词的记录
+	public function search($keywords){
+		$keywords=$keywords.'+';
+		$query="select * from photos where (regexp_like(name,?))";
+
+		$statement = $this->pdo->prepare($query);
+		$statement->execute([$keywords]);
+		$result = $statement->fetchAll();
+		return $result;
+
 	}
 }

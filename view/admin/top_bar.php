@@ -1,7 +1,17 @@
 <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="/assets/img/logo.png" alt=""></a>
+                <!--<a href="javascript:;"><img src="/assets/img/logo.png" alt=""></a>-->
+                    <div class="row" style="margin-top: 10px">
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                            <div class="page-header-heading">
+                                <span class="am-icon-home page-header-heading-icon"></span> 个人博客
+                            </div>
+                        </div>
+                        <!--<div class="am-u-lg-3 tpl-index-settings-button">
+                            <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
+                        </div>-->
+                    </div>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">

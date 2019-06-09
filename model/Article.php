@@ -60,9 +60,16 @@ class Article extends Model{
 		$statement = $this->pdo->prepare("call pro_count_articles(?)");
 		$statement->bindParam(1,$count,PDO::PARAM_INPUT_OUTPUT,12);
 		$statement->execute();#返回结果集中的一个字段
-		
 		return $count;
+	}
 
+	#获取类型视图中的记录条数
+	public function getVCount($tId){
+		$statement = $this->pdo->prepare("select *from v_types where id=?");
+		$statement->execute([$tId]);#返回结果集中的一个字段
+		$result = $statement->fetch();
+		$count = $result['NUM'];
+		return $count;
 	}
 
 	#将表格中的记录分页显示
@@ -84,6 +91,18 @@ class Article extends Model{
 		// $sql = "select *from v_articles";
 		// $statement = $this->pdo->query($sql);
 		// $result = $statement->fetchAll();
+		return $result;
+	}
+
+	#将类型视图中的记录分页显示
+	public function pageV($page,$tId){
+		$page = $page*5+1;
+		$nextPage =$page+5;
+		$statement = $this->pdo->prepare("select * from 
+        (select rownum rn,a.* from v_articles a where a.typeid=:typeId) e 
+        where e.rn>=:page and e.rn<:nextPage");
+		$statement->execute([$tId,$page,$nextPage]);
+		$result = $statement->fetchAll();
 		return $result;
 	}
 
@@ -112,6 +131,13 @@ class Article extends Model{
 	public function save($title,$introduction,$content,$uid,$clean_filename,$typeId){
 		$statement = $this->pdo->prepare("insert into articles values(null,?,?,?,null,?,?,?)");
 		$statement->execute([$title,$introduction,$content,$uid,$clean_filename,$typeId]);
+	}
+
+	#查询结果的分页显示
+	public function pageSearch($array,$page){
+		$page=$page==0?0:$page*5-1;
+		$array2 = array_slice($array, $page,5);#将$array数组从$page位置开始截取5个长度
+		return $array2;
 	}
 
 

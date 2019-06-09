@@ -15,14 +15,14 @@
                     <div class="widget-body am-fr">
 
                         <form class="am-form tpl-form-border-form tpl-form-border-br" action="index.php?r=adminType/do_updateType&id=<?=$type['id']?>" method="post" enctype="multipart/form-data">
-                        <input type="hidden" value="<?=$type['id']?>" name="tid">
+                        <input type="hidden" value="<?=$type['ID']?>" name="tid">
                         
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">标签名称 
                                     <span class="tpl-form-line-small-title"></span>
                                 </label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" class="tpl-form-input" id="user-name" value="<?=$type['name'];?>" name="tname" placeholder="请输入标签名称">
+                                    <input type="text" class="tpl-form-input" id="user-name" value="<?=$type['NAME'];?>" name="tname" placeholder="请输入标签名称">
                                 </div>
                             </div>
 			
