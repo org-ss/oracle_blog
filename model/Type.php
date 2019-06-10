@@ -2,32 +2,12 @@
 //include_once("Model.php");
 
 class Type extends Model{
-	
-	public function showAll(){
-		$statement = $this->pdo->query("select * from types");
-		$statement->execute();
-		$array = $statement->fetchAll();
-
-		return $array;		
-	}
-
-	public function save($name){
-		$statement = $this->pdo->prepare("insert into types values(null,?,null)");
-		$statement->execute([$name]);
-		return $this->pdo->lastInsertId();
-	}
-
+	#通过分类id查找分类信息
 	public function find($id){
 		$statement = $this->pdo->prepare("select *from types where id=?");
 		$statement->execute([$id]);
 		$result = $statement->fetch();
 		return $result;
-	}
-
-	public function update($id,$name){
-		$statement = $this->pdo->prepare("update types set name=? where id=?");
-		$statement->execute([$name,$id]);
-		
 	}
 
 	#获取表格中的记录条数
@@ -49,5 +29,39 @@ class Type extends Model{
 		return $result;
 	}
 
+	public function delete($id){
+		$statement = $this->pdo->prepare("delete from articles where typeId=?");
+		$statement->execute([$id]);
+
+		$statement = $this->pdo->prepare("delete from types where id=?");
+		$num = $statement->execute([$id]);
+		return $num;
+	}
+
+	public function delAll(){
+		$statement = $this->pdo->query("delete from articles");
+		$statement = $this->pdo->query("delte from types");
+		return $statement;
+	}
+
+	#保存分类
+	public function save($name){
+		$statement = $this->pdo->prepare("insert into types values(null,?,null)");
+		$statement->execute([$name]);
+	}
+
+	public function update($id,$name){
+		$statement = $this->pdo->prepare("update types set name=? where id=?");
+		$statement->execute([$name,$id]);
+		
+	}
+
+	public function showAll(){
+		$statement = $this->pdo->query("select * from types");
+		$statement->execute();
+		$array = $statement->fetchAll();
+
+		return $array;		
+	}
 	
 }

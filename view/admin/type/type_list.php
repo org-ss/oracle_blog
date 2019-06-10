@@ -35,15 +35,15 @@
 									<div class="am-btn-group am-btn-group-xs">
 										<script type="text/javascript">
 												function delAllTypes(){
-													var con = confirm("是否确认全部删除！！！");
+													var con = confirm("是否确认全部删除！！！删除后全部文章也会被删除");
 													if(con==true){
-														location.href = "index.php?r=adminType/deleteAllType&u_id=<?=$uid?>";
+														location.href = "index.php?r=adminType/deleteAllType";
 													}else{
 														return false;
 													}	
 												}
 												function delType(a){
-		                                            var con = confirm("是否确认删除这条数据???");
+		                                            var con = confirm("是否确认删除这条标签???删除后相应的文章也会删除");
 		                                            if(con==true){
 		                                                location.href = "index.php?r=adminType/deleteType&id="+a;
 		                                            }else{
@@ -82,9 +82,6 @@
 												<td class="am-text-middle">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php?r=adminArticle/home&tid=<?=$value['ID']?>"><?=$value['NUM'];?></a></td>
 												<td class="am-text-middle">
 													<div class="tpl-table-black-operation"> 
-														<a href="index.php?r=adminType/updateType&id=<?=$value['ID'];?>"> 
-															<i class="am-icon-pencil"></i> 编辑 
-														</a> 
 														<a href="javascript:void(0);" onclick="delType(<?=$value['ID']?>)" class="tpl-table-black-operation-del">
 															<i class="am-icon-trash"></i>删除 
 														</a>

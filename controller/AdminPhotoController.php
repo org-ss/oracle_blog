@@ -55,9 +55,7 @@ class AdminPhotoController{
 		$clean_filename = iconv( "utf-8","gbk", $filename);		
 		
 		if(!file_exists("./images/photos/".$clean_filename)){
-
 			move_uploaded_file($tmp_name, "./images/photos/".$clean_filename);			
-
 		}
 
 		$uid = $_GET['uid'];

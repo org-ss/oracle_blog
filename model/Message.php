@@ -4,8 +4,6 @@ include_once("Model.php");
 class Message extends Model{
 
 	public function showAll($aid,$curPage){
-
-
 		$query="select * from (select rownum rn,m.* from messages m where m.articleId=?)e where e.rn>=(?-1)*5+1 and e.rn<=?*5";
 		$statement = $this->pdo->prepare($query);
 		$statement->execute([$aid,$curPage,$curPage]);
@@ -23,9 +21,7 @@ class Message extends Model{
 	}
 
 	public function messageSave($name,$content,$articleId){
-
 		$query="insert into messages(name,content,articleId) values(?,?,?)";
-
 		$statement = $this->pdo->prepare($query);
 		$statement->execute([$name,$content,$articleId]);
 	}

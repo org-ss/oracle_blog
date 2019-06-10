@@ -48,28 +48,26 @@ class AdminTypeController{
 		self::home();
 	}
 
-	public function updateType(){
-		$user = $_SESSION['user'];
-		$name = $user['NAME'];
-		$headimg = $user['IMAGE'];
-		$uid = $user['ID'];
-		$utime = $user['LASTTIME'];
-		$index = 7;
+	public function deleteType(){
+		$id = $_REQUEST['id'];
 
-		$tid = $_GET['id'];
 		$typeModel = new Type();
-		$type = $typeModel->find($tid);
+		$num = $typeModel->delete($id);
 
-		include('../view/admin/type/type_update.php');
+		if($num){
+			echo '<script>alert("删除成功！");window.location.href="index.php?r=adminType/home";</script>';
+		}else{
+			echo '<script>alert("删除失败！");window.location.href="index.php?r=adminType/home";</script>';
+		}
 	}
 
-	public function do_updateType(){
-		$tid = $_REQUEST['tid'];
-		$tname = $_REQUEST['tname'];
-
+	public function deleteAllType(){
 		$typeModel = new Type();
-		$typeModel->update($tid,$tname);
-
-		self::home();
+		$result = $typeModel->delAll();
+		if(!$result){
+			echo '<script>alert("删除失败！");window.location.href="index.php?r=adminType/home";</script>';
+		}else{
+			echo '<script>alert("删除成功！");window.location.href="index.php?r=adminType/home";</script>';
+		}
 	}
 }

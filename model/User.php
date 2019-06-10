@@ -5,21 +5,10 @@ class User extends Model{
     
     #返回用户信息
 	public function returnUser($uid){
-
-        // $conn = $this->conn();
-        // $query = "select * from users where id=1";
-        // $statement = oci_parse($conn, $query);
-        // //oci_bind_by_name($statement, ":uId", $uid);
-        // oci_execute($statement);
-        // $result = oci_fetch_assoc($statement);
-        // return $result;
-
-
 		$statement = $this->pdo->prepare("select * from users where id=?");
 		$statement->execute([$uid]);
 		$user = $statement->fetch();
 		return $user;
-
 	}
 
 	#验证登录身份
@@ -120,14 +109,6 @@ class User extends Model{
         $statment->execute([$result['NAME']]);
         $statment = $this->pdo->prepare("delete from users where id=?");
         $statment->execute($uId);
-        // $statment = $this->pdo->prepare("select *from users where id=?");
-        // $statment->execute([$uId]);
-        // $result = $statment->fetch();
-
-        // $statment = $this->pdo->prepare("delete from users where id=?");
-        // $statment->execute([$uId]);
-        // $statment = $this->pdo->prepare("delete from messages where name=?");
-        // $statment->execute([$result['u_name']]);
     }
 
     #删除所有用户

@@ -71,11 +71,6 @@ class Photo extends Model{
 		$statement->execute([$page,$nextPage]);
 		$result = $statement->fetchAll();
 		return $result;
-		// $pageSize = 5;
-		// $statement = $this->pdo->prepare("select p.*,u.u_name uname from photos p join users u on p.p_uid=u.u_id order by p_id limit ?,?");
-		// $statement->execute([$page,$pageSize]);
-		// $result = $statement->fetchAll();
-		// return $result;
 	}
 
 	#通过关键词查找具有关键词的记录
