@@ -11,41 +11,9 @@
 <link href="css/index.css" rel="stylesheet">
 <!-- CuFon ends -->
 
-<link rel="icon" type="image/png" href="/assets/i/favicon.png">
-<link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
-<link rel="stylesheet" href="/assets/css/amazeui.min.css" />
-<link rel="stylesheet"
-	href="/assets/css/amazeui.datatables.min.css" />
-<link rel="stylesheet" href="/assets/css/app.css">
-<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-<style>
-			input{           
-                padding: 6px 3px;
-                border-radius: 3px;               
-                background-image: url('./images/search.gif');
-                margin-right: 18px;
-            }
-            input:focus{
-                    border-color: #66afe9;
-                    outline: 0;
-                    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-                    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
-            }
-		    #search-button {
-		    height: 36px;
-		    width: 40px;
-		    margin-top:5px;
-		    margin-left:-16px;
-		    border-radius: 3px;
-		    background-image: url('./images/search_btn.gif');
-			    
-			}
-			#search-button:active{
-			    box-shadow: .05em .1em .2em rgba(0,0,0,.6) inset;
-			    border-color: rgba(0,0,0,.3);
-			    background: #bbb;
-			}
-</style>
+
+<link rel="stylesheet" href="/css/page.css" />
+
 </head>
 <body>
 	<div class="main">
@@ -113,11 +81,12 @@
 				</div>
 				<div class="am-u-lg-12 am-cf">
 		            <div class="am-fr">
-		                <ul class="am-pagination tpl-pagination">
+		                <ul class="pagination">
 		                    <li><a href="index.php?r=blogArticle/showType&typeId=<?=$typeId ?>&cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
 		                    <?php for ($i=1; $i<=$page; $i++): ?>
-		                        <li <?php if($curPage==$i){echo 'class="am-active"'; } ?>>
-		                        	<a href="index.php?r=blogArticle/showType&typeId=<?=$typeId ?>&cur_page=<?=$i?>">
+		                        <li >
+		                        	<a <?php if($curPage==$i){echo 'class="active"'; } ?> 
+		                        	href="index.php?r=blogArticle/showType&typeId=<?=$typeId ?>&cur_page=<?=$i?>">
 		                        		<?php echo $i;?>
 		                        	</a>
 		                        </li>
