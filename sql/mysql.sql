@@ -48,7 +48,7 @@ create sequence photos_id
 
 create table types(
 	id number primary key,
-	name varchar2(10) not null,
+	name varchar2(10 char) not null,
 	created_at varchar2(50)
 );
 comment on table types is '文章类型';
@@ -60,7 +60,7 @@ create table users(
 	password varchar2(50) not null,
 	role number default 1,
 	image varchar2(50),
-	introduce varchar2(800),
+	introduce varchar2(2000 char),
 	lasttime varchar2(50)
 );
 comment on table users is '用户信息，其中role为1时表示普通身份';
@@ -68,9 +68,9 @@ comment on table users is '用户信息，其中role为1时表示普通身份';
 
 create table articles(
 	id number primary key,
-	title varchar2(100) not null,
-	introduction varchar2(400) not null,
-	content varchar2(800) not null,
+	title varchar2(100 char) not null,
+	introduction varchar2(400 char) not null,
+	content varchar2(2000 char) not null,
 	created_at varchar2(50),
 	userId number not null,
 	image varchar2(50),
@@ -86,7 +86,7 @@ comment on table articles is '文章信息';
 create table messages(
 	id number primary key,
 	name varchar2(100) not null,
-	content varchar2(300) not null,
+	content varchar2(300 char) not null,
 	articleId number,
 	created_at varchar2(50),
 	constraints messages_aid_fk foreign key(articleId)
