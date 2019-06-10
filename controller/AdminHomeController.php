@@ -42,6 +42,9 @@ class AdminHomeController{
 
 	#修改个人信息
 	public function updateUser(){
+		$user = $_SESSION['user'];
+		$headimg = $user['IMAGE'];
+
 		$u2_id = $_REQUEST['u2_id'];
 		$u2_name = $_REQUEST['u2_name'];
 		$u2_password = $_REQUEST['u2_password'];
@@ -60,15 +63,20 @@ class AdminHomeController{
 		}else{
 			$tmp_name = $_FILES['u2_photo']['tmp_name'];
 			$filename = $_FILES['u2_photo']['name'];
-			$clean_filename = iconv("utf-8", "gbk", $filename);
-			if(!file_exists("./images/headimg/".$clean_filename)){
-				move_uploaded_file($tmp_name, "./images/headimg/".$clean_filename);
+			if($tmp_name==null || $filename==null ||$tmp_name=="" || $filename==""){
+				//排除没有选择头像的bug
+				$clean_filename = $headimg;
+			}else{
+				$clean_filename = iconv("utf-8", "gbk", $filename);
+				if(!file_exists("./images/headimg/".$clean_filename)){
+					move_uploaded_file($tmp_name, "./images/headimg/".$clean_filename);
+				}
 			}
 
 			$userModel = new User();
-			$userModel->update($u2_id,$u2_name,$u2_password,$filename,$u2_introduce);
+			$userModel->update($u2_id,$u2_name,$u2_password,$clean_filename,$u2_introduce);
 			$user2 = $userModel->returnUser($u2_id);
-			
+
 			$_SESSION['user'] = $user2;
 			$name = $user2['NAME'];
 			$headimg = $user2['IMAGE'];

@@ -125,7 +125,7 @@
 											$text="index.php?r=adminArticle/home&uid=".$uid."&page=";
 										}
 									?>
-									<li><a href="<?=$text.$uid?>">首页</a></li>
+									<li><a href="<?=$text."0"?>">首页</a></li>
 									<?php for ($i=0; $i<$endPage; $i++): ?>
 										<li <?php if($page==$i){echo 'class="am-active"';}?>><a href="<?=$text.$i?>"><?=$i+1?></a></li>
 									<?php endfor?> 
