@@ -48,7 +48,7 @@ function validate(){
 		        <ul>
 		          <li class="active"><a href="index.php?r=blogArticle/showAll">博客首页</a></li>
 		          <li><a href="index.php?r=blogPhoto/showAll">相册</a></li>
-		          <li><a href="index.php?r=blogMessage/showAll">留言板</a></li>
+		         <!--  <li><a href="index.php?r=blogMessage/showAll">留言板</a></li> -->
 		          <li><a href="index.php?r=blogIntroduce/about_me">关于我</a></li>
 		          <?php 
 		          	$isLogin=$_SESSION['isLogin'];
@@ -140,16 +140,16 @@ function validate(){
 					<div class="am-u-lg-12 am-cf">
 			            <div class="am-fr">
 			                <ul class="am-pagination tpl-pagination">
-			                    <li><a href="index.php?r=blogArticle/showAll&cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
+			                    <li><a href="index.php?r=blogArticle/show_article_detail&a_id=<?=$aid?>&m_cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
 			                    <?php for ($i=1; $i<=$page; $i++): ?>
 			                        <li <?php if($curPage==$i){echo 'class="am-active"'; } ?>>
-			                        	<a href="index.php?r=blogArticle/showAll&cur_page=<?=$i?>">
+			                        	<a href="index.php?r=blogArticle/show_article_detail&a_id=<?=$aid?>&m_cur_page=<?=$i?>">
 			                        		<?php echo $i;?>
 			                        	</a>
 			                        </li>
 			                    <?php endfor;?>
 			                    
-			                    <li><a href="index.php?r=blogArticle/showAll&cur_page=<?php echo $curPage==$page?$page:($curPage+1);?>">»</a></li>
+			                    <li><a href="index.php?r=blogArticle/show_article_detail&a_id=<?=$aid?>&m_cur_page=<?php echo $curPage==$page?$page:($curPage+1);?>">»</a></li>
 			                </ul>
 			            </div>
 			        </div>

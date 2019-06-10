@@ -18,6 +18,7 @@ class BlogArticleController{
 		$articleModel = new Article();
 		$articles = $articleModel->showAll($curPage);
 		$count=$articleModel->getCount();
+		//echo "文章总数".$count;
 		$page=ceil($count/5);
 		
 		$typeModel = new Type();
@@ -34,8 +35,8 @@ class BlogArticleController{
 	public function show_article_detail(){
 
 		$isLogin=$_SESSION['isLogin'];
-		if(isset($_GET['cur_page'])){
-			$curPage = $_GET['cur_page'];
+		if(isset($_GET['m_cur_page'])){
+			$curPage = $_GET['m_cur_page'];
 		}else{
 			$curPage = 1;
 		}
@@ -50,8 +51,8 @@ class BlogArticleController{
 			
 			$messageModel = new Message();
 			$messages = $messageModel->showAll($aid,$curPage);
-			$count=count($messages);
-			$page=ceil($count/8);
+			$count=$messageModel->articleMessage($aid);			
+			$page=ceil($count/5);
 						
 			//echo "<pre>";print_r($messages);echo "<pre>";
 			include('../view/blog/article_show_All.php');
@@ -63,6 +64,9 @@ class BlogArticleController{
 
 	#文章查找
 	public function search(){
+
+		$flag=true;
+
 		$keywords = $_REQUEST['keywords'];
 
 		if(isset($_GET['cur_page'])){
@@ -74,11 +78,13 @@ class BlogArticleController{
 		if($keywords==null || $keywords==""){
 			self::showAll();
 		}else{
+
 			$articleModel = new Article();
-			
 			$articles=$articleModel->search($keywords);
 			$count=count($articles);
 			$page=ceil($count/5);
+			$articles=$articleModel->pageSearch($articles,$curPage-1);
+			//echo "<pre>";print_r($articles);echo "<pre>";
 			
 			$typeModel = new Type();
 			$types = $typeModel->showAll();
@@ -99,8 +105,9 @@ class BlogArticleController{
 
 		$articleModel = new Article();
 			
-		$articles=$articleModel->findType($typeId);
-		$count=count($articles);
+		$articles=$articleModel->findType($typeId,$curPage);
+		//var_export($articles);
+		$count=$articleModel->getTypeCount($typeId);
 		$page=ceil($count/5);
 
 		$typeModel = new Type();

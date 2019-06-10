@@ -13,9 +13,8 @@
 
 <link rel="icon" type="image/png" href="/assets/i/favicon.png">
 <link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
-<link rel="stylesheet" href="/assets/css/amazeui.min.css" />
-<link rel="stylesheet"
-	href="/assets/css/amazeui.datatables.min.css" />
+<!-- <link rel="stylesheet" href="/css/amazeui.min.css" /> -->
+<link rel="stylesheet" href="/css/page.css" />
 <link rel="stylesheet" href="/assets/css/app.css">
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <style>
@@ -45,6 +44,32 @@
 			    border-color: rgba(0,0,0,.3);
 			    background: #bbb;
 			}
+
+			ul.pagination {
+			    display: inline-block;
+			    padding: 0;
+			    margin: 0;
+			}
+
+			ul.pagination li {display: inline-block; margin: 3px;}
+
+			ul.pagination li a {
+			    color: #0E90D2;
+			    float: left;
+			    font-size: 14px;
+			    padding: 8px 16px;
+			    text-decoration: none;
+			    transition: background-color .3s;
+			    border: 1px solid #ddd;
+			}
+
+			ul.pagination li a.active {
+			    background-color: #0E90D2;
+			    color: white;
+			    border: 1px solid #0E90D2;
+			}
+
+			ul.pagination li a:hover:not(.active) {background-color: #ddd;}
 </style>
 </head>
 <body>
@@ -55,7 +80,7 @@
 		        <ul>
 		          <li class="active"><a href="index.php?r=blogArticle/showAll">博客首页</a></li>
 		          <li><a href="index.php?r=blogPhoto/showEveryPage">相册</a></li>
-		          <li><a href="index.php?r=blogMessage/showAll">留言板</a></li>
+		         <!--  <li><a href="index.php?r=blogMessage/showAll">留言板</a></li> -->
 		          <li><a href="index.php?r=blogIntroduce/about_me">关于我</a></li>
 		          <?php 
 		          	$isLogin=$_SESSION['isLogin'];
@@ -113,17 +138,25 @@
 				</div>
 				<div class="am-u-lg-12 am-cf">
 		            <div class="am-fr">
-		                <ul class="am-pagination tpl-pagination">
-		                    <li><a href="index.php?r=blogArticle/showAll&cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
+		                <ul class="pagination">
+		                <?php 
+		                	if (isset($flag)) {
+		                		$method="search"."&keywords=".$keywords;
+		                	}else{
+		                		$method="showAll";
+		                	}
+		                ?>
+		                    <li><a href="index.php?r=blogArticle/<?=$method?>&cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
 		                    <?php for ($i=1; $i<=$page; $i++): ?>
-		                        <li <?php if($curPage==$i){echo 'class="am-active"'; } ?>>
-		                        	<a href="index.php?r=blogArticle/showAll&cur_page=<?=$i?>">
+		                        <li>
+		                        	<a <?php if($curPage==$i){echo 'class="active"'; } ?>
+		                        	href="index.php?r=blogArticle/<?=$method?>&cur_page=<?=$i?>">
 		                        		<?php echo $i;?>
 		                        	</a>
 		                        </li>
 		                    <?php endfor;?>
 		                    
-		                    <li><a href="index.php?r=blogArticle/showAll&cur_page=<?php echo $curPage==$page?$page:($curPage+1);?>">»</a></li>
+		                    <li><a href="index.php?r=blogArticle/<?=$method?>&cur_page=<?php echo $curPage==$page?$page:($curPage+1);?>">»</a></li>
 		                </ul>
 		            </div>
 		        </div>

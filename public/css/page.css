@@ -1,0 +1,150 @@
+
+  .am-u-lg-12 {
+    width: 100%;
+  }
+  .am-cf:before,
+.am-cf:after {
+  content: " ";
+  display: table;
+}
+.am-cf:after {
+  clear: both;
+}
+.am-fr {
+  float: right;
+}
+.am-fr {
+  right: 0;
+  left: auto;
+}
+.am-fr > .am-dropdown-content {
+  right: 0;
+  left: auto;
+}
+.am-fr > .am-dropdown-content:before {
+  right: 10px;
+  left: auto;
+}
+[class*="am-icon-"].am-fr {
+  margin-left: .3em;
+}
+.am-icon-sm:before {
+  font-size: 150%;
+  vertical-align: -10%;
+}
+.am-icon-md:before {
+  font-size: 200%;
+  vertical-align: -16%;
+}
+.am-icon-lg:before {
+  font-size: 250%;
+  vertical-align: -22%;
+}
+.am-pagination {
+  position: relative;
+}
+/**
+  * Pagination Theme: default
+  */
+.am-pagination-default {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.6rem;
+}
+.am-pagination-default .am-pagination-prev,
+.am-pagination-default .am-pagination-next {
+  float: none;
+}
+/**
+  * Pagination Theme: select
+  */
+.am-pagination-select {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.6rem;
+}
+.am-pagination-select > li > a {
+  line-height: 36px;
+  background-color: #eeeeee;
+  padding: 0 15px;
+  border: 0;
+  color: #555555;
+}
+.am-pagination-select .am-pagination-select {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -35px;
+  width: 70px;
+  height: 36px;
+  text-align: center;
+  border-radius: 0;
+}
+.am-pagination-select .am-pagination-select select {
+  display: block;
+  border: 0;
+  line-height: 36px;
+  width: 70px;
+  height: 36px;
+  border-radius: 0;
+  color: #555555;
+  background-color: #eeeeee;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-left: 18px;
+}
+.am-pagination {
+  position: relative;
+}
+/**
+  * Pagination Theme: default
+  */
+.am-pagination-default {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.6rem;
+}
+.am-pagination-default .am-pagination-prev,
+.am-pagination-default .am-pagination-next {
+  float: none;
+}
+/**
+  * Pagination Theme: select
+  */
+.am-pagination-select {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.6rem;
+}
+.am-pagination-select > li > a {
+  line-height: 36px;
+  background-color: #eeeeee;
+  padding: 0 15px;
+  border: 0;
+  color: #555555;
+}
+.am-pagination-select .am-pagination-select {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -35px;
+  width: 70px;
+  height: 36px;
+  text-align: center;
+  border-radius: 0;
+}
+.am-pagination-select .am-pagination-select select {
+  display: block;
+  border: 0;
+  line-height: 36px;
+  width: 70px;
+  height: 36px;
+  border-radius: 0;
+  color: #555555;
+  background-color: #eeeeee;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-left: 18px;
+}

@@ -33,13 +33,31 @@ select * from photos;
 
 --4
 insert into articles values
-	(null,'关于我的介绍','第一次尝试制作php个人博客网站',
+	(null,'关于我的介绍','第1次尝试制作php个人博客网站',
 	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',null,1,'a.jpg',1);
-insert into articles values(null,'Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',null,1,'b.jpg',1);
+insert into articles values(null,'Docker领域再添1员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',null,1,'b.jpg',1);
 insert into articles values
-	(null,'关于我的介绍','第一次尝试制作php个人博客网站',
+	(null,'关于我的介绍','第2次尝试制作php个人博客网站',
 	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',null,1,'a.jpg',2);
-insert into articles values(null,'Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',null,1,'b.jpg',2);
+insert into articles values(null,'Docker领域再添2员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',null,1,'b.jpg',2);
+select * from articles;
+insert into articles values
+	(null,'关于我的介绍','第3次尝试制作php个人博客网站',
+	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',null,1,'a.jpg',1);
+insert into articles values(null,'Docker领域再添3员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',null,1,'b.jpg',1);
+insert into articles values
+	(null,'关于我的介绍','第4次尝试制作php个人博客网站',
+	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',null,1,'a.jpg',2);
+insert into articles values(null,'Docker领域再添4员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',null,1,'b.jpg',2);
+select * from articles;
+insert into articles values
+	(null,'关于我的介绍','第5次尝试制作php个人博客网站',
+	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',null,1,'a.jpg',1);
+insert into articles values(null,'Docker领域再添5员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',null,1,'b.jpg',1);
+insert into articles values
+	(null,'关于我的介绍','第6次尝试制作php个人博客网站',
+	'第一次想做这么一个网站，去记录自己的生活和学习，前行的脚步太过匆忙，不如停下来好好整理整理，自己选择的路，不论如何都要走完。',null,1,'a.jpg',2);
+insert into articles values(null,'Docker领域再添6员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争','Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争',null,1,'b.jpg',2);
 select * from articles;
 
 --5

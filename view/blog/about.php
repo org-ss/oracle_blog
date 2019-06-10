@@ -20,7 +20,7 @@
                 <ul>
                   <li><a href="index.php?r=blogArticle/showAll">博客首页</a></li>
                   <li><a href="index.php?r=blogPhoto/showAll">相册</a></li>
-                  <li><a href="index.php?r=blogMessage/showAll">留言板</a></li>
+                  <!-- <li><a href="index.php?r=blogMessage/showAll">留言板</a></li> -->
                   <li class="active"><a href="index.php?r=blogIntroduce/about_me">关于我</a></li>
                   <li><a href="index.php?r=adminLogin/login_page">登录</a></li>
                 </ul>

@@ -5,6 +5,7 @@ class Model{
 		$this->pdo = new PDO("oci:dbname=orcl;charset=utf8",'blogdata','123456');
 	}
 	public function __destruct(){
+		
         $this->pdo = NULL;
     }
 }

@@ -8,6 +8,7 @@ on a.userId=u.id
 left join types t
 on a.typeid=t.id;
 
+
 --分类视图
 create view v_types as
 select *from (select count(*) num,typeid from v_articles group by typeid) e 
@@ -36,6 +37,7 @@ begin
   return v_num;
 end;
 /
+
 
 --文章查询
 select *from v_articles where (regexp_like(title,'(keyword)+') or regexp_like(introduction,'(keyword)+'));*/

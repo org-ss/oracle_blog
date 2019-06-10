@@ -22,13 +22,23 @@ class Article extends Model{
 		return $article;
 	}
 
-	#展示某一类型的文章
-	public function findType($id){
+	#展示某一类型的文章,5篇/页显示
+	public function findType($id,$curPage){
 
-		$statement = $this->pdo->prepare("select * from v_articles where typeid=?");
-		$num=$statement->execute([$id]);
+		$query="select * from (select rownum rn,a.* from v_articles a where a.typeId=?)e where e.rn>=(?-1)*5+1 and e.rn<=?*5";
+		$statement = $this->pdo->prepare($query);
+		$statement->execute([$id,$curPage,$curPage]);
 		$articles = $statement->fetchAll();
 		return $articles;
+	}
+
+	#计算某一类型文章总数
+	public function getTypeCount($id){
+
+		$statement=$this->pdo->prepare("select * from v_articles where typeId=?");
+		$statement->execute([$id]);
+		$count=count($statement->fetchAll());
+		return $count;
 	}
 
 	#展示最新的5篇文章
@@ -82,15 +92,6 @@ class Article extends Model{
 		$statement->execute([$page,$nextPage]);
 		$result = $statement->fetchAll();
 		
-		// $statement = $this->pdo->prepare('exec testPage ?');
-		// $statement->bindParam(1,$page);
-		// $statement->execute();
-		// $result = $statement->fetchAll();
-		// return $result;
-
-		// $sql = "select *from v_articles";
-		// $statement = $this->pdo->query($sql);
-		// $result = $statement->fetchAll();
 		return $result;
 	}
 
@@ -133,11 +134,13 @@ class Article extends Model{
 		$statement->execute([$title,$introduction,$content,$uid,$clean_filename,$typeId]);
 	}
 
+
 	#查询结果的分页显示
 	public function pageSearch($array,$page){
 		$page=$page==0?0:$page*5-1;
-		$array2 = array_slice($array, $page,5);#将$array数组从$page位置开始截取5个长度
-		return $array2;
+		$array=array_slice($array,$page,5);#将$array数组从$page位置开始截取5个长度
+		return $array;
+
 	}
 
 

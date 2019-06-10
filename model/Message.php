@@ -6,19 +6,20 @@ class Message extends Model{
 	public function showAll($aid,$curPage){
 
 
-		$query="select * from (select rownum rn,m.* from messages m where m.articleId=?)e where e.rn>=(?-1)*8+1 and e.rn<=?*8";
+		$query="select * from (select rownum rn,m.* from messages m where m.articleId=?)e where e.rn>=(?-1)*5+1 and e.rn<=?*5";
 		$statement = $this->pdo->prepare($query);
 		$statement->execute([$aid,$curPage,$curPage]);
 		$messages = $statement->fetchAll();
 		return $messages;
+	}
 
-		// $conn = $this->conn();
-		// $statement = oci_parse($conn, "select * from messages where articleId=:aid");
-		// oci_bind_by_name($statement, ":aId", $aid);
-		// oci_execute($statement);
-		// $nrows=oci_fetch_all($statement, $result);
-		// $array = array(0 =>$nrows , 1=>$result);
-		// return $array;
+	#获取某一篇文章的留言总数
+	public function articleMessage($id){
+		
+		$statement = $this->pdo->prepare("select count(*) from messages where articleId=?");
+		$statement->execute([$id]);
+		$rows = $statement->fetch();
+		return $rows[0];
 	}
 
 	public function messageSave($name,$content,$articleId){

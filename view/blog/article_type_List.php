@@ -32,7 +32,7 @@
                     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
             }
 		    #search-button {
-		    height: 30px;
+		    height: 36px;
 		    width: 40px;
 		    margin-top:5px;
 		    margin-left:-16px;
@@ -55,7 +55,7 @@
 		        <ul>
 		          <li class="active"><a href="index.php?r=blogArticle/showAll">博客首页</a></li>
 		          <li><a href="index.php?r=blogPhoto/showEveryPage">相册</a></li>
-		          <li><a href="index.php?r=blogMessage/showAll">留言板</a></li>
+		          <!-- <li><a href="index.php?r=blogMessage/showAll">留言板</a></li> -->
 		          <li><a href="index.php?r=blogIntroduce/about_me">关于我</a></li>
 		          <?php 
 		          	$isLogin=$_SESSION['isLogin'];
@@ -106,7 +106,7 @@
 						</p>
 						
 						<div class="dateview" align="center" style="left:-143px;">
-							<?php echo $value['CREATED_TIME'];?>
+							<?php echo $value['CREATED_AT'];?>
 						</div>
 					</div>
 					<?php endforeach; ?>					
@@ -114,16 +114,16 @@
 				<div class="am-u-lg-12 am-cf">
 		            <div class="am-fr">
 		                <ul class="am-pagination tpl-pagination">
-		                    <li><a href="index.php?r=blogArticle/showType&cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
+		                    <li><a href="index.php?r=blogArticle/showType&typeId=<?=$typeId ?>&cur_page=<?php echo $curPage==1?1:($curPage-1);?>">«</a></li>
 		                    <?php for ($i=1; $i<=$page; $i++): ?>
 		                        <li <?php if($curPage==$i){echo 'class="am-active"'; } ?>>
-		                        	<a href="index.php?r=blogArticle/showType&cur_page=<?=$i?>">
+		                        	<a href="index.php?r=blogArticle/showType&typeId=<?=$typeId ?>&cur_page=<?=$i?>">
 		                        		<?php echo $i;?>
 		                        	</a>
 		                        </li>
 		                    <?php endfor;?>
 		                    
-		                    <li><a href="index.php?r=blogArticle/showType&cur_page=<?php echo $curPage==$page?$page:($curPage+1);?>">»</a></li>
+		                    <li><a href="index.php?r=blogArticle/showType&typeId=<?=$typeId ?>&cur_page=<?php echo $curPage==$page?$page:($curPage+1);?>">»</a></li>
 		                </ul>
 		            </div>
 		        </div>
