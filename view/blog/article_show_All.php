@@ -161,7 +161,7 @@ function validate(){
 						<h2 class="star"><span>Article</span> Type</h2>
 						<div class="clr"></div>
 						<ul class="sb_menu">
-							<?php include '../view/menu/types.php' ?>
+							<?php include '../view/menu/types.php'; ?>
 						</ul>
 					</div>
 					

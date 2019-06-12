@@ -78,7 +78,7 @@
                            <div class="am-form-group">
                                 <label for="user-email" class="am-u-sm-3 am-form-label">发布时间 <span class="tpl-form-line-small-title"></span></label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" class="am-form-field tpl-form-no-bg" value="<?=$article['CREATED_TIME'];?>" name="a_date" placeholder="发布时间" readonly="true">
+                                    <input type="text" class="am-form-field tpl-form-no-bg" value="<?=$article['CREATED_AT'];?>" name="a_date" placeholder="发布时间" readonly="true">
                                     <small>发布时间为必填</small>
                                 </div>
                             </div>
