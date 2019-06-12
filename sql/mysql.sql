@@ -1,4 +1,4 @@
-#创建blogdata用户并授予权限：在orcl数据库库中使用sys用户进行命令操作
+﻿#创建blogdata用户并授予权限：在orcl数据库库中使用sys用户进行命令操作
 select * from user_users;
 create user blogdata identified by 123456;
 grant connect,resource to blogdata;
@@ -49,7 +49,8 @@ create sequence photos_id
 create table types(
 	id number primary key,
 	name varchar2(10 char) not null,
-	created_at varchar2(50)
+	created_at varchar2(50),
+	constraints types_name_unk unique(name)
 );
 comment on table types is '文章类型';
 
@@ -68,7 +69,7 @@ comment on table users is '用户信息，其中role为1时表示普通身份';
 
 create table articles(
 	id number primary key,
-	title varchar2(100 char) not null,
+	title varchar2(100) not null,
 	introduction varchar2(400 char) not null,
 	content varchar2(2000 char) not null,
 	created_at varchar2(50),
@@ -100,7 +101,8 @@ create table photos(
 	created_at varchar2(50),
 	userId number,
 	constraints photos_uid_fk foreign key(userId)
-	references users(id)
+	references users(id),
+	constraints photos_name_unk unique(name)
 );
 comment on table photos is '图片信息';
 
